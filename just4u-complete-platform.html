@@ -945,7 +945,7 @@
     </div>
 
     <script>
-        // Replace hardcoded list with API loading and map to original fields
+        // Load from static JSON
         let allDevelopers = [];
         let filteredDevelopers = [];
         let selectedTechnologies = [];
@@ -954,9 +954,10 @@
 
         async function loadDevelopers() {
             try {
-                const res = await fetch('/api/developers');
-                const data = await res.json();
-                allDevelopers = (data.developers || []).map((d, i) => ({
+                const res = await fetch('public/developers.json');
+                if (!res.ok) throw new Error('not ok');
+                const raw = await res.json();
+                allDevelopers = raw.map((d, i) => ({
                     id: i + 1,
                     developerId: d.developerId,
                     position: d.position,
@@ -964,8 +965,8 @@
                     salary: d.salaryUSD,
                     technologies: d.technologies,
                     englishLevel: d.englishLevel,
-                    techLevel: d.techScore, // unlimited; just display number
-                    performanceRating: d.rating, // 4.5..5.0
+                    techLevel: d.techScore,
+                    performanceRating: d.rating,
                     projects: d.projectsCount,
                     category: d.category,
                     description: (d.achievements && d.achievements.length) ? d.achievements.join(' • ') : (d.projectSectors||[]).join(' • '),
@@ -974,9 +975,7 @@
                 }));
                 filteredDevelopers = [...allDevelopers];
                 displayDevelopers();
-            } catch (e) {
-                console.error('Failed to load developers', e);
-            }
+            } catch (e) { console.error('Failed to load static developers.json', e); }
         }
 
         function showSection(sectionName) {
@@ -1130,48 +1129,31 @@
         async function submitContactForm(e) {
             e.preventDefault();
             const formData = new FormData(e.target);
-            const payload = {
-                name: formData.get('name') || formData.get('company') || 'Client',
-                email: formData.get('clientEmail') || formData.get('email'),
-                developerId: currentDeveloper?.developerId,
-                projectDescription: formData.get('projectDescription') || formData.get('description') || ''
-            };
-            try {
-                const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                const data = await res.json();
-                if (data.ok) alert('✅ Request sent!'); else alert('❌ Error');
-            } catch { alert('❌ Error sending'); }
+            const name = formData.get('name') || formData.get('company') || 'Client';
+            const email = formData.get('clientEmail') || formData.get('email');
+            const desc = formData.get('projectDescription') || formData.get('description') || '';
+            const subject = encodeURIComponent(`just4u: ${currentDeveloper?.developerId} ${currentDeveloper?.position}`);
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nDeveloper: ${currentDeveloper?.developerId} ${currentDeveloper?.position}\nCategory: ${currentDeveloper?.category}\nEnglish: ${currentDeveloper?.englishLevel}\nTech Score: ${currentDeveloper?.techLevel}\nRating: ${currentDeveloper?.performanceRating}\nSalary: $${currentDeveloper?.salary}/mo\nAvailability: ${currentDeveloper?.availability}\n\nProject: ${desc}`);
+            window.location.href = `mailto:stant1605@gmail.com?subject=${subject}&body=${body}`;
+            alert('✅ Request prepared in your mail app.');
             closeModal();
             e.target.reset();
         }
-
         async function submitConstructorForm(e) {
             e.preventDefault();
             const formData = new FormData(e.target);
-            const payload = {
-                projectType: formData.get('projectType'),
-                technologies: formData.get('technologies'),
-                budget: formData.get('budget'),
-                email: formData.get('email'),
-                description: formData.get('description')
-            };
-            try {
-                const res = await fetch('/api/constructor', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                const data = await res.json();
-                if (data.ok) alert('✅ Sent!'); else alert('❌ Error');
-            } catch { alert('❌ Error sending'); }
+            const subject = encodeURIComponent('just4u: Constructor Request');
+            const body = encodeURIComponent(`Project Type: ${formData.get('projectType')}\nTechnologies: ${formData.get('technologies')}\nBudget: ${formData.get('budget')}\nEmail: ${formData.get('email')}\nDescription: ${formData.get('description')||''}`);
+            window.location.href = `mailto:stant1605@gmail.com?subject=${subject}&body=${body}`;
+            alert('✅ Request prepared in your mail app.');
             e.target.reset();
         }
-
         document.addEventListener('DOMContentLoaded', function() {
-            updateSalaryRange();
-            updateExperienceRange();
-            updateTechLevelRange();
+            updateSalaryRange(); updateExperienceRange(); updateTechLevelRange();
             setTimeout(() => { loadDevelopers(); }, 200);
             const contact = document.getElementById('contactForm'); if (contact) contact.addEventListener('submit', submitContactForm);
             const constructor = document.getElementById('constructorForm'); if (constructor) constructor.addEventListener('submit', submitConstructorForm);
         });
-
         window.onclick = function(event) { const modal = document.getElementById('contactModal'); if (event.target == modal) { closeModal(); } }
     </script>
 </body>

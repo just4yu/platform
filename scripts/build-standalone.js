@@ -14,21 +14,14 @@ function build() {
   const html = fs.readFileSync(HTML_SRC, 'utf-8');
   const devs = fs.readFileSync(DEVS_JSON, 'utf-8');
 
-  // Insert inline JSON right before the main script closing tag </script> of our logic.
-  // Add a <script id="devData" type="application/json">...</script>
   let out = html;
 
-  // Ensure loader reads from devData instead of fetching public/developers.json
-  out = out.replace(
-    /const\s+res\s*=\s*await\s*fetch\('public\/developers\.json'\)[^;]*;[\s\S]*?const\s+raw\s*=\s*await\s*res\.json\(\);/,
-    `const devDataEl = document.getElementById('devData');
-                const raw = JSON.parse(devDataEl.textContent);`
-  );
+  // Remove any fetch to public/developers.json if present
+  out = out.replace(/await\s*fetch\('public\/developers\.json'\)[\s\S]*?;[\s\S]*?displayDevelopers\(\);?\s*\}/, 'displayDevelopers(); }');
 
-  // Inject the devData script before the first occurrence of our main logic script opener
-  // Simpler: prepend right before </body>
-  const devScript = `\n    <script id="devData" type="application/json">${devs}</script>\n`;
-  out = out.replace(/\n\s*<\/body>/, devScript + '\n  </body>');
+  // Inject window.allDevelopers assignment before </body>
+  const inline = `\n    <script>window.allDevelopers = ${devs};</script>\n`;
+  out = out.replace(/\n\s*<\/body>/, inline + '\n</body>');
 
   fs.writeFileSync(HTML_OUT, out);
   console.log(`Built standalone HTML at ${HTML_OUT}`);

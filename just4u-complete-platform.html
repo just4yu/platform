@@ -387,11 +387,11 @@
     </div>
 
     <script>
-        // Data (loaded elsewhere in previous steps)
-        let allDevelopers = allDevelopers || [];
-        let filteredDevelopers = filteredDevelopers || [];
-        let selectedTechnologies = selectedTechnologies || [];
-        let selectedCategories = selectedCategories || [];
+        // Data (in static build injected as window.allDevelopers)
+        let allDevelopers = window.allDevelopers || [];
+        let filteredDevelopers = [];
+        let selectedTechnologies = [];
+        let selectedCategories = [];
         let currentDeveloper = null;
 
         function setActiveTab(name){

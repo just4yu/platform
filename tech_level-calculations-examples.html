@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating Calculations Examples - just🔗4u</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .rating-formula {
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+
+        .formula-title {
+            font-weight: 700;
+            color: #234e52;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+        }
+
+        .example-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid;
+        }
+
+        .junior { border-left-color: #48bb78; }
+        .middle { border-left-color: #ed8936; }
+        .senior { border-left-color: #e53e3e; }
+        .lead { border-left-color: #9f7aea; }
+
+        .example-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .developer-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a202c;
+        }
+
+        .level-badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .junior-badge { background: #c6f6d5; color: #22543d; }
+        .middle-badge { background: #fbd38d; color: #7b341e; }
+        .senior-badge { background: #fed7d7; color: #742a2a; }
+        .lead-badge { background: #e9d8fd; color: #553c9a; }
+
+        .developer-info {
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .calculation-section {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .calculation-title {
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 12px;
+        }
+
+        .calculation-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 8px 0;
+        }
+
+        .calculation-item:last-child {
+            border-top: 2px solid #e2e8f0;
+            margin-top: 12px;
+            padding-top: 12px;
+            font-weight: 700;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .tech-tag {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .primary { background: #fed7d7; color: #742a2a; }
+        .advanced { background: #fbd38d; color: #7b341e; }
+        .supporting { background: #c6f6d5; color: #22543d; }
+        .additional { background: #bee3f8; color: #1a365d; }
+
+        .final-rating {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            border-radius: 12px;
+        }
+
+        .rating-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .stars {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .rating-description {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Rating Calculations Examples</h1>
+            <p>Real examples from our developer database with detailed calculations</p>
+        </div>
+
+        <div class="rating-formula">
+            <div class="formula-title">🔢 Rating Formula:</div>
+            <div style="font-size: 14px; color: #4a5568;">
+                <strong>Primary Technology:</strong> 1.5 points (choose 1) +
+                <strong>Advanced Technologies:</strong> 0.2 points each +
+                <strong>Supporting Technologies:</strong> 0.1 points each +
+                <strong>Additional Skills:</strong> 0.1 points each +
+                <strong>Experience:</strong> 0.2 points/year +
+                <strong>Seniority Bonus:</strong> Junior (+0.1-0.2), Middle (+0.3-0.4), Senior (+0.5-0.6), Lead (+0.6)
+                <br><strong>Maximum Rating:</strong> 5.0★
+            </div>
+        </div>
+
+        <div class="examples-grid">
+            
+            <!-- Junior 1: Junior React Developer -->
+            <div class="example-card junior">
+                <div class="example-header">
+                    <div class="developer-name">Junior React Developer</div>
+                    <div class="level-badge junior-badge">Junior</div>
+                </div>
+                
+                <div class="developer-info">
+                    <strong>Experience:</strong> 2 years<br>
+                    <strong>Technologies:</strong> React • JavaScript • HTML • CSS • Git • Figma<br>
+                    <strong>Projects:</strong> Simple web apps • Landing pages • Component libraries<br>
+                    <strong>Salary:</strong> $1,800/mo
+                </div>
+
+                <div class="calculation-section">
+                    <div class="calculation-title">🧮 Calculation Breakdown:</div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>🔥 Primary Technology:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag primary">React</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>💚 Supporting Technologies:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag supporting">JavaScript</span>
+                            <span class="tech-tag supporting">HTML</span>
+                            <span class="tech-tag supporting">CSS</span>
+                            <span class="tech-tag supporting">Git</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>🛠️ Additional Skills:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag additional">Figma</span>
+                            <span class="tech-tag additional">Web Development</span>
+                        </div>
+                    </div>
+
+                    <div class="calculation-item">
+                        <span>Primary: React</span>
+                        <span>1.5</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Supporting: 4 techs × 0.1</span>
+                        <span>0.4</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Additional: 2 skills × 0.1</span>
+                        <span>0.2</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Experience: 2 years × 0.2</span>
+                        <span>0.4</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Junior bonus</span>
+                        <span>+0.2</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span><strong>Total Rating:</strong></span>
+                        <span><strong>2.7★</strong></span>
+                    </div>
+                </div>
+
+                <div class="final-rating">
+                    <div class="rating-number">2.7</div>
+                    <div class="stars">★★★☆☆</div>
+                    <div class="rating-description">👍 Good Developer</div>
+                </div>
+            </div>
+
+            <!-- Junior 2: Junior Android Developer -->
+            <div class="example-card junior">
+                <div class="example-header">
+                    <div class="developer-name">Junior Android Developer</div>
+                    <div class="level-badge junior-badge">Junior</div>
+                </div>
+                
+                <div class="developer-info">
+                    <strong>Experience:</strong> 2 years<br>
+                    <strong>Technologies:</strong> Kotlin • Android • Firebase • Material Design • Basic Development<br>
+                    <strong>Projects:</strong> Simple mobile apps • Learning projects<br>
+                    <strong>Salary:</strong> $2,800/mo
+                </div>
+
+                <div class="calculation-section">
+                    <div class="calculation-title">🧮 Calculation Breakdown:</div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>🔥 Primary Technology:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag primary">Kotlin (Android)</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>💚 Supporting Technologies:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag supporting">Firebase</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>🛠️ Additional Skills:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag additional">Material Design</span>
+                            <span class="tech-tag additional">Mobile Development</span>
+                        </div>
+                    </div>
+
+                    <div class="calculation-item">
+                        <span>Primary: Kotlin (Android)</span>
+                        <span>1.5</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Supporting: 1 tech × 0.1</span>
+                        <span>0.1</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Additional: 2 skills × 0.1</span>
+                        <span>0.2</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Experience: 2 years × 0.2</span>
+                        <span>0.4</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Junior bonus</span>
+                        <span>+0.1</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span><strong>Total Rating:</strong></span>
+                        <span><strong>2.3★</strong></span>
+                    </div>
+                </div>
+
+                <div class="final-rating">
+                    <div class="rating-number">2.3</div>
+                    <div class="stars">★★☆☆☆</div>
+                    <div class="rating-description">📈 Developing Skills</div>
+                </div>
+            </div>
+
+            <!-- Middle 1: Mid Java Developer -->
+            <div class="example-card middle">
+                <div class="example-header">
+                    <div class="developer-name">Mid Java Developer</div>
+                    <div class="level-badge middle-badge">Middle</div>
+                </div>
+                
+                <div class="developer-info">
+                    <strong>Experience:</strong> 4 years<br>
+                    <strong>Technologies:</strong> Java • Spring Boot • MySQL • Maven • Git • JUnit<br>
+                    <strong>Projects:</strong> Business applications • REST APIs • Database integration<br>
+                    <strong>Salary:</strong> $2,800/mo
+                </div>
+
+                <div class="calculation-section">
+                    <div class="calculation-title">🧮 Calculation Breakdown:</div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>🔥 Primary Technology:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag primary">Java</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>💛 Advanced Technologies:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag advanced">Spring Boot</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>💚 Supporting Technologies:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag supporting">MySQL</span>
+                            <span class="tech-tag supporting">Git</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>🛠️ Additional Skills:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag additional">Maven</span>
+                            <span class="tech-tag additional">Testing</span>
+                            <span class="tech-tag additional">Enterprise</span>
+                        </div>
+                    </div>
+
+                    <div class="calculation-item">
+                        <span>Primary: Java</span>
+                        <span>1.5</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Advanced: 1 tech × 0.2</span>
+                        <span>0.2</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Supporting: 2 techs × 0.1</span>
+                        <span>0.2</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Additional: 3 skills × 0.1</span>
+                        <span>0.3</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Experience: 4 years × 0.2</span>
+                        <span>0.8</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Middle bonus</span>
+                        <span>+0.3</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span><strong>Total Rating:</strong></span>
+                        <span><strong>3.3★</strong></span>
+                    </div>
+                </div>
+
+                <div class="final-rating">
+                    <div class="rating-number">3.3</div>
+                    <div class="stars">★★★☆☆</div>
+                    <div class="rating-description">👍 Good Developer</div>
+                </div>
+            </div>
+
+            <!-- Middle 2: ML Engineer -->
+            <div class="example-card middle">
+                <div class="example-header">
+                    <div class="developer-name">ML Engineer</div>
+                    <div class="level-badge middle-badge">Middle</div>
+                </div>
+                
+                <div class="developer-info">
+                    <strong>Experience:</strong> 4 years<br>
+                    <strong>Technologies:</strong> Python • TensorFlow • Kubernetes • Docker • MLflow • Airflow<br>
+                    <strong>Projects:</strong> Computer vision • Deep learning • Model deployment<br>
+                    <strong>Salary:</strong> $4,000/mo
+                </div>
+
+                <div class="calculation-section">
+                    <div class="calculation-title">🧮 Calculation Breakdown:</div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>🔥 Primary Technology:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag primary">Machine Learning</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>💛 Advanced Technologies:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag advanced">Python</span>
+                            <span class="tech-tag advanced">Docker</span>
+                            <span class="tech-tag advanced">Kubernetes</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>🛠️ Additional Skills:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag additional">MLOps</span>
+                            <span class="tech-tag additional">Model Deployment</span>
+                            <span class="tech-tag additional">Computer Vision</span>
+                        </div>
+                    </div>
+
+                    <div class="calculation-item">
+                        <span>Primary: Machine Learning</span>
+                        <span>1.5</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Advanced: 3 techs × 0.2</span>
+                        <span>0.6</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Additional: 3 skills × 0.1</span>
+                        <span>0.3</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Experience: 4 years × 0.2</span>
+                        <span>0.8</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Middle bonus</span>
+                        <span>+0.4</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span><strong>Total Rating:</strong></span>
+                        <span><strong>3.6★</strong></span>
+                    </div>
+                </div>
+
+                <div class="final-rating">
+                    <div class="rating-number">3.6</div>
+                    <div class="stars">★★★⭐☆</div>
+                    <div class="rating-description">💪 Strong Developer</div>
+                </div>
+            </div>
+
+            <!-- Senior 1: Senior React Developer -->
+            <div class="example-card senior">
+                <div class="example-header">
+                    <div class="developer-name">Senior React Developer</div>
+                    <div class="level-badge senior-badge">Senior</div>
+                </div>
+                
+                <div class="developer-info">
+                    <strong>Experience:</strong> 7 years<br>
+                    <strong>Technologies:</strong> React • TypeScript • Redux • Next.js • Node.js • GraphQL<br>
+                    <strong>Projects:</strong> E-commerce platforms • SaaS solutions • Fintech apps<br>
+                    <strong>Salary:</strong> $5,000/mo
+                </div>
+
+                <div class="calculation-section">
+                    <div class="calculation-title">🧮 Calculation Breakdown:</div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>🔥 Primary Technology:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag primary">React</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>💛 Advanced Technologies:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag advanced">TypeScript</span>
+                            <span class="tech-tag advanced">Next.js</span>
+                            <span class="tech-tag advanced">Node.js</span>
+                            <span class="tech-tag advanced">GraphQL</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>💚 Supporting Technologies:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag supporting">Redux</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>🛠️ Additional Skills:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag additional">E-commerce</span>
+                            <span class="tech-tag additional">Fintech</span>
+                            <span class="tech-tag additional">Web Development</span>
+                        </div>
+                    </div>
+
+                    <div class="calculation-item">
+                        <span>Primary: React</span>
+                        <span>1.5</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Advanced: 4 techs × 0.2</span>
+                        <span>0.8</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Supporting: 1 tech × 0.1</span>
+                        <span>0.1</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Additional: 3 skills × 0.1</span>
+                        <span>0.3</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Experience: 7 years × 0.2</span>
+                        <span>1.4</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Senior bonus</span>
+                        <span>+0.5</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span><strong>Total Rating:</strong></span>
+                        <span><strong>4.6★</strong></span>
+                    </div>
+                </div>
+
+                <div class="final-rating">
+                    <div class="rating-number">4.6</div>
+                    <div class="stars">★★★★⭐</div>
+                    <div class="rating-description">🚀 Exceptional Developer</div>
+                </div>
+            </div>
+
+            <!-- Senior 2: Senior DevOps Engineer -->
+            <div class="example-card senior">
+                <div class="example-header">
+                    <div class="developer-name">Senior DevOps Engineer</div>
+                    <div class="level-badge senior-badge">Senior</div>
+                </div>
+                
+                <div class="developer-info">
+                    <strong>Experience:</strong> 7 years<br>
+                    <strong>Technologies:</strong> Docker • Kubernetes • AWS • Terraform • Jenkins • Ansible<br>
+                    <strong>Projects:</strong> Cloud migrations • Infrastructure automation • CI/CD pipelines<br>
+                    <strong>Salary:</strong> $4,500/mo
+                </div>
+
+                <div class="calculation-section">
+                    <div class="calculation-title">🧮 Calculation Breakdown:</div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>🔥 Primary Technology:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag primary">DevOps/Cloud Architecture</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>💛 Advanced Technologies:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag advanced">Docker</span>
+                            <span class="tech-tag advanced">Kubernetes</span>
+                            <span class="tech-tag advanced">AWS</span>
+                            <span class="tech-tag advanced">Terraform</span>
+                            <span class="tech-tag advanced">Jenkins</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>🛠️ Additional Skills:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag additional">CI/CD</span>
+                            <span class="tech-tag additional">Infrastructure Automation</span>
+                            <span class="tech-tag additional">Cloud Migrations</span>
+                        </div>
+                    </div>
+
+                    <div class="calculation-item">
+                        <span>Primary: DevOps/Cloud Architecture</span>
+                        <span>1.5</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Advanced: 5 techs × 0.2</span>
+                        <span>1.0</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Additional: 3 skills × 0.1</span>
+                        <span>0.3</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Experience: 7 years × 0.2</span>
+                        <span>1.4</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Senior bonus</span>
+                        <span>+0.6</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span><strong>Total Rating:</strong></span>
+                        <span><strong>4.8★</strong></span>
+                    </div>
+                </div>
+
+                <div class="final-rating">
+                    <div class="rating-number">4.8</div>
+                    <div class="stars">★★★★★</div>
+                    <div class="rating-description">🚀 Exceptional Developer</div>
+                </div>
+            </div>
+
+            <!-- Lead: Java Architect -->
+            <div class="example-card lead">
+                <div class="example-header">
+                    <div class="developer-name">Java Architect</div>
+                    <div class="level-badge lead-badge">Lead/Architect</div>
+                </div>
+                
+                <div class="developer-info">
+                    <strong>Experience:</strong> 12 years<br>
+                    <strong>Technologies:</strong> Java • Spring • Microservices • Event Sourcing • CQRS • Kafka<br>
+                    <strong>Projects:</strong> Large-scale systems • High-load applications • System design<br>
+                    <strong>Salary:</strong> $5,500/mo
+                </div>
+
+                <div class="calculation-section">
+                    <div class="calculation-title">🧮 Calculation Breakdown:</div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>🔥 Primary Technology:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag primary">System Architecture</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>💛 Advanced Technologies:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag advanced">Java</span>
+                            <span class="tech-tag advanced">Microservices</span>
+                            <span class="tech-tag advanced">Kafka</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <strong>🛠️ Additional Skills:</strong>
+                        <div class="tech-list">
+                            <span class="tech-tag additional">System Design</span>
+                            <span class="tech-tag additional">Technical Leadership</span>
+                            <span class="tech-tag additional">Enterprise</span>
+                            <span class="tech-tag additional">Performance Optimization</span>
+                        </div>
+                    </div>
+
+                    <div class="calculation-item">
+                        <span>Primary: System Architecture</span>
+                        <span>1.5</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Advanced: 3 techs × 0.2</span>
+                        <span>0.6</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Additional: 4 skills × 0.1</span>
+                        <span>0.4</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Experience: 12 years × 0.2</span>
+                        <span>2.4</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span>Lead/Architect bonus</span>
+                        <span>+0.6</span>
+                    </div>
+                    <div class="calculation-item">
+                        <span><strong>Subtotal:</strong></span>
+                        <span><strong>5.5</strong></span>
+                    </div>
+                    <div class="calculation-item">
+                        <span><strong>Final Rating (cap at 5.0):</strong></span>
+                        <span><strong>5.0★</strong></span>
+                    </div>
+                </div>
+
+                <div class="final-rating">
+                    <div class="rating-number">5.0</div>
+                    <div class="stars">★★★★★</div>
+                    <div class="rating-description">🚀 Exceptional Developer</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

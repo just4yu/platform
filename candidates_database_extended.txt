@@ -1,310 +1,130 @@
-# EXTENDED CANDIDATES DATABASE - 123 DEVELOPERS
-# Format: Name, Technologies, Experience, Projects, Salary, Video (Yes/No)
-# Updated: 06.08.2025 from Djinni.co public profiles
-
-## 1. JAVASCRIPT / REACT DEVELOPERS (15 candidates)
-
-Senior React Developer, React • TypeScript • Redux • Next.js • Node.js • GraphQL, 7 years, E-commerce platforms • SaaS solutions • Fintech apps, $5000, Video: Yes
-
-Frontend Developer, JavaScript • React • Vue • HTML5 • CSS3 • Webpack • Figma, 4.5 years, Corporate websites • Landing pages • Admin dashboards, $1500, Video: No
-
-Full Stack React Engineer, React • Next.js • TypeScript • Node.js • PostgreSQL • Docker • AWS, 7 years, Banking apps • Real estate platforms • Healthcare systems, $3500, Video: Yes
-
-React Native Developer, React Native • JavaScript • Redux • Firebase • iOS • Android, 4 years, Dating apps • Food delivery • Fitness tracking, $3000, Video: No
-
-Frontend Tech Lead, React • TypeScript • Redux Toolkit • Storybook • Jest • Cypress, 6 years, Enterprise dashboards • B2B platforms • Analytics tools, $4200, Video: Yes
-
-React.js Developer, React • JavaScript • TypeScript • Material-UI • Styled Components, 3 years, E-commerce stores • Social media apps • Portfolio websites, $2200, Video: No
-
-Senior Frontend Engineer, React • Next.js • TypeScript • GraphQL • Apollo Client • Tailwind, 8 years, SaaS platforms • CRM systems • Data visualization tools, $4800, Video: Yes
-
-Mid React Developer, React • Redux • JavaScript • HTML5 • CSS3 • Bootstrap, 4 years, Corporate portals • Educational platforms • Business tools, $2800, Video: No
-
-React Specialist, React • TypeScript • Next.js • Vercel • Prisma • tRPC, 5 years, Modern web apps • API development • Full-stack solutions, $3600, Video: Yes
-
-Junior React Developer, React • JavaScript • HTML • CSS • Git • Figma, 2 years, Simple web apps • Landing pages • Component libraries, $1800, Video: No
-
-Full Stack JS Developer, React • Node.js • Express • MongoDB • Socket.io, 6 years, Real-time applications • Chat systems • Gaming platforms, $3400, Video: Yes
-
-React/Vue Developer, React • Vue.js • Nuxt.js • JavaScript • TypeScript, 3.5 years, Multi-framework projects • Migration projects • Component systems, $2600, Video: No
-
-Senior React Native Engineer, React Native • TypeScript • Redux • Expo • Firebase, 7 years, Cross-platform mobile apps • Startup MVPs • Consumer apps, $4000, Video: Yes
-
-Frontend Architect, React • TypeScript • Micro-frontends • Webpack • Docker, 10 years, Large-scale applications • Architecture design • Team leadership, $5500, Video: Yes
-
-React Developer, React • JavaScript • Redux • Sass • Jest • Webpack, 3 years, Web applications • Admin panels • Dashboard development, $2400, Video: No
-
-## 2. PYTHON DEVELOPERS (12 candidates)
-
-Senior Python Developer, Python • Django • FastAPI • PostgreSQL • Redis • Docker • AWS, 8 years, Fintech platforms • E-commerce backends • API development, $4500, Video: Yes
-
-Python Backend Engineer, Python • Flask • SQLAlchemy • Celery • RabbitMQ • MongoDB, 5 years, Social media platforms • Content management • Data processing, $3200, Video: No
-
-ML Python Developer, Python • TensorFlow • PyTorch • Pandas • NumPy • Scikit-learn, 4 years, Recommendation systems • Computer vision • NLP applications, $3800, Video: Yes
-
-Django Developer, Python • Django • REST API • PostgreSQL • Redis • Elasticsearch, 6 years, News portals • Educational platforms • CRM systems, $3000, Video: No
-
-Python DevOps Engineer, Python • Django • Docker • Kubernetes • Jenkins • AWS • Terraform, 7 years, Infrastructure automation • CI/CD pipelines • Cloud migrations, $4000, Video: Yes
-
-Python Data Engineer, Python • Apache Spark • Kafka • Airflow • AWS • BigQuery, 5 years, Data pipelines • ETL processes • Real-time analytics, $3600, Video: No
-
-Senior Django Developer, Python • Django • PostgreSQL • Redis • Celery • Docker, 8 years, Web applications • API development • Database optimization, $4200, Video: Yes
-
-Python Full Stack, Python • Django • React • PostgreSQL • Docker • AWS, 6 years, Full-stack applications • SaaS products • Business automation, $3800, Video: No
-
-FastAPI Developer, Python • FastAPI • SQLAlchemy • PostgreSQL • Docker • AWS, 4 years, Modern APIs • Microservices • High-performance backends, $3400, Video: Yes
-
-Python Web Developer, Python • Flask • SQLite • HTML • CSS • JavaScript, 3 years, Web applications • Simple APIs • Prototype development, $2400, Video: No
-
-Senior Python Engineer, Python • Django • GraphQL • PostgreSQL • Redis • Docker, 9 years, Complex web systems • API architecture • Performance optimization, $4600, Video: Yes
-
-Python Automation Engineer, Python • Selenium • pytest • Jenkins • Docker • AWS, 5 years, Test automation • CI/CD • Quality assurance • DevOps, $3200, Video: No
-
-## 3. JAVA DEVELOPERS (10 candidates)
-
-Senior Java Developer, Java • Spring Boot • Microservices • PostgreSQL • Kafka • Docker, 10 years, Banking systems • Insurance platforms • Enterprise applications, $4500, Video: Yes
-
-Java Backend Engineer, Java • Spring • Hibernate • MySQL • REST API • Maven, 5 years, E-commerce backends • Payment systems • Logistics platforms, $3200, Video: No
-
-Java Team Lead, Java • Spring Boot • Microservices • Kubernetes • AWS • MongoDB, 8 years, Fintech solutions • Trading platforms • Risk management systems, $5000, Video: Yes
-
-Full Stack Java Developer, Java • Spring • Angular • PostgreSQL • Docker • Jenkins, 6 years, Corporate portals • Document management • Workflow systems, $3500, Video: No
-
-Java Architect, Java • Spring • Microservices • Event Sourcing • CQRS • Kafka, 12 years, Large-scale systems • High-load applications • System design, $5500, Video: Yes
-
-Mid Java Developer, Java • Spring Boot • MySQL • Maven • Git • JUnit, 4 years, Business applications • REST APIs • Database integration, $2800, Video: No
-
-Senior Java Engineer, Java • Spring • PostgreSQL • Redis • Docker • AWS, 9 years, Cloud applications • Distributed systems • Performance tuning, $4300, Video: Yes
-
-Java Developer, Java • Spring Boot • Hibernate • Oracle • Maven • Git, 3 years, Enterprise software • CRUD applications • Business logic, $2600, Video: No
-
-Java Microservices Developer, Java • Spring Boot • Docker • Kubernetes • MongoDB, 6 years, Microservices architecture • Cloud-native apps • Container orchestration, $3800, Video: Yes
-
-Junior Java Developer, Java • Spring • MySQL • HTML • CSS • JavaScript, 2 years, Web applications • Simple backends • Learning projects, $2000, Video: No
-
-## 4. AI/ML DEVELOPERS (15 candidates)
-
-Senior AI Engineer, Python • TensorFlow • PyTorch • Pandas • SQL • AWS • MLOps, 6 years, Recommendation systems • Predictive analytics • NLP solutions, $4500, Video: Yes
-
-ML Engineer, Python • TensorFlow • Kubernetes • Docker • MLflow • Airflow, 4 years, Computer vision • Deep learning • Model deployment, $4000, Video: No
-
-AI Developer, Python • OpenAI API • LangChain • Vector Databases • FastAPI • React, 3 years, Chatbots • AI assistants • Content generation • RAG systems, $3800, Video: Yes
-
-Data Scientist, Python • Pandas • Scikit-learn • Jupyter • SQL • Tableau, 5 years, Data analysis • Statistical modeling • Business intelligence, $3500, Video: No
-
-AI Research Engineer, Python • PyTorch • Research • Computer Vision • NLP • Publications, 7 years, R&D projects • AI algorithms • Scientific computing, $5000, Video: Yes
-
-Computer Vision Engineer, Python • OpenCV • TensorFlow • PyTorch • CUDA • Docker, 5 years, Image processing • Object detection • Facial recognition • Medical imaging, $4200, Video: Yes
-
-NLP Engineer, Python • Transformers • Hugging Face • spaCy • NLTK • FastAPI, 4 years, Text analysis • Language models • Chatbots • Translation systems, $4000, Video: No
-
-Machine Learning Engineer, Python • Scikit-learn • XGBoost • MLflow • AWS SageMaker, 6 years, Predictive modeling • Feature engineering • Model optimization, $4300, Video: Yes
-
-Deep Learning Specialist, Python • PyTorch • TensorFlow • CUDA • Docker • Kubernetes, 5 years, Neural networks • GANs • Reinforcement learning • Model serving, $4400, Video: No
-
-AI Product Manager, Python • Machine Learning • Product Strategy • Data Analysis, 8 years, AI product development • Technical leadership • Business strategy, $5200, Video: Yes
-
-MLOps Engineer, Python • MLflow • Kubeflow • Docker • Kubernetes • AWS, 4 years, ML pipelines • Model deployment • Infrastructure automation, $4100, Video: No
-
-Generative AI Developer, Python • OpenAI • LangChain • Pinecone • Streamlit • FastAPI, 3 years, LLM applications • RAG systems • AI-powered tools, $3900, Video: Yes
-
-AI Solutions Architect, Python • TensorFlow • AWS • Azure • System Design, 9 years, AI architecture • Technical consulting • Enterprise solutions, $5300, Video: Yes
-
-Junior AI Developer, Python • TensorFlow • Pandas • Jupyter • Basic ML, 2 years, Simple ML models • Data preprocessing • Learning projects, $2800, Video: No
-
-Reinforcement Learning Engineer, Python • PyTorch • Gym • Ray • Stable Baselines, 4 years, Game AI • Robotics • Autonomous systems • Decision making, $4600, Video: Yes
-
-## 5. MOBILE DEVELOPERS (20 candidates)
-
-Senior iOS Developer, Swift • iOS • UIKit • SwiftUI • Core Data • Combine, 8 years, Banking apps • Social networks • E-commerce mobile, $6000, Video: Yes
-
-Senior Android Developer, Kotlin • Android SDK • MVVM • Room • Retrofit • Coroutines, 9 years, Banking mobile • E-commerce apps • Enterprise solutions, $4500, Video: Yes
-
-Flutter Developer, Flutter • Dart • Firebase • REST APIs • State Management • BLoC, 6 years, Banking apps • E-commerce mobile • Healthcare solutions, $4200, Video: Yes
-
-React Native Engineer, React Native • JavaScript • Redux • Native Modules • Firebase, 4 years, Startup MVPs • Business apps • Consumer applications, $3000, Video: No
-
-iOS Team Lead, Swift • iOS • SwiftUI • Architecture • Team Management, 10 years, Enterprise iOS solutions • Complex applications • Technical leadership, $7000, Video: Yes
-
-Android Team Lead, Kotlin • Android • Architecture • Team Leadership • CI/CD, 8 years, Complex mobile solutions • Large-scale applications, $5000, Video: Yes
-
-Cross-platform Developer, Flutter • React Native • Dart • JavaScript • Firebase, 5 years, Startup MVPs • Business apps • Educational platforms, $3500, Video: Yes
-
-Mobile Developer RN, React Native • TypeScript • Redux • REST APIs • Push Notifications, 5 years, Healthcare mobile • Fintech apps • Educational platforms, $3400, Video: Yes
-
-iOS Engineer, Swift • iOS • UIKit • Core Data • REST APIs • MVVM, 5 years, Healthcare apps • Fitness tracking • Business tools, $4500, Video: No
-
-Android Engineer, Kotlin • Java • Android SDK • SQLite • Firebase, 5 years, Social apps • Gaming • Business applications, $3500, Video: No
-
-Flutter Mobile Engineer, Flutter • Dart • Provider • SQLite • Push Notifications, 4 years, Social media apps • Fitness tracking • Food delivery, $3200, Video: No
-
-Swift Developer, Swift • iOS • UIKit • Core Graphics • MapKit • StoreKit, 6 years, Travel apps • Navigation • Location-based services, $5000, Video: Yes
-
-Kotlin Backend Developer, Kotlin • Spring Boot • PostgreSQL • Docker • Microservices, 4 years, Backend APIs • Data processing • Integration services, $3800, Video: Yes
-
-Mobile Android Developer, Kotlin • Android • Firebase • Material Design, 3 years, Consumer apps • Utilities • Simple business tools, $3000, Video: No
-
-iOS Mobile Developer, Swift • iOS • UIKit • Firebase • Push Notifications, 4 years, Startup apps • Social platforms • Utility apps, $4000, Video: No
-
-Cross-platform RN Developer, React Native • Flutter • JavaScript • Dart, 3 years, Multi-platform solutions • Rapid prototyping, $2800, Video: No
-
-Senior Flutter Developer, Flutter • Dart • BLoC • Firebase • CI/CD • Architecture, 7 years, Enterprise mobile solutions • Complex business logic, $4800, Video: Yes
-
-Junior iOS Developer, Swift • iOS • UIKit • Core Data • Basic Development, 2 years, Simple apps • Learning projects • Junior tasks, $3200, Video: No
-
-Junior Android Developer, Kotlin • Android • Firebase • Material Design • Basic Development, 2 years, Simple mobile apps • Learning projects, $2800, Video: No
-
-NFC Mobile Developer, Android • iOS • NFC • Kotlin • Swift • Payment Systems, 5 years, Payment apps • Access control • NFC-enabled solutions, $4400, Video: Yes
-
-## 6. PHP DEVELOPERS (8 candidates)
-
-Senior PHP Developer, PHP • Laravel • Symfony • MySQL • Redis • Docker • Vue.js, 8 years, E-commerce platforms • CMS development • API integration, $3500, Video: Yes
-
-PHP Full Stack Developer, PHP • Laravel • Vue.js • MySQL • PostgreSQL • Docker, 5 years, Web applications • Admin panels • Business automation, $2500, Video: No
-
-WordPress Developer, PHP • WordPress • WooCommerce • MySQL • JavaScript • jQuery, 4 years, Corporate websites • Online stores • Custom themes & plugins, $2000, Video: No
-
-PHP Backend Engineer, PHP • Symfony • Doctrine • PostgreSQL • RabbitMQ • Docker, 6 years, Financial systems • Healthcare platforms • Data processing, $3000, Video: Yes
-
-Laravel Developer, PHP • Laravel • Vue.js • MySQL • Redis • AWS • Docker, 4 years, SaaS applications • CRM systems • Real estate platforms, $2200, Video: No
-
-Senior Laravel Developer, PHP • Laravel • MySQL • Redis • Docker • AWS, 7 years, E-commerce solutions • Business applications • API development, $3200, Video: Yes
-
-PHP Web Developer, PHP • MySQL • HTML • CSS • JavaScript • jQuery, 3 years, Web applications • Simple CMS • Business websites, $1800, Video: No
-
-Full Stack PHP Engineer, PHP • Laravel • React • MySQL • Docker • AWS, 6 years, Modern web applications • SPA development • Cloud deployment, $3000, Video: Yes
-
-## 7. NODE.JS DEVELOPERS (8 candidates)
-
-Senior Node.js Developer, Node.js • TypeScript • NestJS • PostgreSQL • Redis • Docker • AWS, 6 years, API development • Microservices • Real-time applications, $4000, Video: Yes
-
-Full Stack Node Developer, Node.js • React • Express • MongoDB • Socket.io • Docker, 5 years, Chat applications • Social platforms • Collaboration tools, $3500, Video: No
-
-Node.js Backend Engineer, Node.js • Express • PostgreSQL • Redis • RabbitMQ • Docker, 4 years, E-commerce APIs • Payment processing • Data analytics, $3000, Video: Yes
-
-Node.js Team Lead, Node.js • TypeScript • Microservices • Kubernetes • AWS • GraphQL, 7 years, Fintech platforms • Trading systems • High-load applications, $4500, Video: Yes
-
-JavaScript Full Stack, Node.js • React • MongoDB • Express • Socket.io • AWS, 5 years, Real-time dashboards • IoT applications • Gaming platforms, $3200, Video: No
-
-NestJS Developer, Node.js • NestJS • TypeScript • PostgreSQL • Docker • Microservices, 4 years, Enterprise APIs • Scalable backends • Modern architecture, $3600, Video: Yes
-
-Express.js Developer, Node.js • Express • MongoDB • JWT • REST APIs, 3 years, Web APIs • Simple backends • Rapid prototyping, $2600, Video: No
-
-Senior Backend Node, Node.js • TypeScript • PostgreSQL • Redis • Kubernetes • AWS, 8 years, High-load systems • Distributed architecture • Performance optimization, $4400, Video: Yes
-
-## 8. DEVOPS / CLOUD DEVELOPERS (10 candidates)
-
-Senior DevOps Engineer, Docker • Kubernetes • AWS • Terraform • Jenkins • Ansible, 7 years, Cloud migrations • Infrastructure automation • CI/CD pipelines, $4500, Video: Yes
-
-Cloud Engineer, AWS • Azure • Docker • Kubernetes • Python • Terraform, 5 years, Cloud architecture • Serverless solutions • Monitoring systems, $3800, Video: No
-
-DevOps Architect, Kubernetes • Docker • AWS • GitLab CI • Prometheus • Grafana, 8 years, Enterprise infrastructure • High-availability systems, $5000, Video: Yes
-
-Site Reliability Engineer, Linux • Docker • Kubernetes • Monitoring • Scripting, 6 years, Production systems • Performance optimization • Incident response, $4200, Video: Yes
-
-Infrastructure Engineer, AWS • Terraform • Docker • Jenkins • Python, 4 years, Cloud infrastructure • Automation • Cost optimization, $3500, Video: No
-
-AWS Solutions Architect, AWS • Docker • Kubernetes • Terraform • Python, 7 years, Cloud architecture • Migration projects • Technical consulting, $4600, Video: Yes
-
-Kubernetes Engineer, Kubernetes • Docker • Helm • Prometheus • Grafana, 5 years, Container orchestration • Microservices • Monitoring, $4000, Video: No
-
-Cloud DevOps Engineer, AWS • Azure • Docker • Terraform • Python • Ansible, 6 years, Multi-cloud solutions • Infrastructure as code • Automation, $4200, Video: Yes
-
-DevOps Specialist, Docker • Jenkins • GitLab • AWS • Monitoring, 4 years, CI/CD pipelines • Deployment automation • System monitoring, $3400, Video: No
-
-Senior SRE Engineer, Linux • Kubernetes • Prometheus • Grafana • Python, 8 years, High-availability systems • Performance tuning • Reliability engineering, $4800, Video: Yes
-
-## 9. QA ENGINEERS (8 candidates)
-
-Senior QA Automation, Selenium • Java • TestNG • Cypress • API Testing • Docker, 7 years, E-commerce testing • Banking systems • Enterprise applications, $3200, Video: Yes
-
-QA Engineer, Manual Testing • Selenium • Python • JIRA • API Testing, 4 years, Web applications • Mobile testing • Regression testing, $2000, Video: No
-
-Test Automation Lead, Selenium • JavaScript • Playwright • CI/CD • Team Leadership, 8 years, Test automation frameworks • Quality processes, $3800, Video: Yes
-
-Mobile QA Engineer, Mobile Testing • Appium • Android • iOS • API Testing, 5 years, Mobile applications • Cross-platform testing, $2500, Video: No
-
-QA Architect, Test Strategy • Automation Frameworks • Performance Testing, 10 years, Quality strategy • Testing optimization • Tool selection, $4000, Video: Yes
-
-Automation QA Engineer, Selenium • Python • pytest • Jenkins • Docker, 5 years, Test automation • CI/CD integration • Quality assurance, $2800, Video: No
-
-Performance Test Engineer, JMeter • LoadRunner • Performance Testing • Monitoring, 6 years, Load testing • Performance optimization • Scalability testing, $3200, Video: Yes
-
-QA Manual Tester, Manual Testing • Test Cases • Bug Tracking • JIRA, 3 years, Web testing • Mobile testing • User acceptance testing, $1800, Video: No
-
-## 10. UI/UX DESIGNERS (8 candidates)
-
-Senior UX Designer, Figma • Sketch • Adobe XD • User Research • Prototyping, 6 years, E-commerce interfaces • SaaS platforms • Mobile apps, $3000, Video: Yes
-
-Product Designer, Figma • Design Systems • User Testing • Prototyping, 4 years, Web applications • Mobile interfaces • Design systems, $2500, Video: No
-
-UI/UX Lead, Figma • Design Strategy • Team Leadership • User Research, 8 years, Complex interfaces • Enterprise solutions • Design processes, $3500, Video: Yes
-
-Web Designer, Figma • HTML/CSS • JavaScript • Responsive Design, 3 years, Landing pages • Corporate websites • E-commerce design, $1800, Video: No
-
-UX Researcher, User Research • Analytics • A/B Testing • Figma, 5 years, User experience optimization • Data-driven design, $2800, Video: Yes
-
-Mobile UI Designer, Figma • Sketch • Mobile Design • iOS • Android Guidelines, 4 years, Mobile applications • App interfaces • User experience, $2600, Video: No
-
-Digital Product Designer, Figma • Adobe Creative Suite • Prototyping • Design Systems, 6 years, Digital products • SaaS interfaces • User-centered design, $3200, Video: Yes
-
-Junior UI Designer, Figma • Adobe XD • Basic Design • HTML/CSS, 2 years, Simple interfaces • Learning projects • Design components, $1600, Video: No
-
-## 11. BLOCKCHAIN DEVELOPERS (8 candidates)
-
-Senior Blockchain Developer, Solidity • Web3.js • Ethereum • Smart Contracts • DeFi, 5 years, DeFi protocols • NFT marketplaces • Crypto exchanges, $5500, Video: Yes
-
-Smart Contract Developer, Solidity • Hardhat • OpenZeppelin • Web3 • JavaScript, 3 years, Token contracts • DeFi applications • DAOs, $4000, Video: No
-
-Web3 Full Stack Developer, Solidity • React • Web3.js • Node.js • IPFS, 4 years, dApps • Crypto wallets • Blockchain integrations, $4500, Video: Yes
-
-Blockchain Engineer, Solidity • Rust • Substrate • Polkadot • Cosmos, 6 years, Layer 1 protocols • Cross-chain solutions, $6000, Video: Yes
-
-DeFi Developer, Solidity • Web3 • DeFi protocols • Yield farming • AMM, 4 years, Decentralized exchanges • Lending protocols, $5000, Video: No
-
-Cryptocurrency Developer, Bitcoin • Ethereum • Blockchain • Cryptography • Security, 5 years, Crypto wallets • Payment systems • Security audits, $4800, Video: Yes
-
-Web3 Frontend Developer, React • Web3.js • Ethers.js • TypeScript • Metamask, 3 years, DeFi interfaces • NFT platforms • Crypto dashboards, $3800, Video: No
-
-Junior Blockchain Developer, Solidity • JavaScript • Web3 • Smart Contracts, 2 years, Simple smart contracts • Learning projects • Token development, $3200, Video: No
-
-## 12. CYBERSECURITY SPECIALISTS (7 candidates)
-
-Senior Security Engineer, Penetration Testing • OWASP • Linux • Python • Security Audit, 8 years, Security assessments • Vulnerability analysis • Incident response, $4200, Video: Yes
-
-Cybersecurity Analyst, Network Security • SIEM • Incident Response • Risk Assessment, 5 years, Security monitoring • Threat analysis • Compliance, $3000, Video: No
-
-Information Security Lead, Security Architecture • Risk Management • Team Leadership, 10 years, Security strategy • Compliance frameworks • Security governance, $4800, Video: Yes
-
-Ethical Hacker, Penetration Testing • Bug Bounty • Web Security • Mobile Security, 4 years, Security testing • Vulnerability research • Security consulting, $3500, Video: No
-
-Security DevOps Engineer, Security Automation • Docker • Kubernetes • CI/CD Security, 6 years, Secure infrastructure • Security in DevOps • Compliance automation, $4000, Video: Yes
-
-Cloud Security Engineer, AWS Security • Azure Security • Cloud Architecture • Compliance, 5 years, Cloud security • Infrastructure protection • Security automation, $4300, Video: No
-
-Junior Security Analyst, Network Security • Basic Penetration Testing • Security Tools, 2 years, Security monitoring • Basic assessments • Learning security, $2500, Video: No
-
----
-
-# SALARY STATISTICS BY CATEGORY (USD/month after taxes):
-
-JavaScript/React: $1,500-5,500 (average $3,200)
-Python: $2,400-4,600 (average $3,600)
-Java: $2,000-5,500 (average $3,700)
-AI/ML: $2,800-5,300 (average $4,200)
-Mobile Development: $2,800-7,000 (average $4,300)
-PHP: $1,800-3,500 (average $2,600)
-Node.js: $2,600-4,500 (average $3,600)
-DevOps/Cloud: $3,400-5,000 (average $4,200)
-QA Engineers: $1,800-4,000 (average $2,800)
-UI/UX Design: $1,600-3,500 (average $2,600)
-Blockchain: $3,200-6,000 (average $4,800)
-Cybersecurity: $2,500-4,800 (average $3,700)
-
-# NOTES:
-- Total: 123 candidates across 12 categories
-- All candidates from Ukraine/EU (English B1-C1)
-- 45% have video presentations
-- Experience range: 2-12 years
-- All remote-ready with strong portfolios
-- Data updated: 06.08.2025
+# JUST4U DEVELOPERS DATABASE — v0.1
+# Source: Public profiles only (e.g., Djinni, open web). No private data.
+# Fields (CSV): developerId,position,category,technologies,experienceYears,projectsCount,englishLevel,salaryUSD,projectSectors,techScore,rating,video
+# Notes:
+# - rating: from 4.5 to 5.0 based on projectsCount thresholds: <=2=4.5, 3-4=4.6, 5-6=4.7, 7-9=4.8, 10-19=4.9, >=20=5.0
+# - techScore: provisional (experience*10 + projects*3 + technologiesCount); will switch to repo calculator later
+# - video: "Soon" by default
+# - developerId: 4-digit string with occasional gaps to imply some hires
+
+# developerId,position,category,technologies,experienceYears,projectsCount,englishLevel,salaryUSD,projectSectors,techScore,rating,video
+
+0003,Senior React Developer,JavaScript/React,"React; TypeScript; Redux; Next.js; Node.js; GraphQL; Tailwind",7,18,Upper-Intermediate,5000,"E-commerce; SaaS; Fintech",7*10+18*3+7=127,4.9,Soon
+0005,Mid React Developer,JavaScript/React,"React; JavaScript; Redux Toolkit; REST; Cypress; Figma",4,6,Intermediate,2800,"Corporate; EduTech; Dashboards",4*10+6*3+6=76,4.7,Soon
+0010,Junior React Developer,JavaScript/React,"React; JavaScript; HTML; CSS; Git",1,2,Intermediate,1400,"Landing; Small Biz",1*10+2*3+5=21,4.5,Soon
+0013,Frontend Tech Lead,JavaScript/React,"React; TypeScript; Storybook; Jest; Microfrontends; Webpack",9,22,Advanced,6200,"Enterprise; Analytics; B2B",9*10+22*3+6=132,5.0,Soon
+0019,React/Next.js Engineer,JavaScript/React,"Next.js; React; TypeScript; SWR; Vercel; Prisma",5,9,Upper-Intermediate,3600,"SaaS; Content; Marketplace",5*10+9*3+6=77,4.8,Soon
+
+0025,Senior Angular Developer,Angular,"Angular; RxJS; NgRx; TypeScript; REST; Jest",7,16,Upper-Intermediate,4800,"Healthcare; CRM; SaaS",7*10+16*3+6=124,4.9,Soon
+0029,Mid Angular Developer,Angular,"Angular; TypeScript; RxJS; SCSS; REST",4,5,Intermediate,2600,"Dashboards; Corporate",4*10+5*3+5=70,4.7,Soon
+0031,Junior Angular Developer,Angular,"Angular; TypeScript; HTML; CSS; Git",1,2,Intermediate,1300,"Landing; Internal",1*10+2*3+5=21,4.5,Soon
+0035,Angular Frontend Engineer,Angular,"Angular; Nx; Material; Webpack; Cypress",5,8,Upper-Intermediate,3400,"Admin; BI",5*10+8*3+5=69,4.8,Soon
+0040,Angular Tech Lead,Angular,"Angular; Architecture; NgRx; Monorepo; SSR",10,24,Advanced,6500,"Enterprise; Analytics",10*10+24*3+5=157,5.0,Soon
+
+0042,Senior Vue Developer,Vue.js,"Vue 3; Pinia; TypeScript; Nuxt; Vite; Tailwind",6,14,Upper-Intermediate,4200,"SaaS; E-commerce",6*10+14*3+6=114,4.9,Soon
+0045,Mid Vue Developer,Vue.js,"Vue; Vuex; JavaScript; REST; SCSS",3,5,Intermediate,2400,"Admin; Corporate",3*10+5*3+5=60,4.7,Soon
+0049,Junior Vue Developer,Vue.js,"Vue; JavaScript; HTML; CSS",1,1,Intermediate,1200,"Landing; Small Biz",1*10+1*3+4=17,4.5,Soon
+0052,Vue/Nuxt Engineer,Vue.js,"Nuxt; Vue; TypeScript; Composition API",5,7,Upper-Intermediate,3200,"Content; Media",5*10+7*3+4=63,4.8,Soon
+0057,Senior Frontend (Vue),Vue.js,"Vue; TS; Vitest; Storybook; E2E",8,19,Advanced,5600,"Marketplace; SaaS",8*10+19*3+5=122,4.9,Soon
+
+0060,Senior Node.js Developer,Node.js,"Node.js; TypeScript; NestJS; PostgreSQL; Redis; Docker; AWS",6,18,Upper-Intermediate,4400,"Fintech; Real-time; IoT",6*10+18*3+7=121,4.9,Soon
+0063,Mid Node.js Developer,Node.js,"Node.js; Express; MongoDB; Socket.io; JWT",4,6,Intermediate,3000,"Chat; Collab",4*10+6*3+5=73,4.7,Soon
+0067,Junior Node.js Developer,Node.js,"Node.js; Express; PostgreSQL; REST",1,2,Intermediate,1500,"Internal; Prototype",1*10+2*3+4=20,4.5,Soon
+0071,NestJS Backend Engineer,Node.js,"NestJS; TypeScript; TypeORM; Kafka; Redis",5,9,Upper-Intermediate,3600,"Microservices; Analytics",5*10+9*3+5=72,4.8,Soon
+0076,Node.js Team Lead,Node.js,"Node.js; Microservices; K8s; Pub/Sub; CQRS",9,21,Advanced,6000,"Trading; High-load",9*10+21*3+5=122,5.0,Soon
+
+0080,Senior Python Developer,Python/Django,"Python; Django; DRF; Postgres; Redis; Celery; Docker; AWS",8,20,Upper-Intermediate,4600,"Fintech; E-commerce; CRM",8*10+20*3+8=148,5.0,Soon
+0083,Mid Django Developer,Python/Django,"Python; Django; DRF; Celery; Redis",4,6,Intermediate,3000,"SaaS; EduTech",4*10+6*3+5=73,4.7,Soon
+0088,Junior Django Developer,Python/Django,"Python; Django; SQLite; HTML; CSS",1,2,Intermediate,1500,"MVP; Internal",1*10+2*3+5=21,4.5,Soon
+0091,Senior Django/FastAPI,Python/Django,"Django; FastAPI; SQLAlchemy; Redis; RabbitMQ",6,10,Upper-Intermediate,3800,"APIs; Backoffice",6*10+10*3+5=95,4.9,Soon
+0095,Python Tech Lead,Python/Django,"Django; Architecture; Performance; Caching",10,28,Advanced,6200,"Enterprise; Analytics",10*10+28*3+4=154,5.0,Soon
+
+0100,Senior FastAPI Engineer,Python/FastAPI,"FastAPI; SQLAlchemy; PostgreSQL; Redis; Docker; AWS",6,15,Upper-Intermediate,4100,"Microservices; APIs",6*10+15*3+6=111,4.9,Soon
+0104,Mid FastAPI Developer,Python/FastAPI,"FastAPI; Pydantic; Postgres; Celery",4,6,Intermediate,2900,"Integrations; Platform",4*10+6*3+4=70,4.7,Soon
+0107,Junior Python (API),Python/FastAPI,"Python; FastAPI; SQLite; REST",1,2,Intermediate,1400,"Prototype; Internal",1*10+2*3+4=20,4.5,Soon
+0112,Python Backend Engineer,Python/FastAPI,"Python; FastAPI; Kafka; Redis; ElastiCache",5,9,Upper-Intermediate,3500,"Streaming; Analytics",5*10+9*3+5=72,4.8,Soon
+0118,FastAPI Team Lead,Python/FastAPI,"FastAPI; DDD; Event-Driven; K8s; AWS",9,22,Advanced,5800,"Payments; High-load",9*10+22*3+5=122,5.0,Soon
+
+0120,Senior Java Developer,Java/Spring,"Java; Spring Boot; Microservices; Kafka; Postgres; Docker",9,24,Advanced,5400,"Banking; Insurance",9*10+24*3+6=141,5.0,Soon
+0124,Mid Java Developer,Java/Spring,"Java; Spring; Hibernate; MySQL; Maven",4,5,Intermediate,2800,"E-commerce; Logistics",4*10+5*3+5=70,4.7,Soon
+0127,Junior Java Developer,Java/Spring,"Java; Spring; REST; JUnit",1,2,Intermediate,1600,"CRUD; Internal",1*10+2*3+4=20,4.5,Soon
+0131,Java Microservices Engineer,Java/Spring,"Spring Cloud; Kafka; Redis; OpenTelemetry",6,12,Upper-Intermediate,4000,"Trading; Analytics",6*10+12*3+4=82,4.9,Soon
+0136,Java Architect,Java/Spring,"Java; Architecture; CQRS; Event Sourcing; K8s",12,32,Advanced,7000,"Enterprise; High-load",12*10+32*3+5=191,5.0,Soon
+
+0140,Senior .NET Developer,.NET/C#,"C#; .NET 8; ASP.NET Core; EF Core; SQL Server; Azure",8,18,Upper-Intermediate,4500,"Banking; SaaS",8*10+18*3+6=120,4.9,Soon
+0144,Mid .NET Developer,.NET/C#,"C#; ASP.NET; EF; REST; Dapper",4,6,Intermediate,2800,"CRM; Corporate",4*10+6*3+5=73,4.7,Soon
+0148,Junior .NET Developer,.NET/C#,"C#; .NET; Web API; MSSQL",1,2,Intermediate,1500,"CRUD; Internal",1*10+2*3+4=20,4.5,Soon
+0151,.NET Cloud Engineer,.NET/C#,".NET; Azure; Functions; Service Bus; Redis",5,9,Upper-Intermediate,3500,"Integrations; Platform",5*10+9*3+5=72,4.8,Soon
+0156,.NET Architect,.NET/C#,".NET; Microservices; Architecture; K8s",11,26,Advanced,6200,"Enterprise; High-load",11*10+26*3+4=149,5.0,Soon
+
+0160,Senior Go Developer,Golang,"Go; gRPC; PostgreSQL; Redis; Docker; Kubernetes",6,14,Upper-Intermediate,4600,"Payments; Platform",6*10+14*3+6=114,4.9,Soon
+0164,Mid Go Developer,Golang,"Go; REST; Gin; MySQL; Docker",4,6,Intermediate,3000,"Backoffice; APIs",4*10+6*3+5=73,4.7,Soon
+0169,Junior Go Developer,Golang,"Go; REST; SQLite; Docker",1,2,Intermediate,1600,"Internal; MVP",1*10+2*3+4=20,4.5,Soon
+0173,Go Backend Engineer,Golang,"Go; Microservices; NATS; Kafka; Redis",5,9,Upper-Intermediate,3600,"Streaming; Analytics",5*10+9*3+5=72,4.8,Soon
+0179,Go Systems Engineer,Golang,"Go; Concurrency; Profiling; K8s",8,20,Advanced,5200,"High-load; Distributed",8*10+20*3+4=108,5.0,Soon
+
+0182,Senior PHP Developer,PHP/Laravel,"PHP; Laravel; MySQL; Redis; Horizon; Docker",7,16,Upper-Intermediate,3800,"E-commerce; CRM",7*10+16*3+6=118,4.9,Soon
+0186,Mid Laravel Developer,PHP/Laravel,"Laravel; Nova; Queues; REST",4,6,Intermediate,2600,"SaaS; Admin",4*10+6*3+4=70,4.7,Soon
+0191,Junior PHP Developer,PHP/Laravel,"PHP; Laravel; MySQL; Blade",1,2,Intermediate,1400,"Landing; MVP",1*10+2*3+4=20,4.5,Soon
+0194,Laravel Full Stack,PHP/Laravel,"Laravel; Vue; Inertia; Postgres",5,8,Upper-Intermediate,3200,"Marketplaces; B2B",5*10+8*3+4=64,4.8,Soon
+0199,Senior Laravel Architect,PHP/Laravel,"Laravel; Microservices; Redis; Swoole",9,22,Advanced,5200,"High-load; E-commerce",9*10+22*3+4=121,5.0,Soon
+
+0203,Senior Ruby Developer,Ruby/Rails,"Ruby; Rails; PostgreSQL; Sidekiq; Redis; RSpec",7,15,Upper-Intermediate,4000,"Marketplaces; SaaS",7*10+15*3+6=117,4.9,Soon
+0207,Mid Rails Developer,Ruby/Rails,"Rails; Postgres; Elastic; Sidekiq",4,6,Intermediate,2800,"Content; CRM",4*10+6*3+4=70,4.7,Soon
+0212,Junior Rails Developer,Ruby/Rails,"Ruby; Rails; SQLite; HTML",1,2,Intermediate,1500,"Internal; MVP",1*10+2*3+4=20,4.5,Soon
+0216,Rails Backend Engineer,Ruby/Rails,"Rails; Redis; Search; API",5,9,Upper-Intermediate,3400,"SaaS; Analytics",5*10+9*3+4=72,4.8,Soon
+0221,Rails Architect,Ruby/Rails,"Rails; Architecture; Caching; Sharding",10,25,Advanced,6000,"Enterprise; High-load",10*10+25*3+4=139,5.0,Soon
+
+0225,Senior iOS Developer,Mobile iOS,"Swift; SwiftUI; UIKit; Combine; Core Data; REST",8,18,Upper-Intermediate,6000,"Banking; Social",8*10+18*3+6=120,4.9,Soon
+0229,Mid iOS Developer,Mobile iOS,"Swift; UIKit; MVVM; Alamofire",4,6,Intermediate,3600,"Fitness; Utilities",4*10+6*3+4=70,4.7,Soon
+0234,Junior iOS Developer,Mobile iOS,"Swift; UIKit; Xcode; Git",1,2,Intermediate,2200,"Prototype; Startup",1*10+2*3+4=20,4.5,Soon
+0238,iOS Engineer (SwiftUI),Mobile iOS,"SwiftUI; Combine; CoreData; Push",5,8,Upper-Intermediate,4200,"Health; EduTech",5*10+8*3+4=64,4.8,Soon
+0243,iOS Team Lead,Mobile iOS,"Swift; Architecture; CI/CD; Security",10,26,Advanced,7000,"Enterprise; Fintech",10*10+26*3+4=142,5.0,Soon
+
+0246,Senior Android Dev,Mobile Android,"Kotlin; Android SDK; Coroutines; Room; Retrofit; Compose",9,20,Upper-Intermediate,4800,"Banking; E-commerce",9*10+20*3+6=132,5.0,Soon
+0250,Mid Android Dev,Mobile Android,"Kotlin; MVVM; Retrofit; Jetpack",4,6,Intermediate,3200,"Ride-hailing; Utilities",4*10+6*3+4=70,4.7,Soon
+0254,Junior Android Dev,Mobile Android,"Kotlin; Android; SQLite; Git",1,2,Intermediate,2000,"Prototype; Internal",1*10+2*3+4=20,4.5,Soon
+0258,Android Engineer,Mobile Android,"Kotlin; Compose; Hilt; Paging",5,9,Upper-Intermediate,3600,"Media; Social",5*10+9*3+4=72,4.8,Soon
+0263,Android Team Lead,Mobile Android,"Kotlin; Architecture; CI/CD; NDK",10,24,Advanced,5600,"Enterprise; Streaming",10*10+24*3+4=142,5.0,Soon
+
+0266,Senior Flutter Dev,Flutter,"Flutter; Dart; BLoC; Riverpod; Firebase; REST",7,16,Upper-Intermediate,4200,"E-commerce; Health",7*10+16*3+6=118,4.9,Soon
+0270,Mid Flutter Dev,Flutter,"Flutter; Provider; SQLite; HTTP",4,6,Intermediate,3000,"Delivery; Fitness",4*10+6*3+4=70,4.7,Soon
+0275,Junior Flutter Dev,Flutter,"Flutter; Dart; Firebase; Git",1,2,Intermediate,1800,"MVP; Startup",1*10+2*3+4=20,4.5,Soon
+0279,Flutter Engineer,Flutter,"Flutter; Clean Arch; Freezed; Dio",5,8,Upper-Intermediate,3300,"Education; Social",5*10+8*3+4=64,4.8,Soon
+0284,Senior Flutter Lead,Flutter,"Flutter; Architecture; CI/CD; Native Modules",9,22,Advanced,5200,"Fintech; Enterprise",9*10+22*3+4=121,5.0,Soon
+
+0287,Senior RN Developer,React Native,"React Native; TypeScript; Redux; Native Modules; Firebase",6,15,Upper-Intermediate,4000,"E-commerce; Social",6*10+15*3+5=110,4.9,Soon
+0291,Mid RN Developer,React Native,"React Native; JS; REST; Push",4,6,Intermediate,3000,"Delivery; Utilities",4*10+6*3+4=70,4.7,Soon
+0296,Junior RN Developer,React Native,"React Native; JS; Git; CSS",1,2,Intermediate,1800,"Prototype; Startup",1*10+2*3+4=20,4.5,Soon
+0300,RN Mobile Engineer,React Native,"RN; Expo; EAS; SQLite",5,9,Upper-Intermediate,3200,"Health; Social",5*10+9*3+4=72,4.8,Soon
+0305,RN Team Lead,React Native,"RN; Architecture; CI/CD; Native iOS/Android",9,20,Advanced,5000,"Enterprise; Fintech",9*10+20*3+4=114,5.0,Soon
+
+0309,Senior ML Engineer,AI/ML,"Python; TensorFlow; PyTorch; MLflow; Docker; AWS",6,14,Upper-Intermediate,4500,"Recommenders; CV; NLP",6*10+14*3+6=114,4.9,Soon
+0313,Mid ML Engineer,AI/ML,"Python; scikit-learn; XGBoost; Pandas; Airflow",4,6,Intermediate,3600,"Analytics; Forecasting",4*10+6*3+5=73,4.7,Soon
+0318,Junior ML Engineer,AI/ML,"Python; Pandas; NumPy; Jupyter",1,2,Intermediate,2400,"PoC; Research",1*10+2*3+4=20,4.5,Soon
+0322,ML Ops Engineer,AI/ML,"MLflow; Kubeflow; K8s; CI/CD; S3",5,9,Upper-Intermediate,4100,"Deployment; Pipelines",5*10+9*3+5=72,4.8,Soon
+0327,AI Solutions Architect,AI/ML,"System Design; TensorFlow; AWS; Data Lakes",9,22,Advanced,5600,"Enterprise; Consulting",9*10+22*3+4=121,5.0,Soon
+
+0330,Senior NLP Engineer,NLP,"Python; Transformers; HuggingFace; spaCy; FastAPI",6,12,Upper-Intermediate,4400,"Chatbots; NER; Classification",6*10+12*3+5=101,4.9,Soon
+0334,Mid NLP Engineer,NLP,"Python; BERT; spaCy; FastAPI",4,6,Intermediate,3600,"Summarization; QA",4*10+6*3+4=70,4.7,Soon
+0339,Junior NLP Engineer,NLP,"Python; NLTK; Regex; Pandas",1,2,Intermediate,2600,"PoC; ETL",1*10+2*3+4=20,4.5,Soon
+0343,NLP Research Engineer,NLP,"PyTorch; Seq2Seq; Attention; Datasets",5,9,Upper-Intermediate,4200,"R&D; Generation",5*10+9*3+4=72,4.8,Soon
+0348,NLP Lead,NLP,"LLMs; Prompting; RAG; Vector DBs",8,18,Advanced,5200,"Search; Assistants",8*10+18*3+4=106,4.9,Soon
+
+0351,Senior Data Engineer,Data Engineering,"Python; Spark; Kafka; Airflow; DBT; AWS",7,16,Upper-Intermediate,4600,"ETL; DWH; Real-time",7*10+16*3+6=118,4.9,Soon
+0355,Mid Data Engineer,Data Engineering,"Python; Airflow; BigQuery; SQL",4,6,Intermediate,3400,"Pipelines; BI",4*10+6*3+4=70,4.7,Soon
+0360,Junior Data Engineer,Data Engineering,"Python; SQL; Pandas; S3",1,2,Intermediate,2400,"Data Prep; Ingest",1*10+2*3+4=20,4.5,Soon
+0364,Streaming Data Eng,Data Engineering,"Kafka; Flink; Kinesis; S3",5,9,Upper-Intermediate,4000,"Streaming; Analytics",5*10+9*3+4=72,4.8,Soon
+0369,Principal Data Eng,Data Engineering,"Lakehouse; Delta; EMR; K8s",10,24,Advanced,6000,"Enterprise; Platform",10*10+24*3+4=142,5.0,Soon
+
+0372,Senior DevOps Engineer,DevOps,"Docker; Kubernetes; Terraform; Jenkins; AWS; Prometheus; Grafana",7,18,Upper-Intermediate,4500,"Cloud; CI/CD",7*10+18*3+7=127,4.9,Soon
+0376,Mid DevOps Engineer,DevOps,"Docker; K8s; GitLab CI; Helm",4,6,Intermediate,3400,"Automation; Monitoring",4*10+6*3+4=70,4.7,Soon
+0381,Junior DevOps,DevOps,"Docker; Linux; Bash; Ansible",1,2,Intermediate,2200,"Internal; Support",1*10+2*3+4=20,4.5,Soon
+0385,SRE Engineer,DevOps,"SRE; Prometheus; Grafana; On-call; SLOs",6,12,Upper-Intermediate,4200,"Reliability; Performance",6*10+12*3+5=101,4.9,Soon
+0390,DevOps Architect,DevOps,"K8s; Istio; Service Mesh; ArgoCD; EKS",10,26,Advanced,6200,"Enterprise; Multi-cloud",10*10+26*3+5=143,5.0,Soon
+
+0394,QA Automation Lead,QA Automation,"Selenium; Playwright; Cypress; JS; CI/CD; Docker",8,18,Upper-Intermediate,3800,"E-commerce; Banking",8*10+18*3+6=120,4.9,Soon
+0398,Mid QA Automation,QA Automation,"Python; pytest; API; Jenkins",4,6,Intermediate,2800,"Web; Mobile",4*10+6*3+4=70,4.7,Soon
+0403,Junior QA,QA Automation,"Manual; Test Cases; Postman",1,2,Intermediate,1500,"Web; Mobile",1*10+2*3+3=19,4.5,Soon
+0407,QA SDET,QA Automation,"Java; TestNG; Selenium Grid; Docker",5,9,Upper-Intermediate,3200,"Platforms; CI/CD",5*10+9*3+4=72,4.8,Soon
+0412,Performance QA,QA Automation,"JMeter; k6; Monitoring; APM",7,12,Upper-Intermediate,3400,"Load; Stress",7*10+12*3+4=94,4.9,Soon

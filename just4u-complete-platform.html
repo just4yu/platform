@@ -945,241 +945,57 @@
     </div>
 
     <script>
-        // Sample developers data (first 30 from our database for demo)
-        let allDevelopers = [
-            // JavaScript/React Developers
-            {
-                id: 1, developerId: "0001", position: "Senior React Developer", experience: 7, salary: 5000,
-                technologies: ["React", "TypeScript", "Redux", "Next.js", "Node.js", "GraphQL"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.6, performanceRating: 4.9, projects: 18,
-                category: "JavaScript/React", description: "Experienced in building scalable e-commerce platforms and SaaS solutions. Led frontend development for fintech applications with 100K+ users."
-            },
-            {
-                id: 2, developerId: "0002", position: "Frontend Developer", experience: 3, salary: 1800,
-                technologies: ["JavaScript", "React", "Vue", "HTML5", "CSS3", "Webpack"],
-                englishLevel: "Intermediate", techLevel: 2.9, performanceRating: 4.8, projects: 8,
-                category: "JavaScript/React", description: "Focused on creating responsive corporate websites and admin dashboards. Experience with component libraries and design systems."
-            },
-            // Python Developers
-            {
-                id: 3, developerId: "0003", position: "Senior Python Developer", experience: 8, salary: 4500,
-                technologies: ["Python", "Django", "FastAPI", "PostgreSQL", "Redis", "Docker", "AWS"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.7, performanceRating: 4.9, projects: 24,
-                category: "Python", description: "Senior backend developer with expertise in fintech platforms and e-commerce systems. Strong experience in API development."
-            },
-            {
-                id: 4, developerId: "0004", position: "ML Python Developer", experience: 6, salary: 4200,
-                technologies: ["Python", "TensorFlow", "PyTorch", "Pandas", "NumPy", "Scikit-learn"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.4, performanceRating: 4.9, projects: 16,
-                category: "AI/ML", description: "Machine learning engineer with focus on recommendation systems and computer vision. Strong mathematical background and research experience."
-            },
-            // Java Developers
-            {
-                id: 5, developerId: "0005", position: "Senior Java Developer", experience: 10, salary: 4800,
-                technologies: ["Java", "Spring Boot", "Microservices", "PostgreSQL", "Kafka", "Docker"],
-                englishLevel: "Advanced", techLevel: 5.0, performanceRating: 5.0, projects: 32,
-                category: "Java", description: "Senior Java developer with extensive experience in banking systems and enterprise applications. Expert in microservices architecture."
-            },
-            {
-                id: 6, developerId: "0006", position: "Java Architect", experience: 12, salary: 5800,
-                technologies: ["Java", "Spring", "Microservices", "Event Sourcing", "CQRS", "Kafka"],
-                englishLevel: "Advanced", techLevel: 5.0, performanceRating: 5.0, projects: 38,
-                category: "Java", description: "Java architect with expertise in large-scale systems and high-load applications. Strong background in system design and architecture patterns."
-            },
-            // Mobile Developers
-            {
-                id: 7, developerId: "0007", position: "Senior iOS Developer", experience: 8, salary: 6000,
-                technologies: ["Swift", "iOS", "UIKit", "SwiftUI", "Core Data", "Combine"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.8, performanceRating: 5.0, projects: 26,
-                category: "Mobile", description: "Senior iOS developer with expertise in banking and social network applications. Strong background in iOS architecture patterns."
-            },
-            {
-                id: 8, developerId: "0008", position: "iOS Team Lead", experience: 10, salary: 7000,
-                technologies: ["Swift", "iOS", "SwiftUI", "Architecture", "Team Management"],
-                englishLevel: "Advanced", techLevel: 5.0, performanceRating: 5.0, projects: 35,
-                category: "Mobile", description: "iOS team leader with enterprise solution experience. Expert in complex application development and technical team management."
-            },
-            // AI/ML Developers
-            {
-                id: 9, developerId: "0009", position: "Senior AI Engineer", experience: 6, salary: 5000,
-                technologies: ["Python", "TensorFlow", "PyTorch", "Pandas", "SQL", "AWS", "MLOps"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.5, performanceRating: 4.9, projects: 17,
-                category: "AI/ML", description: "Senior AI engineer with expertise in recommendation systems and predictive analytics. Strong background in machine learning operations."
-            },
-            {
-                id: 10, developerId: "0010", position: "AI Solutions Architect", experience: 9, salary: 5600,
-                technologies: ["Python", "TensorFlow", "AWS", "Azure", "System Design"],
-                englishLevel: "Advanced", techLevel: 4.9, performanceRating: 5.0, projects: 28,
-                category: "AI/ML", description: "AI solutions architect with enterprise experience. Expert in AI architecture, technical consulting, and large-scale AI system design."
-            },
-            // DevOps Developers
-            {
-                id: 11, developerId: "0011", position: "Senior DevOps Engineer", experience: 7, salary: 4800,
-                technologies: ["Docker", "Kubernetes", "AWS", "Terraform", "Jenkins", "Ansible"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.6, performanceRating: 4.9, projects: 22,
-                category: "DevOps", description: "Senior DevOps engineer with cloud migration and infrastructure automation expertise. Strong background in CI/CD pipelines."
-            },
-            {
-                id: 12, developerId: "0012", position: "DevOps Architect", experience: 9, salary: 5400,
-                technologies: ["Kubernetes", "AWS", "Terraform", "Jenkins", "Monitoring", "Security"],
-                englishLevel: "Advanced", techLevel: 4.9, performanceRating: 5.0, projects: 28,
-                category: "DevOps", description: "DevOps architect with enterprise infrastructure experience. Expert in scalable cloud architecture and security implementation."
-            },
-            // .NET/C# Developers
-            {
-                id: 13, developerId: "0013", position: "Senior .NET Developer", experience: 8, salary: 4200,
-                technologies: ["C#", ".NET Core", "ASP.NET", "Entity Framework", "SQL Server", "Azure"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.7, performanceRating: 4.9, projects: 24,
-                category: ".NET/C#", description: "Senior .NET developer with enterprise application experience. Expert in modern .NET ecosystem and cloud integration."
-            },
-            {
-                id: 14, developerId: "0014", position: ".NET Architect", experience: 10, salary: 5000,
-                technologies: ["C#", ".NET", "Architecture", "Microservices", "Azure", "Design Patterns"],
-                englishLevel: "Advanced", techLevel: 5.0, performanceRating: 5.0, projects: 30,
-                category: ".NET/C#", description: ".NET architect with large-scale system design experience. Expert in enterprise patterns and cloud architecture."
-            },
-            // Golang Developers
-            {
-                id: 15, developerId: "0015", position: "Senior Go Developer", experience: 6, salary: 4600,
-                technologies: ["Go", "Docker", "Kubernetes", "PostgreSQL", "gRPC", "Microservices"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.3, performanceRating: 4.9, projects: 18,
-                category: "Golang", description: "Senior Go developer with microservices expertise. Strong background in high-performance backend systems and container orchestration."
-            },
-            {
-                id: 16, developerId: "0016", position: "Senior Go Architect", experience: 8, salary: 5200,
-                technologies: ["Go", "System Design", "Microservices", "Performance Optimization"],
-                englishLevel: "Advanced", techLevel: 4.8, performanceRating: 5.0, projects: 26,
-                category: "Golang", description: "Go architect with system design expertise. Expert in high-load applications and performance optimization strategies."
-            },
-            // Ruby/Rails Developers
-            {
-                id: 17, developerId: "0017", position: "Senior Ruby Developer", experience: 7, salary: 4000,
-                technologies: ["Ruby", "Rails", "PostgreSQL", "Redis", "Sidekiq", "AWS"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.4, performanceRating: 4.9, projects: 21,
-                category: "Ruby/Rails", description: "Senior Ruby developer with web application expertise. Strong background in Rails ecosystem and scalable web development."
-            },
-            {
-                id: 18, developerId: "0018", position: "Senior Rails Developer", experience: 8, salary: 4200,
-                technologies: ["Ruby", "Rails", "PostgreSQL", "Redis", "Elasticsearch", "TDD"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.6, performanceRating: 4.9, projects: 24,
-                category: "Ruby/Rails", description: "Senior Rails developer with enterprise application experience. Expert in testing practices and search integration."
-            },
-            // Rust Developers
-            {
-                id: 19, developerId: "0019", position: "Senior Rust Developer", experience: 5, salary: 5000,
-                technologies: ["Rust", "Actix-web", "PostgreSQL", "Docker", "WebAssembly"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.2, performanceRating: 4.9, projects: 16,
-                category: "Rust", description: "Senior Rust developer with systems programming expertise. Strong background in high-performance applications and memory safety."
-            },
-            {
-                id: 20, developerId: "0020", position: "Rust Systems Engineer", experience: 6, salary: 4800,
-                technologies: ["Rust", "System Programming", "Linux", "Performance Optimization"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.4, performanceRating: 4.9, projects: 18,
-                category: "Rust", description: "Systems engineer with Rust specialization. Expert in low-level programming and performance-critical applications."
-            },
-            // Blockchain Developers
-            {
-                id: 21, developerId: "0021", position: "Senior Blockchain Developer", experience: 6, salary: 5200,
-                technologies: ["Solidity", "Ethereum", "Web3.js", "Smart Contracts", "DeFi"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.4, performanceRating: 4.9, projects: 18,
-                category: "Blockchain", description: "Senior blockchain developer with DeFi expertise. Strong background in smart contract development and security auditing."
-            },
-            {
-                id: 22, developerId: "0022", position: "Web3 Full Stack Developer", experience: 5, salary: 4800,
-                technologies: ["Solidity", "React", "Web3.js", "IPFS", "MetaMask Integration"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.0, performanceRating: 4.8, projects: 15,
-                category: "Blockchain", description: "Full-stack Web3 developer with dApp expertise. Strong background in blockchain frontend and backend integration."
-            },
-            // Game Developers
-            {
-                id: 23, developerId: "0023", position: "Senior Unity Developer", experience: 7, salary: 4400,
-                technologies: ["C#", "Unity", "Mobile Games", "Monetization", "Analytics"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.5, performanceRating: 4.9, projects: 21,
-                category: "Game Dev", description: "Senior Unity developer with mobile game expertise. Strong background in game mechanics, user retention, and revenue optimization."
-            },
-            {
-                id: 24, developerId: "0024", position: "Unreal Engine Developer", experience: 6, salary: 4800,
-                technologies: ["C++", "Unreal Engine", "3D Graphics", "VR/AR", "Performance Optimization"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.3, performanceRating: 4.9, projects: 18,
-                category: "Game Dev", description: "Unreal Engine specialist with AAA game experience. Expert in high-performance graphics and immersive technologies."
-            },
-            // PHP Developers
-            {
-                id: 25, developerId: "0025", position: "Senior PHP Developer", experience: 8, salary: 3800,
-                technologies: ["PHP", "Laravel", "Symfony", "MySQL", "Redis", "Docker", "Vue.js"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.7, performanceRating: 4.9, projects: 25,
-                category: "PHP", description: "Senior PHP developer with e-commerce and CMS development expertise. Strong background in modern PHP frameworks."
-            },
-            {
-                id: 26, developerId: "0026", position: "Senior Laravel Developer", experience: 7, salary: 3600,
-                technologies: ["PHP", "Laravel", "MySQL", "Redis", "Docker", "AWS"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.5, performanceRating: 4.9, projects: 21,
-                category: "PHP", description: "Senior Laravel developer with e-commerce and business application expertise. Strong experience in API development."
-            },
-            // Node.js Developers
-            {
-                id: 27, developerId: "0027", position: "Senior Node.js Developer", experience: 6, salary: 4200,
-                technologies: ["Node.js", "TypeScript", "NestJS", "PostgreSQL", "Redis", "Docker", "AWS"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.4, performanceRating: 4.9, projects: 18,
-                category: "Node.js", description: "Senior Node.js developer with API development and microservices expertise. Strong background in real-time applications."
-            },
-            {
-                id: 28, developerId: "0028", position: "Senior Backend Node", experience: 8, salary: 4600,
-                technologies: ["Node.js", "TypeScript", "PostgreSQL", "Redis", "Kubernetes", "AWS"],
-                englishLevel: "Advanced", techLevel: 4.8, performanceRating: 5.0, projects: 26,
-                category: "Node.js", description: "Senior Node.js backend developer with high-load system experience. Expert in distributed architecture and performance optimization."
-            },
-            // Scala Developers
-            {
-                id: 29, developerId: "0029", position: "Senior Scala Developer", experience: 7, salary: 4800,
-                technologies: ["Scala", "Akka", "Spark", "Kafka", "PostgreSQL", "Functional Programming"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.6, performanceRating: 4.9, projects: 22,
-                category: "Scala", description: "Senior Scala developer with big data expertise. Strong background in functional programming and distributed systems."
-            },
-            {
-                id: 30, developerId: "0030", position: "Big Data Scala Engineer", experience: 6, salary: 4400,
-                technologies: ["Scala", "Apache Spark", "Kafka", "Hadoop", "Data Processing"],
-                englishLevel: "Upper-Intermediate", techLevel: 4.1, performanceRating: 4.9, projects: 17,
-                category: "Scala", description: "Big data engineer with Scala specialization. Expert in large-scale data processing and analytics pipelines."
-            }
-        ];
-
-        let filteredDevelopers = [...allDevelopers];
+        // Replace hardcoded list with API loading and map to original fields
+        let allDevelopers = [];
+        let filteredDevelopers = [];
         let selectedTechnologies = [];
         let selectedCategories = [];
         let currentDeveloper = null;
 
-        // Show section functionality
-        function showSection(sectionName) {
-            // Hide all sections
-            document.querySelectorAll('.main-content').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Show selected section
-            document.getElementById(sectionName + 'Section').classList.add('active');
-            
-            // Load section-specific data
-            if (sectionName === 'search') {
+        async function loadDevelopers() {
+            try {
+                const res = await fetch('/api/developers');
+                const data = await res.json();
+                allDevelopers = (data.developers || []).map((d, i) => ({
+                    id: i + 1,
+                    developerId: d.developerId,
+                    position: d.position,
+                    experience: d.experienceYears,
+                    salary: d.salaryUSD,
+                    technologies: d.technologies,
+                    englishLevel: d.englishLevel,
+                    techLevel: d.techScore, // unlimited; just display number
+                    performanceRating: d.rating, // 4.5..5.0
+                    projects: d.projectsCount,
+                    category: d.category,
+                    description: (d.achievements && d.achievements.length) ? d.achievements.join(' • ') : (d.projectSectors||[]).join(' • '),
+                    availability: d.availability,
+                    video: d.video
+                }));
+                filteredDevelopers = [...allDevelopers];
                 displayDevelopers();
-            } else if (sectionName === 'top3') {
-                displayTop3();
+            } catch (e) {
+                console.error('Failed to load developers', e);
             }
         }
 
-        // Filter functions
+        function showSection(sectionName) {
+            document.querySelectorAll('.main-content').forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionName + 'Section').classList.add('active');
+            if (sectionName === 'search') displayDevelopers();
+            if (sectionName === 'top3') displayTop3();
+        }
+
         function updateSalaryRange() {
             const min = document.getElementById('salaryMin').value;
             const max = document.getElementById('salaryMax').value;
             document.getElementById('salaryDisplay').textContent = `$${parseInt(min).toLocaleString()} - $${parseInt(max).toLocaleString()}`;
         }
-
         function updateExperienceRange() {
             const min = document.getElementById('experienceMin').value;
             const max = document.getElementById('experienceMax').value;
             document.getElementById('experienceDisplay').textContent = `${min} - ${max} years`;
         }
-
         function updateTechLevelRange() {
             const min = document.getElementById('techLevelMin').value;
             const max = document.getElementById('techLevelMax').value;
@@ -1189,26 +1005,21 @@
         function toggleTechFilter(element) {
             element.classList.toggle('selected');
             const tech = element.textContent;
-            
             if (selectedTechnologies.includes(tech)) {
                 selectedTechnologies = selectedTechnologies.filter(t => t !== tech);
             } else {
                 selectedTechnologies.push(tech);
             }
-            
             filterDevelopers();
         }
-
         function toggleCategoryFilter(element) {
             element.classList.toggle('selected');
             const category = element.textContent;
-            
             if (selectedCategories.includes(category)) {
                 selectedCategories = selectedCategories.filter(c => c !== category);
             } else {
                 selectedCategories.push(category);
             }
-            
             filterDevelopers();
         }
 
@@ -1223,115 +1034,69 @@
             filteredDevelopers = allDevelopers.filter(dev => {
                 const salaryMatch = dev.salary >= salaryMin && dev.salary <= salaryMax;
                 const expMatch = dev.experience >= expMin && dev.experience <= expMax;
-                const techLevelMatch = dev.techLevel >= techLevelMin && dev.techLevel <= techLevelMax;
-                const techMatch = selectedTechnologies.length === 0 || 
+                const techLevelMatch = dev.techLevel >= techLevelMin; // ignore max as techLevel is unbounded
+                const techMatch = selectedTechnologies.length === 0 ||
                     selectedTechnologies.some(tech => dev.technologies.some(devTech => devTech.toLowerCase().includes(tech.toLowerCase())));
-                const categoryMatch = selectedCategories.length === 0 || 
+                const categoryMatch = selectedCategories.length === 0 ||
                     selectedCategories.some(cat => dev.category.includes(cat) || cat.includes(dev.category));
-                
                 return salaryMatch && expMatch && techLevelMatch && techMatch && categoryMatch;
             });
-
             displayDevelopers();
         }
 
         function sortDevelopers() {
             const sortBy = document.getElementById('sortSelect').value;
-            
             switch(sortBy) {
                 case 'techLevel':
-                    filteredDevelopers.sort((a, b) => b.techLevel - a.techLevel);
-                    break;
+                    filteredDevelopers.sort((a, b) => b.techLevel - a.techLevel); break;
                 case 'performance':
-                    filteredDevelopers.sort((a, b) => b.performanceRating - a.performanceRating);
-                    break;
+                    filteredDevelopers.sort((a, b) => b.performanceRating - a.performanceRating); break;
                 case 'salary':
-                    filteredDevelopers.sort((a, b) => a.salary - b.salary);
-                    break;
+                    filteredDevelopers.sort((a, b) => a.salary - b.salary); break;
                 case 'experience':
-                    filteredDevelopers.sort((a, b) => b.experience - a.experience);
-                    break;
+                    filteredDevelopers.sort((a, b) => b.experience - a.experience); break;
                 default:
-                    // Relevance - combination of tech level and performance
                     filteredDevelopers.sort((a, b) => (b.techLevel + b.performanceRating) - (a.techLevel + a.performanceRating));
             }
-            
             displayDevelopers();
         }
 
         function displayDevelopers() {
             const container = document.getElementById('developersGrid');
             const resultsCount = document.getElementById('resultsCount');
-            
             resultsCount.textContent = `Found ${filteredDevelopers.length} developers`;
-            
             if (filteredDevelopers.length === 0) {
-                container.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #718096;">
-                        <h3 style="margin-bottom: 10px;">No developers found</h3>
-                        <p>Try adjusting your filters to see more results</p>
-                    </div>
-                `;
-                return;
+                container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #718096;"><h3 style="margin-bottom: 10px;">No developers found</h3><p>Try adjusting your filters to see more results</p></div>`; return;
             }
-            
             container.innerHTML = filteredDevelopers.map(dev => `
                 <div class="developer-card">
                     <div class="developer-header">
                         <h3 class="developer-title">${dev.position}</h3>
                         <div class="developer-id">#${dev.developerId}</div>
                     </div>
-                    
                     <div class="developer-meta">
                         <div class="meta-item">📅 ${dev.experience} years</div>
                         <div class="meta-item">🌍 ${dev.englishLevel}</div>
                         <div class="meta-item">📊 ${dev.projects} projects</div>
+                        <div class="meta-item">🟢 ${dev.availability}</div>
                     </div>
-                    
                     <div class="ratings-section">
-                        <div class="rating-item">
-                            <div class="rating-label">Tech Level</div>
-                            <div class="rating-value tech-level-value">${dev.techLevel}★</div>
-                        </div>
-                        <div class="rating-item">
-                            <div class="rating-label">Performance</div>
-                            <div class="rating-value performance-value">${dev.performanceRating}★</div>
-                        </div>
-                        <div class="rating-item">
-                            <div class="rating-label">Category</div>
-                            <div class="rating-value category-value">${dev.category}</div>
-                        </div>
+                        <div class="rating-item"><div class="rating-label">Tech Score</div><div class="rating-value tech-level-value">${dev.techLevel}</div></div>
+                        <div class="rating-item"><div class="rating-label">Rating</div><div class="rating-value performance-value">${dev.performanceRating}★</div></div>
+                        <div class="rating-item"><div class="rating-label">Category</div><div class="rating-value category-value">${dev.category}</div></div>
                     </div>
-                    
-                    <div class="tech-skills">
-                        ${dev.technologies.slice(0, 6).map((tech, i) => 
-                            `<span class="skill-tag ${i < 2 ? 'primary' : ''}">${tech}</span>`
-                        ).join('')}
-                        ${dev.technologies.length > 6 ? `<span class="skill-tag">+${dev.technologies.length - 6}</span>` : ''}
-                    </div>
-                    
-                    <div class="experience-description">
-                        ${dev.description}
-                    </div>
-                    
+                    <div class="tech-skills">${dev.technologies.slice(0, 6).map((tech, i) => `<span class="skill-tag ${i < 2 ? 'primary' : ''}">${tech}</span>`).join('')}${dev.technologies.length > 6 ? `<span class="skill-tag">+${dev.technologies.length - 6}</span>` : ''}</div>
+                    <div class="experience-description">${dev.description}</div>
                     <div class="card-footer">
-                        <div class="salary-info">
-                            <div class="salary-amount">$${dev.salary.toLocaleString()}</div>
-                            <div class="salary-period">per month</div>
-                        </div>
-                        <button class="hire-btn" onclick="openContactModal('${dev.developerId}', '${dev.position}')">
-                            💎 Hire Now
-                        </button>
+                        <div class="salary-info"><div class="salary-amount">$${dev.salary.toLocaleString()}</div><div class="salary-period">per month</div></div>
+                        <button class="hire-btn" onclick="openContactModal('${dev.developerId}', '${dev.position}')">💎 Contact</button>
                     </div>
                 </div>
             `).join('');
         }
 
         function displayTop3() {
-            const top3Devs = [...allDevelopers]
-                .sort((a, b) => (b.techLevel + b.performanceRating) - (a.techLevel + a.performanceRating))
-                .slice(0, 3);
-            
+            const top3Devs = [...allDevelopers].sort((a,b)=> b.performanceRating - a.performanceRating || b.techLevel - a.techLevel).slice(0,3);
             const container = document.getElementById('top3Grid');
             container.innerHTML = top3Devs.map((dev, index) => `
                 <div class="developer-card" style="border-color: ${index === 0 ? '#feca57' : index === 1 ? '#c0c0c0' : '#cd7f32'};">
@@ -1339,47 +1104,19 @@
                         <h3 class="developer-title">${index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'} ${dev.position}</h3>
                         <div class="developer-id">#${dev.developerId}</div>
                     </div>
-                    
                     <div class="developer-meta">
                         <div class="meta-item">📅 ${dev.experience} years</div>
                         <div class="meta-item">🌍 ${dev.englishLevel}</div>
                         <div class="meta-item">📊 ${dev.projects} projects</div>
                     </div>
-                    
                     <div class="ratings-section">
-                        <div class="rating-item">
-                            <div class="rating-label">Tech Level</div>
-                            <div class="rating-value tech-level-value">${dev.techLevel}★</div>
-                        </div>
-                        <div class="rating-item">
-                            <div class="rating-label">Performance</div>
-                            <div class="rating-value performance-value">${dev.performanceRating}★</div>
-                        </div>
-                        <div class="rating-item">
-                            <div class="rating-label">Category</div>
-                            <div class="rating-value category-value">${dev.category}</div>
-                        </div>
+                        <div class="rating-item"><div class="rating-label">Tech Score</div><div class="rating-value tech-level-value">${dev.techLevel}</div></div>
+                        <div class="rating-item"><div class="rating-label">Rating</div><div class="rating-value performance-value">${dev.performanceRating}★</div></div>
+                        <div class="rating-item"><div class="rating-label">Category</div><div class="rating-value category-value">${dev.category}</div></div>
                     </div>
-                    
-                    <div class="tech-skills">
-                        ${dev.technologies.slice(0, 6).map((tech, i) => 
-                            `<span class="skill-tag ${i < 2 ? 'primary' : ''}">${tech}</span>`
-                        ).join('')}
-                    </div>
-                    
-                    <div class="experience-description">
-                        ${dev.description}
-                    </div>
-                    
-                    <div class="card-footer">
-                        <div class="salary-info">
-                            <div class="salary-amount">$${dev.salary.toLocaleString()}</div>
-                            <div class="salary-period">per month</div>
-                        </div>
-                        <button class="hire-btn" onclick="openContactModal('${dev.developerId}', '${dev.position}')">
-                            💎 Hire Top Developer
-                        </button>
-                    </div>
+                    <div class="tech-skills">${dev.technologies.slice(0, 6).map((tech, i) => `<span class="skill-tag ${i < 2 ? 'primary' : ''}">${tech}</span>`).join('')}</div>
+                    <div class="experience-description">${dev.description}</div>
+                    <div class="card-footer"><div class="salary-info"><div class="salary-amount">$${dev.salary.toLocaleString()}</div><div class="salary-period">per month</div></div><button class="hire-btn" onclick="openContactModal('${dev.developerId}', '${dev.position}')">💎 Hire Top Developer</button></div>
                 </div>
             `).join('');
         }
@@ -1388,75 +1125,54 @@
             currentDeveloper = allDevelopers.find(dev => dev.developerId === developerId);
             document.getElementById('contactModal').style.display = 'block';
         }
+        function closeModal() { document.getElementById('contactModal').style.display = 'none'; }
 
-        function closeModal() {
-            document.getElementById('contactModal').style.display = 'none';
-        }
-
-        function checkAdminAccess() {
-            const password = prompt("🔐 Enter admin password:");
-            if (password === "admin2025") {
-                alert("✅ Admin access granted! (Demo mode - full functionality would be here)");
-            } else {
-                alert("❌ Incorrect password!");
-            }
-        }
-
-        // Form handlers
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        async function submitContactForm(e) {
             e.preventDefault();
             const formData = new FormData(e.target);
-            
-            // Simulate email sending
-            console.log('Sending email to stant1605@gmail.com:', {
-                developer: currentDeveloper.position,
-                developerId: currentDeveloper.developerId,
-                client: formData.get('clientEmail'),
-                company: formData.get('company'),
-                project: formData.get('projectDescription')
-            });
-            
-            alert('✅ Request sent! We\'ll contact you within 24 hours.');
+            const payload = {
+                name: formData.get('name') || formData.get('company') || 'Client',
+                email: formData.get('clientEmail') || formData.get('email'),
+                developerId: currentDeveloper?.developerId,
+                projectDescription: formData.get('projectDescription') || formData.get('description') || ''
+            };
+            try {
+                const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                const data = await res.json();
+                if (data.ok) alert('✅ Request sent!'); else alert('❌ Error');
+            } catch { alert('❌ Error sending'); }
             closeModal();
             e.target.reset();
-        });
+        }
 
-        document.getElementById('constructorForm').addEventListener('submit', function(e) {
+        async function submitConstructorForm(e) {
             e.preventDefault();
             const formData = new FormData(e.target);
-            
-            // Simulate email sending
-            console.log('Sending constructor request to stant1605@gmail.com:', {
+            const payload = {
                 projectType: formData.get('projectType'),
                 technologies: formData.get('technologies'),
                 budget: formData.get('budget'),
                 email: formData.get('email'),
                 description: formData.get('description')
-            });
-            
-            alert('✅ Constructor request sent! We\'ll find your ideal developer and contact you soon.');
+            };
+            try {
+                const res = await fetch('/api/constructor', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                const data = await res.json();
+                if (data.ok) alert('✅ Sent!'); else alert('❌ Error');
+            } catch { alert('❌ Error sending'); }
             e.target.reset();
-        });
+        }
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             updateSalaryRange();
             updateExperienceRange();
             updateTechLevelRange();
-            
-            // Remove loading and display developers
-            setTimeout(() => {
-                displayDevelopers();
-            }, 1000);
+            setTimeout(() => { loadDevelopers(); }, 200);
+            const contact = document.getElementById('contactForm'); if (contact) contact.addEventListener('submit', submitContactForm);
+            const constructor = document.getElementById('constructorForm'); if (constructor) constructor.addEventListener('submit', submitConstructorForm);
         });
 
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('contactModal');
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
+        window.onclick = function(event) { const modal = document.getElementById('contactModal'); if (event.target == modal) { closeModal(); } }
     </script>
 </body>
 </html>

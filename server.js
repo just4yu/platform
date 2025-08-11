@@ -21,6 +21,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Serve original styled UI as index
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'just4u-complete-platform.html'));
+});
+
 const DATA_DIR = path.join(__dirname, 'data');
 const DB_JSON = path.join(DATA_DIR, 'developers.json');
 const DB_TXT = path.join(__dirname, 'candidates_database_extended.txt');

@@ -158,6 +158,29 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+// New: Ideal Developer Constructor submission
+app.post('/api/constructor', async (req, res) => {
+  const { projectType, technologies, budget, email, description } = req.body || {};
+  if (!projectType || !technologies || !budget || !email) {
+    return res.status(400).json({ error: 'projectType, technologies, budget, email are required' });
+  }
+  const subject = `just4u: Constructor Request (${projectType}, ${budget})`;
+  const body = `Email: ${email}\nProject Type: ${projectType}\nTechnologies: ${technologies}\nBudget: ${budget}\n\nDescription: ${description || ''}`;
+  if (SMTP_URL) {
+    try {
+      const transporter = nodemailer.createTransport(SMTP_URL);
+      await transporter.sendMail({ from: email, to: CONTACT_EMAIL, subject, text: body });
+      return res.json({ ok: true });
+    } catch (e) {
+      console.error('SMTP send failed', e);
+      return res.status(500).json({ error: 'email_send_failed' });
+    }
+  } else {
+    console.log('CONSTRUCTOR REQUEST (no SMTP configured):\n', { subject, body });
+    return res.json({ ok: true, info: 'logged_only' });
+  }
+});
+
 // Admin
 app.post('/api/admin/login', (req, res) => {
   const { password } = req.body || {};

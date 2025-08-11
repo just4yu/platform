@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>just🔗4u — Admin</title>
+  <style>
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f7fafc;color:#2d3748}
+    .container{max-width:1100px;margin:0 auto;padding:16px}
+    .card{background:#fff;border-radius:12px;box-shadow:0 8px 26px rgba(0,0,0,.08);padding:14px;margin:12px 0}
+    .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    input,textarea,select{padding:8px;border:1px solid #e2e8f0;border-radius:8px}
+    button{background:#4c51bf;color:#fff;border:0;border-radius:8px;padding:8px 12px;cursor:pointer}
+    table{width:100%;border-collapse:collapse}
+    th,td{border-bottom:1px solid #e2e8f0;padding:8px;text-align:left;font-size:.9rem}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Admin</h1>
+    <div id="auth" class="card">
+      <div class="row">
+        <input id="password" type="password" placeholder="Admin password" />
+        <button onclick="login()">Login</button>
+        <span id="authStatus"></span>
+      </div>
+    </div>
+
+    <div id="editor" class="card" style="display:none;">
+      <h3>Add / Update Developer</h3>
+      <div class="row">
+        <input id="developerId" placeholder="developerId (e.g., 0123)" />
+        <input id="position" placeholder="position" />
+        <input id="category" placeholder="category" />
+        <input id="englishLevel" placeholder="englishLevel" />
+      </div>
+      <div class="row">
+        <input id="experienceYears" type="number" placeholder="experienceYears" />
+        <input id="projectsCount" type="number" placeholder="projectsCount" />
+        <input id="salaryUSD" type="number" placeholder="salaryUSD" />
+        <input id="techScore" type="number" placeholder="techScore" />
+        <input id="rating" type="number" step="0.1" placeholder="rating (4.5-5.0)" />
+      </div>
+      <div class="row">
+        <input id="video" placeholder="video (Soon or URL)" />
+        <input id="availability" placeholder="availability" />
+      </div>
+      <div class="row">
+        <input id="technologies" placeholder="technologies (semicolon ;)" style="flex:1" />
+      </div>
+      <div class="row">
+        <input id="projectSectors" placeholder="projectSectors (semicolon ;)" style="flex:1" />
+      </div>
+      <div class="row">
+        <textarea id="achievements" placeholder="achievements (semicolon ;)" style="flex:1"></textarea>
+      </div>
+      <div class="row">
+        <button onclick="saveDev()">Save</button>
+        <button onclick="clearForm()">Clear</button>
+      </div>
+    </div>
+
+    <div id="tableWrap" class="card" style="display:none;">
+      <h3>Developers</h3>
+      <table>
+        <thead>
+          <tr><th>Id</th><th>Position</th><th>Category</th><th>Salary</th><th>Rating</th><th>TechScore</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    let token = '';
+    let list = [];
+
+    async function login(){
+      const password = document.getElementById('password').value;
+      const res = await fetch('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password})});
+      const data = await res.json();
+      if (data.token){ token = data.token; document.getElementById('authStatus').textContent='OK'; document.getElementById('editor').style.display='block'; load(); }
+      else document.getElementById('authStatus').textContent='Error';
+    }
+
+    function toArr(str){ return (str||'').split(';').map(s=>s.trim()).filter(Boolean); }
+
+    function formData(){
+      return {
+        developerId: document.getElementById('developerId').value,
+        position: document.getElementById('position').value,
+        category: document.getElementById('category').value,
+        englishLevel: document.getElementById('englishLevel').value,
+        experienceYears: Number(document.getElementById('experienceYears').value||0),
+        projectsCount: Number(document.getElementById('projectsCount').value||0),
+        salaryUSD: Number(document.getElementById('salaryUSD').value||0),
+        techScore: Number(document.getElementById('techScore').value||0),
+        rating: Number(document.getElementById('rating').value||4.5),
+        video: document.getElementById('video').value||'Soon',
+        availability: document.getElementById('availability').value||'As needed',
+        technologies: toArr(document.getElementById('technologies').value),
+        projectSectors: toArr(document.getElementById('projectSectors').value),
+        achievements: toArr(document.getElementById('achievements').value),
+      }
+    }
+
+    async function saveDev(){
+      const dev = formData();
+      const exists = list.find(d=>d.developerId===dev.developerId);
+      const url = exists? '/api/admin/developers/'+dev.developerId : '/api/admin/developers';
+      const method = exists? 'PUT' : 'POST';
+      const res = await fetch(url,{method,headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify(dev)});
+      const data = await res.json();
+      if (data.ok){ alert('Saved'); clearForm(); load(); } else alert('Error');
+    }
+
+    function clearForm(){
+      ['developerId','position','category','englishLevel','experienceYears','projectsCount','salaryUSD','techScore','rating','video','availability','technologies','projectSectors','achievements'].forEach(id=>document.getElementById(id).value='');
+    }
+
+    function row(dev){
+      return `<tr>
+        <td>${dev.developerId}</td><td>${dev.position}</td><td>${dev.category}</td><td>$${dev.salaryUSD}</td><td>${dev.rating}★</td><td>${dev.techScore}</td>
+        <td>
+          <button onclick="prefill('${dev.developerId}')">Edit</button>
+          <button onclick="delDev('${dev.developerId}')" style="background:#e53e3e">Delete</button>
+        </td>
+      </tr>`
+    }
+
+    function prefill(id){
+      const d = list.find(x=>x.developerId===id); if(!d) return;
+      document.getElementById('developerId').value = d.developerId;
+      document.getElementById('position').value = d.position;
+      document.getElementById('category').value = d.category;
+      document.getElementById('englishLevel').value = d.englishLevel;
+      document.getElementById('experienceYears').value = d.experienceYears;
+      document.getElementById('projectsCount').value = d.projectsCount;
+      document.getElementById('salaryUSD').value = d.salaryUSD;
+      document.getElementById('techScore').value = d.techScore;
+      document.getElementById('rating').value = d.rating;
+      document.getElementById('video').value = d.video;
+      document.getElementById('availability').value = d.availability;
+      document.getElementById('technologies').value = (d.technologies||[]).join('; ');
+      document.getElementById('projectSectors').value = (d.projectSectors||[]).join('; ');
+      document.getElementById('achievements').value = (d.achievements||[]).join('; ');
+    }
+
+    async function delDev(id){
+      if(!confirm('Delete '+id+'?')) return;
+      const res = await fetch('/api/admin/developers/'+id,{method:'DELETE',headers:{'Authorization':'Bearer '+token}});
+      const data = await res.json();
+      if (data.ok){ load(); } else alert('Error');
+    }
+
+    async function load(){
+      const res = await fetch('/api/developers');
+      const data = await res.json();
+      list = data.developers || [];
+      document.getElementById('rows').innerHTML = list.map(row).join('');
+      document.getElementById('tableWrap').style.display='block';
+    }
+  </script>
+</body>
+</html>

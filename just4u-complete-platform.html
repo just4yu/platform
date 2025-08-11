@@ -33,6 +33,8 @@
             align-items: center;
             justify-content: center;
             padding: 0 20px;
+            flex-direction: column;
+            gap: 6px;
         }
 
         .logo {
@@ -48,88 +50,45 @@
         .tagline {
             font-size: 0.9rem;
             color: #4a5568;
-            margin-top: 5px;
             text-align: center;
         }
 
-        /* CTA Navigation Bar */
-        .cta-bar {
+        /* Top Navigation Bar */
+        .top-nav {
             background: linear-gradient(135deg, #667eea, #764ba2);
-            padding: 20px 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 64px; /* below header */
+            z-index: 999;
         }
-
-        .cta-container {
+        .top-nav-inner {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 10px 20px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
         }
-
-        .cta-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .cta-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border-radius: 16px;
-            padding: 25px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+        .nav-btn {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 999px;
+            padding: 10px 16px;
+            font-weight: 800;
+            white-space: nowrap;
             cursor: pointer;
-            color: white;
+            transition: .2s;
         }
-
-        .cta-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .cta-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .cta-description {
-            font-size: 0.95rem;
-            opacity: 0.9;
-            line-height: 1.4;
-        }
-
-        .cta-stats {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 8px 16px;
-            margin-top: 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
+        .nav-btn.active, .nav-btn:hover { background: rgba(255,255,255,0.3); }
 
         /* Main Content */
         .main-content {
             display: none;
             padding: 40px 20px;
         }
+        .main-content.active { display: block; }
 
-        .main-content.active {
-            display: block;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .container { max-width: 1200px; margin: 0 auto; }
 
         .content-section {
             background: rgba(255, 255, 255, 0.95);
@@ -146,13 +105,7 @@
             margin-bottom: 15px;
             color: #1a202c;
         }
-
-        .section-subtitle {
-            text-align: center;
-            color: #4a5568;
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-        }
+        .section-subtitle { text-align: center; color: #4a5568; margin-bottom: 24px; font-size: 1.05rem; }
 
         /* Filters */
         .filters-grid {
@@ -161,656 +114,169 @@
             gap: 25px;
             margin-bottom: 30px;
         }
+        .filter-group { background: #f7fafc; border-radius: 12px; padding: 20px; }
+        .filter-title { font-weight: 700; margin-bottom: 12px; color: #2d3748; display: flex; align-items: center; gap: 8px; }
+        .range-label { display: block; font-weight: 600; margin-bottom: 8px; color: #4a5568; }
+        .range-slider { width: 100%; height: 8px; border-radius: 5px; background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e0 100%); outline: none; opacity: .8; }
 
-        .filter-group {
-            background: #f7fafc;
-            border-radius: 12px;
-            padding: 20px;
-        }
-
-        .filter-title {
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #2d3748;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .range-container {
-            margin-bottom: 15px;
-        }
-
-        .range-label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #4a5568;
-        }
-
-        .range-slider-container {
-            position: relative;
-            margin: 15px 0;
-        }
-
-        .range-slider {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 100%;
-            height: 8px;
-            border-radius: 5px;
-            background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e0 100%);
-            outline: none;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-        }
-
-        .range-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            cursor: pointer;
-            border: 3px solid white;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .range-values {
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            color: #718096;
-            margin-top: 5px;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .tech-tag {
-            background: #edf2f7;
-            color: #4a5568;
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .tech-tag:hover {
-            background: #e2e8f0;
-            transform: translateY(-1px);
-        }
-
-        .tech-tag.selected {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-color: white;
-        }
-
-        .category-filter {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-        }
-
-        .category-tag {
-            background: #edf2f7;
-            color: #4a5568;
-            padding: 10px 15px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            border: 2px solid transparent;
-        }
-
-        .category-tag:hover {
-            background: #e2e8f0;
-            transform: translateY(-1px);
-        }
-
-        .category-tag.selected {
-            background: linear-gradient(135deg, #48bb78, #38a169);
-            color: white;
-            border-color: white;
-        }
+        /* Searchable Multi-select */
+        .ms-control { position: relative; }
+        .ms-button { width: 100%; text-align: left; background: #fff; border: 2px solid #e2e8f0; border-radius: 10px; padding: 10px 12px; font-weight: 700; cursor: pointer; }
+        .ms-badge { background: #edf2f7; color: #4a5568; border-radius: 999px; padding: 2px 8px; font-size: 12px; margin-left: 8px; }
+        .ms-panel { position: absolute; left: 0; right: 0; top: calc(100% + 6px); background: #fff; border: 2px solid #e2e8f0; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.08); z-index: 1001; display: none; }
+        .ms-panel.open { display: block; }
+        .ms-search { padding: 8px 10px; border-bottom: 1px solid #e2e8f0; }
+        .ms-search input { width: 100%; padding: 8px 10px; border: 2px solid #e2e8f0; border-radius: 8px; }
+        .ms-list { max-height: 240px; overflow: auto; }
+        .ms-item { display: flex; align-items: center; gap: 8px; padding: 8px 12px; cursor: pointer; }
+        .ms-item:hover { background: #f7fafc; }
+        .ms-actions { display: flex; justify-content: space-between; padding: 10px; border-top: 1px solid #e2e8f0; }
+        .ms-apply { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; border: 0; border-radius: 8px; padding: 8px 12px; font-weight: 800; cursor: pointer; }
+        .ms-clear { background: transparent; border: 0; color: #4a5568; font-weight: 700; cursor: pointer; }
 
         /* Results */
-        .results-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .results-count {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #4a5568;
-        }
-
-        .sort-controls {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .sort-select {
-            padding: 8px 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 14px;
-            background: white;
-            cursor: pointer;
-        }
+        .results-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; gap: 12px; flex-wrap: wrap; }
+        .results-count { font-weight: 700; color: #4a5568; }
+        .sort-select { padding: 8px 12px; border: 2px solid #e2e8f0; border-radius: 8px; background: white; }
 
         /* Developer Cards */
-        .developers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
+        .developers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 25px; margin-top: 30px; }
+        .developer-card { background: white; border-radius: 16px; padding: 25px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); transition: all .3s ease; border: 2px solid transparent; position: relative; overflow: hidden; }
+        .developer-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15); border-color: #667eea; }
+        .developer-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(135deg, #667eea, #764ba2); }
+        .developer-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; gap: 10px; }
+        .developer-title { font-size: 1.25rem; font-weight: 800; color: #1a202c; line-height: 1.3; flex: 1; }
+        .developer-id { background: #667eea; color: white; padding: 6px 12px; border-radius: 12px; font-size: 12px; font-weight: 800; }
+        .developer-meta { display: flex; gap: 10px; margin-bottom: 12px; font-size: 14px; color: #4a5568; flex-wrap: wrap; }
+        .meta-item { display: flex; align-items: center; gap: 4px; }
 
-        .developer-card {
-            background: white;
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
+        /* Aligned ratings */
+        .ratings-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; padding: 12px; background: linear-gradient(135deg, #f7fafc, #edf2f7); border-radius: 12px; }
+        .rating-item { text-align: center; display: grid; gap: 4px; align-content: center; }
+        .rating-label { font-size: 11px; color: #718096; text-transform: uppercase; font-weight: 800; }
+        .rating-value { font-size: 1.3rem; font-weight: 900; }
+        .tech-level-value { color: #667eea; }
+        .performance-value { color: #48bb78; }
+        .category-value { color: #ed8936; font-size: 1.05rem; font-weight: 800; }
 
-        .developer-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            border-color: #667eea;
-        }
+        .tech-skills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+        .skill-tag { background: #edf2f7; color: #4a5568; padding: 5px 10px; border-radius: 8px; font-size: 11px; font-weight: 600; }
+        .skill-tag.primary { background: linear-gradient(135deg, #fed7d7, #feb2b2); color: #742a2a; font-weight: 700; }
 
-        .developer-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-        }
+        .experience-description { font-size: 13px; color: #718096; margin-bottom: 18px; line-height: 1.5; }
 
-        .developer-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-
-        .developer-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #1a202c;
-            line-height: 1.3;
-            flex: 1;
-        }
-
-        .developer-id {
-            background: #667eea;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-left: 15px;
-        }
-
-        .developer-meta {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            font-size: 14px;
-            color: #4a5568;
-            flex-wrap: wrap;
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .ratings-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding: 15px;
-            background: linear-gradient(135deg, #f7fafc, #edf2f7);
-            border-radius: 12px;
-        }
-
-        .rating-item {
-            text-align: center;
-            flex: 1;
-        }
-
-        .rating-label {
-            font-size: 11px;
-            color: #718096;
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .rating-value {
-            font-size: 1.5rem;
-            font-weight: 800;
-        }
-
-        .tech-level-value {
-            color: #667eea;
-        }
-
-        .performance-value {
-            color: #48bb78;
-        }
-
-        .category-value {
-            color: #ed8936;
-            font-size: 1.1rem;
-            font-weight: 700;
-        }
-
-        .tech-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 15px;
-        }
-
-        .skill-tag {
-            background: #edf2f7;
-            color: #4a5568;
-            padding: 5px 10px;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 500;
-        }
-
-        .skill-tag.primary {
-            background: linear-gradient(135deg, #fed7d7, #feb2b2);
-            color: #742a2a;
-            font-weight: 600;
-        }
-
-        .experience-description {
-            font-size: 13px;
-            color: #718096;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 15px;
-            border-top: 1px solid #e2e8f0;
-        }
-
-        .salary-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .salary-amount {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: #48bb78;
-        }
-
-        .salary-period {
-            font-size: 12px;
-            color: #718096;
-        }
-
-        .hire-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 14px;
-        }
-
-        .hire-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 500px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #718096;
-            transition: color 0.3s ease;
-        }
-
-        .close:hover {
-            color: #2d3748;
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #1a202c;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #2d3748;
-        }
-
-        .form-input, .form-select, .form-textarea {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 16px;
-            width: 100%;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-        }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid #e2e8f0; }
+        .salary-amount { font-size: 1.3rem; font-weight: 900; color: #48bb78; }
+        .salary-period { font-size: 12px; color: #718096; }
+        .hire-btn { background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 10px 16px; border-radius: 20px; font-weight: 800; cursor: pointer; transition: .2s; font-size: 14px; }
+        .hire-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(102,126,234,.4); }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .cta-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .developers-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .filters-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .developer-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-
-            .developer-id {
-                margin-left: 0;
-            }
-
-            .results-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+            .developers-grid { grid-template-columns: 1fr; }
+            .filters-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.8rem; }
+            .developer-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .developer-id { margin-left: 0; }
+            .ratings-section { grid-template-columns: 1fr 1fr 1fr; }
         }
 
         /* Loading Animation */
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #4a5568;
-        }
-
-        .spinner {
-            border: 4px solid #e2e8f0;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        .loading { text-align: center; padding: 40px; color: #4a5568; }
+        .spinner { border: 4px solid #e2e8f0; border-top: 4px solid #667eea; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg);} }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <div>
-                <div class="logo">just🔗4u</div>
-                <div class="tagline">179 Verified Developers • 15 Categories • Tech Level System</div>
-            </div>
+            <div class="logo">just🔗4u</div>
+            <div class="tagline">Verified Developers • Tech Score • Performance Rating</div>
         </div>
     </header>
 
-    <!-- CTA Navigation Bar -->
-    <section class="cta-bar">
-        <div class="cta-container">
-            <div class="cta-grid">
-                <div class="cta-card" onclick="showSection('search')">
-                    <span class="cta-icon">🔍</span>
-                    <div class="cta-title">Find Developers</div>
-                    <div class="cta-description">Search through 179 verified developers with advanced filters</div>
-                    <div class="cta-stats">15 Categories • Tech Level • Performance Rating</div>
-                </div>
-
-                <div class="cta-card" onclick="showSection('top3')">
-                    <span class="cta-icon">🏆</span>
-                    <div class="cta-title">Top 3 Developers</div>
-                    <div class="cta-description">Highest rated developers across all categories</div>
-                    <div class="cta-stats">5.0★ Tech Level • 5.0★ Performance</div>
-                </div>
-
-                <div class="cta-card" onclick="showSection('constructor')">
-                    <span class="cta-icon">⚡</span>
-                    <div class="cta-title">Ideal Developer Constructor</div>
-                    <div class="cta-description">Tell us your requirements and we'll find perfect matches</div>
-                    <div class="cta-stats">Custom Matching • 24h Response</div>
-                </div>
-
-                <div class="cta-card" onclick="showSection('admin')">
-                    <span class="cta-icon">⚙️</span>
-                    <div class="cta-title">Admin Panel</div>
-                    <div class="cta-description">Manage developers, categories, and platform settings</div>
-                    <div class="cta-stats">Password Protected • Full Control</div>
-                </div>
-            </div>
+    <!-- Top Navigation (tabs) -->
+    <nav class="top-nav">
+        <div class="top-nav-inner">
+            <button class="nav-btn active" id="tab-search" onclick="showSection('search');setActiveTab('search')">🔍 Find Developers</button>
+            <button class="nav-btn" id="tab-top3" onclick="showSection('top3');setActiveTab('top3')">🏆 Top 3</button>
+            <button class="nav-btn" id="tab-constructor" onclick="showSection('constructor');setActiveTab('constructor')">⚡ Ideal Developer</button>
         </div>
-    </section>
+    </nav>
 
     <!-- Search Section -->
     <main class="main-content active" id="searchSection">
         <div class="container">
             <div class="content-section">
                 <h1 class="section-title">🔍 Find Your Perfect Developer</h1>
-                <p class="section-subtitle">179 verified developers across 15 categories with Tech Level & Performance Rating</p>
+                <p class="section-subtitle">Use filters or search to narrow results. Mobile-friendly, compact controls.</p>
                 
                 <div class="filters-grid">
                     <div class="filter-group">
                         <h3 class="filter-title">💰 Budget Range</h3>
-                        <div class="range-container">
-                            <label class="range-label">Monthly Budget: <span id="salaryDisplay">$2,000 - $6,000</span></label>
-                            <div class="range-slider-container">
-                                <input type="range" class="range-slider" id="salaryMin" min="1000" max="8000" value="2000" oninput="updateSalaryRange(); filterDevelopers()">
-                                <input type="range" class="range-slider" id="salaryMax" min="1000" max="8000" value="6000" oninput="updateSalaryRange(); filterDevelopers()">
-                            </div>
-                            <div class="range-values"><span>$1K</span><span>$8K</span></div>
-                        </div>
+                        <label class="range-label">Monthly Budget: <span id="salaryDisplay">$2,000 - $6,000</span></label>
+                        <input type="range" class="range-slider" id="salaryMin" min="1000" max="8000" value="2000" oninput="updateSalaryRange(); filterDevelopers()">
+                        <input type="range" class="range-slider" id="salaryMax" min="1000" max="8000" value="6000" oninput="updateSalaryRange(); filterDevelopers()">
                     </div>
 
                     <div class="filter-group">
                         <h3 class="filter-title">🎓 Experience Range</h3>
-                        <div class="range-container">
-                            <label class="range-label">Years: <span id="experienceDisplay">2 - 10 years</span></label>
-                            <div class="range-slider-container">
-                                <input type="range" class="range-slider" id="experienceMin" min="1" max="15" value="2" oninput="updateExperienceRange(); filterDevelopers()">
-                                <input type="range" class="range-slider" id="experienceMax" min="1" max="15" value="10" oninput="updateExperienceRange(); filterDevelopers()">
-                            </div>
-                            <div class="range-values"><span>1yr</span><span>15yr</span></div>
-                        </div>
+                        <label class="range-label">Years: <span id="experienceDisplay">2 - 10 years</span></label>
+                        <input type="range" class="range-slider" id="experienceMin" min="0" max="15" value="2" oninput="updateExperienceRange(); filterDevelopers()">
+                        <input type="range" class="range-slider" id="experienceMax" min="0" max="15" value="10" oninput="updateExperienceRange(); filterDevelopers()">
                     </div>
 
                     <div class="filter-group">
-                        <h3 class="filter-title">⭐ Tech Level</h3>
-                        <div class="range-container">
-                            <label class="range-label">Level: <span id="techLevelDisplay">2.0 - 5.0★</span></label>
-                            <div class="range-slider-container">
-                                <input type="range" class="range-slider" id="techLevelMin" min="2.0" max="5.0" step="0.1" value="2.0" oninput="updateTechLevelRange(); filterDevelopers()">
-                                <input type="range" class="range-slider" id="techLevelMax" min="2.0" max="5.0" step="0.1" value="5.0" oninput="updateTechLevelRange(); filterDevelopers()">
-                            </div>
-                            <div class="range-values"><span>2.0★</span><span>5.0★</span></div>
-                        </div>
+                        <h3 class="filter-title">⭐ Min Tech Score</h3>
+                        <label class="range-label">Score: <span id="techLevelDisplay">0+</span></label>
+                        <input type="range" class="range-slider" id="techLevelMin" min="0" max="250" step="5" value="0" oninput="updateTechLevelRange(); filterDevelopers()">
                     </div>
 
                     <div class="filter-group">
                         <h3 class="filter-title">📂 Categories</h3>
-                        <div class="category-filter" id="categoryFilter">
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">JavaScript/React</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Python</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Java</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">AI/ML</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Mobile</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">PHP</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Node.js</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">DevOps</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">.NET/C#</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Golang</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Ruby/Rails</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Rust</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Scala</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Blockchain</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Game Dev</div>
+                        <div class="ms-control" id="catMs">
+                            <button class="ms-button" type="button" onclick="toggleMs('cat')">Select categories <span class="ms-badge" id="catCount">0</span></button>
+                            <div class="ms-panel" id="catPanel">
+                                <div class="ms-search"><input type="text" id="catSearch" placeholder="Search category" oninput="filterMs('cat')"></div>
+                                <div class="ms-list" id="catList"></div>
+                                <div class="ms-actions">
+                                    <button class="ms-clear" type="button" onclick="clearMs('cat')">Clear</button>
+                                    <button class="ms-apply" type="button" onclick="applyMs('cat')">Apply</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="filter-group">
                         <h3 class="filter-title">🚀 Technologies</h3>
-                        <div class="tech-tags" id="techFilter">
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">React</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Python</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Java</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Node.js</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">TypeScript</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Flutter</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Swift</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Kotlin</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">PHP</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Docker</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">AWS</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">C#</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Go</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Rust</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Solidity</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Unity</div>
+                        <div class="ms-control" id="techMs">
+                            <button class="ms-button" type="button" onclick="toggleMs('tech')">Select technologies <span class="ms-badge" id="techCount">0</span></button>
+                            <div class="ms-panel" id="techPanel">
+                                <div class="ms-search"><input type="text" id="techSearch" placeholder="Search technology" oninput="filterMs('tech')"></div>
+                                <div class="ms-list" id="techList"></div>
+                                <div class="ms-actions">
+                                    <button class="ms-clear" type="button" onclick="clearMs('tech')">Clear</button>
+                                    <button class="ms-apply" type="button" onclick="applyMs('tech')">Apply</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="results-header">
-                    <div class="results-count" id="resultsCount">Found 179 developers</div>
-                    <div class="sort-controls">
-                        <select class="sort-select" id="sortSelect" onchange="sortDevelopers()">
-                            <option value="relevance">Sort by Relevance</option>
-                            <option value="techLevel">Tech Level (High to Low)</option>
-                            <option value="performance">Performance (High to Low)</option>
-                            <option value="salary">Salary (Low to High)</option>
-                            <option value="experience">Experience (High to Low)</option>
-                        </select>
-                    </div>
+                    <div class="results-count" id="resultsCount">Found 0 developers</div>
+                    <div><select class="sort-select" id="sortSelect" onchange="sortDevelopers()">
+                        <option value="relevance">Sort by Relevance</option>
+                        <option value="techLevel">Tech Score (High to Low)</option>
+                        <option value="performance">Rating (High to Low)</option>
+                        <option value="salary">Salary (Low to High)</option>
+                        <option value="experience">Experience (High to Low)</option>
+                    </select></div>
                 </div>
 
                 <div class="developers-grid" id="developersGrid">
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        Loading developers...
-                    </div>
+                    <div class="loading"><div class="spinner"></div>Loading developers...</div>
                 </div>
             </div>
         </div>
@@ -821,11 +287,8 @@
         <div class="container">
             <div class="content-section">
                 <h1 class="section-title">🏆 Top 3 Developers</h1>
-                <p class="section-subtitle">Highest Tech Level & Performance Rating across all categories</p>
-                
-                <div class="developers-grid" id="top3Grid">
-                    <!-- Top 3 developers will be populated by JavaScript -->
-                </div>
+                <p class="section-subtitle">Highest Rating & Tech Score</p>
+                <div class="developers-grid" id="top3Grid"></div>
             </div>
         </div>
     </main>
@@ -893,89 +356,47 @@
                         <textarea class="form-textarea" name="description" placeholder="Describe your project, timeline, and specific requirements..." required></textarea>
                     </div>
 
-                    <button type="submit" class="btn">
-                        🚀 Find My Ideal Developer
-                    </button>
+                    <button type="submit" class="btn">🚀 Find My Ideal Developer</button>
                 </form>
             </div>
         </div>
     </main>
 
-    <!-- Admin Section -->
-    <main class="main-content" id="adminSection">
-        <div class="container">
-            <div class="content-section">
-                <h1 class="section-title">⚙️ Admin Panel</h1>
-                <p class="section-subtitle">Manage developers, categories, and platform settings</p>
-                
-                <div style="text-align: center; padding: 60px 20px;">
-                    <button class="btn" onclick="checkAdminAccess()" style="max-width: 300px;">
-                        🔐 Access Admin Panel
-                    </button>
-                    <p style="margin-top: 20px; color: #718096; font-size: 14px;">
-                        Password required for access
-                    </p>
-                </div>
-            </div>
-        </div>
-    </main>
-
     <!-- Contact Modal -->
-    <div id="contactModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2 class="modal-title">🚀 Contact Developer</h2>
-            <p style="margin-bottom: 25px; color: #4a5568;">We'll send you full details and arrange contact within 24 hours.</p>
+    <div id="contactModal" class="modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:2000; backdrop-filter:blur(5px);">
+        <div class="modal-content" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; border-radius:20px; padding:24px; max-width:520px; width:92%;">
+            <span class="close" onclick="closeModal()" style="position:absolute; top:10px; right:12px; font-size:24px; font-weight:900; color:#718096; cursor:pointer">&times;</span>
+            <h2 class="modal-title" style="font-size:1.6rem; font-weight:800; margin-bottom:10px; color:#1a202c;">📩 Contact Developer</h2>
+            <p style="margin-bottom: 16px; color: #4a5568;">We'll email you back within 24 hours.</p>
             <form id="contactForm">
-                <div class="form-group">
-                    <label class="form-label">📧 Your Email</label>
-                    <input type="email" class="form-input" name="clientEmail" placeholder="your@company.com" required>
+                <div class="form-group" style="margin-bottom:12px;">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-input" name="name" placeholder="Your Name" required style="width:100%; padding:10px 12px; border:2px solid #e2e8f0; border-radius:12px;">
                 </div>
-                <div class="form-group">
-                    <label class="form-label">💼 Company Name</label>
-                    <input type="text" class="form-input" name="company" placeholder="Your Company" required>
+                <div class="form-group" style="margin-bottom:12px;">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" name="clientEmail" placeholder="your@company.com" required style="width:100%; padding:10px 12px; border:2px solid #e2e8f0; border-radius:12px;">
                 </div>
-                <div class="form-group">
-                    <label class="form-label">📝 Project Description</label>
-                    <textarea class="form-textarea" name="projectDescription" placeholder="Brief project description..." required></textarea>
+                <div class="form-group" style="margin-bottom:12px;">
+                    <label class="form-label">Project Description (optional)</label>
+                    <textarea class="form-textarea" name="projectDescription" placeholder="Brief project description..." style="width:100%; padding:10px 12px; border:2px solid #e2e8f0; border-radius:12px; min-height:100px;"></textarea>
                 </div>
-                <button type="submit" class="btn">📩 Send Request</button>
+                <button type="submit" class="btn" style="width:100%; padding:12px; border-radius:12px; background:linear-gradient(135deg,#667eea,#764ba2); color:#fff; font-weight:800;">Send Request</button>
             </form>
         </div>
     </div>
 
     <script>
-        // Load from static JSON
-        let allDevelopers = [];
-        let filteredDevelopers = [];
-        let selectedTechnologies = [];
-        let selectedCategories = [];
+        // Data (loaded elsewhere in previous steps)
+        let allDevelopers = allDevelopers || [];
+        let filteredDevelopers = filteredDevelopers || [];
+        let selectedTechnologies = selectedTechnologies || [];
+        let selectedCategories = selectedCategories || [];
         let currentDeveloper = null;
 
-        async function loadDevelopers() {
-            try {
-                const res = await fetch('public/developers.json');
-                if (!res.ok) throw new Error('not ok');
-                const raw = await res.json();
-                allDevelopers = raw.map((d, i) => ({
-                    id: i + 1,
-                    developerId: d.developerId,
-                    position: d.position,
-                    experience: d.experienceYears,
-                    salary: d.salaryUSD,
-                    technologies: d.technologies,
-                    englishLevel: d.englishLevel,
-                    techLevel: d.techScore,
-                    performanceRating: d.rating,
-                    projects: d.projectsCount,
-                    category: d.category,
-                    description: (d.achievements && d.achievements.length) ? d.achievements.join(' • ') : (d.projectSectors||[]).join(' • '),
-                    availability: d.availability,
-                    video: d.video
-                }));
-                filteredDevelopers = [...allDevelopers];
-                displayDevelopers();
-            } catch (e) { console.error('Failed to load static developers.json', e); }
+        function setActiveTab(name){
+            document.querySelectorAll('.nav-btn').forEach(btn=>btn.classList.remove('active'));
+            document.getElementById('tab-'+name).classList.add('active');
         }
 
         function showSection(sectionName) {
@@ -997,30 +418,46 @@
         }
         function updateTechLevelRange() {
             const min = document.getElementById('techLevelMin').value;
-            const max = document.getElementById('techLevelMax').value;
-            document.getElementById('techLevelDisplay').textContent = `${min} - ${max}★`;
+            document.getElementById('techLevelDisplay').textContent = `${min}+`;
         }
 
-        function toggleTechFilter(element) {
-            element.classList.toggle('selected');
-            const tech = element.textContent;
-            if (selectedTechnologies.includes(tech)) {
-                selectedTechnologies = selectedTechnologies.filter(t => t !== tech);
-            } else {
-                selectedTechnologies.push(tech);
-            }
+        // Searchable Multi-select helpers
+        let pendingCat = new Set();
+        let pendingTech = new Set();
+        function toggleMs(type){
+            document.getElementById(type+'Panel').classList.toggle('open');
+        }
+        function clearMs(type){
+            if(type==='cat'){ pendingCat.clear(); document.querySelectorAll('#catList input[type=checkbox]').forEach(c=>c.checked=false); }
+            else { pendingTech.clear(); document.querySelectorAll('#techList input[type=checkbox]').forEach(c=>c.checked=false); }
+        }
+        function applyMs(type){
+            if(type==='cat'){ selectedCategories = Array.from(pendingCat); document.getElementById('catCount').textContent = selectedCategories.length; }
+            else { selectedTechnologies = Array.from(pendingTech); document.getElementById('techCount').textContent = selectedTechnologies.length; }
+            document.getElementById(type+'Panel').classList.remove('open');
             filterDevelopers();
         }
-        function toggleCategoryFilter(element) {
-            element.classList.toggle('selected');
-            const category = element.textContent;
-            if (selectedCategories.includes(category)) {
-                selectedCategories = selectedCategories.filter(c => c !== category);
-            } else {
-                selectedCategories.push(category);
-            }
-            filterDevelopers();
+        function filterMs(type){
+            const q = document.getElementById(type+'Search').value.toLowerCase();
+            document.querySelectorAll('#'+type+'List .ms-item').forEach(item=>{
+                const txt = item.getAttribute('data-text');
+                item.style.display = (!q || txt.includes(q)) ? 'flex' : 'none';
+            });
         }
+        function buildMs(){
+            const cats = [...new Set(allDevelopers.map(d=>d.category))].sort();
+            const techs = [...new Set(allDevelopers.flatMap(d=>d.technologies))].sort();
+            const catList = document.getElementById('catList');
+            const techList = document.getElementById('techList');
+            catList.innerHTML = cats.map(c=>`<label class="ms-item" data-text="${c.toLowerCase()}"><input type="checkbox" onchange="this.checked?pendingCat.add('${c}'):pendingCat.delete('${c}')"> ${c}</label>`).join('');
+            techList.innerHTML = techs.map(t=>`<label class="ms-item" data-text="${t.toLowerCase()}"><input type="checkbox" onchange="this.checked?pendingTech.add('${t}'):pendingTech.delete('${t}')"> ${t}</label>`).join('');
+        }
+        document.addEventListener('click', (e)=>{
+            if(!e.target.closest('.ms-control')){
+                document.getElementById('catPanel').classList.remove('open');
+                document.getElementById('techPanel').classList.remove('open');
+            }
+        });
 
         function filterDevelopers() {
             const salaryMin = parseInt(document.getElementById('salaryMin').value);
@@ -1028,38 +465,28 @@
             const expMin = parseInt(document.getElementById('experienceMin').value);
             const expMax = parseInt(document.getElementById('experienceMax').value);
             const techLevelMin = parseFloat(document.getElementById('techLevelMin').value);
-            const techLevelMax = parseFloat(document.getElementById('techLevelMax').value);
 
             filteredDevelopers = allDevelopers.filter(dev => {
                 const salaryMatch = dev.salary >= salaryMin && dev.salary <= salaryMax;
                 const expMatch = dev.experience >= expMin && dev.experience <= expMax;
-                const techLevelMatch = dev.techLevel >= techLevelMin; // ignore max as techLevel is unbounded
-                const techMatch = selectedTechnologies.length === 0 ||
-                    selectedTechnologies.some(tech => dev.technologies.some(devTech => devTech.toLowerCase().includes(tech.toLowerCase())));
-                const categoryMatch = selectedCategories.length === 0 ||
-                    selectedCategories.some(cat => dev.category.includes(cat) || cat.includes(dev.category));
+                const techLevelMatch = dev.techLevel >= techLevelMin;
+                const techMatch = selectedTechnologies.length === 0 || selectedTechnologies.some(tech => dev.technologies.some(devTech => devTech.toLowerCase().includes(tech.toLowerCase())));
+                const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(dev.category);
                 return salaryMatch && expMatch && techLevelMatch && techMatch && categoryMatch;
             });
             displayDevelopers();
         }
-
         function sortDevelopers() {
             const sortBy = document.getElementById('sortSelect').value;
             switch(sortBy) {
-                case 'techLevel':
-                    filteredDevelopers.sort((a, b) => b.techLevel - a.techLevel); break;
-                case 'performance':
-                    filteredDevelopers.sort((a, b) => b.performanceRating - a.performanceRating); break;
-                case 'salary':
-                    filteredDevelopers.sort((a, b) => a.salary - b.salary); break;
-                case 'experience':
-                    filteredDevelopers.sort((a, b) => b.experience - a.experience); break;
-                default:
-                    filteredDevelopers.sort((a, b) => (b.techLevel + b.performanceRating) - (a.techLevel + a.performanceRating));
+                case 'techLevel': filteredDevelopers.sort((a, b) => b.techLevel - a.techLevel); break;
+                case 'performance': filteredDevelopers.sort((a, b) => b.performanceRating - a.performanceRating); break;
+                case 'salary': filteredDevelopers.sort((a, b) => a.salary - b.salary); break;
+                case 'experience': filteredDevelopers.sort((a, b) => b.experience - a.experience); break;
+                default: filteredDevelopers.sort((a, b) => (b.techLevel + b.performanceRating) - (a.techLevel + a.performanceRating));
             }
             displayDevelopers();
         }
-
         function displayDevelopers() {
             const container = document.getElementById('developersGrid');
             const resultsCount = document.getElementById('resultsCount');
@@ -1087,13 +514,12 @@
                     <div class="tech-skills">${dev.technologies.slice(0, 6).map((tech, i) => `<span class="skill-tag ${i < 2 ? 'primary' : ''}">${tech}</span>`).join('')}${dev.technologies.length > 6 ? `<span class="skill-tag">+${dev.technologies.length - 6}</span>` : ''}</div>
                     <div class="experience-description">${dev.description}</div>
                     <div class="card-footer">
-                        <div class="salary-info"><div class="salary-amount">$${dev.salary.toLocaleString()}</div><div class="salary-period">per month</div></div>
+                        <div><div class="salary-amount">$${dev.salary.toLocaleString()}</div><div class="salary-period">per month</div></div>
                         <button class="hire-btn" onclick="openContactModal('${dev.developerId}', '${dev.position}')">💎 Contact</button>
                     </div>
                 </div>
             `).join('');
         }
-
         function displayTop3() {
             const top3Devs = [...allDevelopers].sort((a,b)=> b.performanceRating - a.performanceRating || b.techLevel - a.techLevel).slice(0,3);
             const container = document.getElementById('top3Grid');
@@ -1115,46 +541,21 @@
                     </div>
                     <div class="tech-skills">${dev.technologies.slice(0, 6).map((tech, i) => `<span class="skill-tag ${i < 2 ? 'primary' : ''}">${tech}</span>`).join('')}</div>
                     <div class="experience-description">${dev.description}</div>
-                    <div class="card-footer"><div class="salary-info"><div class="salary-amount">$${dev.salary.toLocaleString()}</div><div class="salary-period">per month</div></div><button class="hire-btn" onclick="openContactModal('${dev.developerId}', '${dev.position}')">💎 Hire Top Developer</button></div>
+                    <div class="card-footer"><div><div class="salary-amount">$${dev.salary.toLocaleString()}</div><div class="salary-period">per month</div></div><button class="hire-btn" onclick="openContactModal('${dev.developerId}', '${dev.position}')">💎 Hire Top Developer</button></div>
                 </div>
             `).join('');
         }
-
         function openContactModal(developerId, position) {
             currentDeveloper = allDevelopers.find(dev => dev.developerId === developerId);
             document.getElementById('contactModal').style.display = 'block';
         }
         function closeModal() { document.getElementById('contactModal').style.display = 'none'; }
 
-        async function submitContactForm(e) {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const name = formData.get('name') || formData.get('company') || 'Client';
-            const email = formData.get('clientEmail') || formData.get('email');
-            const desc = formData.get('projectDescription') || formData.get('description') || '';
-            const subject = encodeURIComponent(`just4u: ${currentDeveloper?.developerId} ${currentDeveloper?.position}`);
-            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nDeveloper: ${currentDeveloper?.developerId} ${currentDeveloper?.position}\nCategory: ${currentDeveloper?.category}\nEnglish: ${currentDeveloper?.englishLevel}\nTech Score: ${currentDeveloper?.techLevel}\nRating: ${currentDeveloper?.performanceRating}\nSalary: $${currentDeveloper?.salary}/mo\nAvailability: ${currentDeveloper?.availability}\n\nProject: ${desc}`);
-            window.location.href = `mailto:stant1605@gmail.com?subject=${subject}&body=${body}`;
-            alert('✅ Request prepared in your mail app.');
-            closeModal();
-            e.target.reset();
-        }
-        async function submitConstructorForm(e) {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const subject = encodeURIComponent('just4u: Constructor Request');
-            const body = encodeURIComponent(`Project Type: ${formData.get('projectType')}\nTechnologies: ${formData.get('technologies')}\nBudget: ${formData.get('budget')}\nEmail: ${formData.get('email')}\nDescription: ${formData.get('description')||''}`);
-            window.location.href = `mailto:stant1605@gmail.com?subject=${subject}&body=${body}`;
-            alert('✅ Request prepared in your mail app.');
-            e.target.reset();
-        }
+        // Forms use mailto in the static build; handlers attached elsewhere
         document.addEventListener('DOMContentLoaded', function() {
-            updateSalaryRange(); updateExperienceRange(); updateTechLevelRange();
-            setTimeout(() => { loadDevelopers(); }, 200);
-            const contact = document.getElementById('contactForm'); if (contact) contact.addEventListener('submit', submitContactForm);
-            const constructor = document.getElementById('constructorForm'); if (constructor) constructor.addEventListener('submit', submitConstructorForm);
+            // If dataset is present (static), build multi-select options
+            if (typeof allDevelopers !== 'undefined' && allDevelopers.length) { buildMs(); filterDevelopers(); }
         });
-        window.onclick = function(event) { const modal = document.getElementById('contactModal'); if (event.target == modal) { closeModal(); } }
     </script>
 </body>
 </html>

@@ -4,169 +4,205 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>just🔗4u — Developer Platform</title>
-  <link rel="icon" href="data:," />
   <style>
-    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:linear-gradient(135deg,#667eea,#764ba2);color:#2d3748}
+    :root{--bg1:#667eea;--bg2:#764ba2;--text:#2d3748;--muted:#4a5568;--card:#ffffff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2));color:var(--text)}
+    .wrap{max-width:1200px;margin:0 auto;padding:16px}
     .header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.06)}
-    .container{max-width:1200px;margin:0 auto;padding:16px 20px}
-    .logo{font-size:2rem;font-weight:900;background:linear-gradient(135deg,#667eea,#764ba2);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    .tag{color:#4a5568}
-    .content{background:#fff;border-radius:16px;padding:18px;margin:18px 0;box-shadow:0 14px 36px rgba(0,0,0,.12)}
+    .logo{font-weight:900;font-size:2rem;background:linear-gradient(135deg,var(--bg1),var(--bg2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .tag{color:var(--muted)}
+    .cta{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:16px 0}
+    .cta-item{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:14px;padding:16px;text-align:center;cursor:pointer}
+    .section{background:var(--card);border-radius:16px;padding:20px;margin:16px 0;box-shadow:0 14px 36px rgba(0,0,0,.12)}
+    .title{font-weight:900;margin:0 0 6px}
+    .subtitle{color:var(--muted);margin:0 0 10px}
     .filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-    .card{background:#fff;border-radius:12px;border:2px solid transparent;padding:16px;box-shadow:0 8px 26px rgba(0,0,0,.08)}
-    .card:hover{border-color:#667eea}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:16px}
-    .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-    .badge{background:#edf2f7;color:#4a5568;padding:4px 8px;border-radius:999px;font-size:.8rem;font-weight:700}
-    .primary{background:linear-gradient(135deg,#fed7d7,#feb2b2);color:#742a2a}
+    .chipset{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{background:#edf2f7;color:var(--muted);padding:6px 10px;border-radius:999px;font-weight:700;cursor:pointer;border:2px solid transparent}
+    .chip.sel{background:linear-gradient(135deg,var(--bg1),var(--bg2));color:#fff;border-color:#fff}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px}
+    .card{background:#fff;border-radius:14px;border:2px solid transparent;padding:16px;box-shadow:0 8px 26px rgba(0,0,0,.08)}
+    .card:hover{border-color:var(--bg1)}
     .top{display:flex;justify-content:space-between;align-items:flex-start}
-    .id{background:#667eea;color:#fff;padding:4px 10px;border-radius:10px;font-size:.75rem;font-weight:800}
+    .id{background:var(--bg1);color:#fff;border-radius:10px;padding:4px 10px;font-weight:800;font-size:.8rem}
+    .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .badge{background:#edf2f7;color:var(--muted);padding:4px 8px;border-radius:999px;font-weight:700}
     .ratings{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:linear-gradient(135deg,#f7fafc,#edf2f7);border-radius:12px;padding:10px;margin:8px 0}
-    .rlabel{font-size:.7rem;color:#718096;text-transform:uppercase;font-weight:800}
+    .rlabel{font-size:.7rem;color:#718096;font-weight:800;text-transform:uppercase}
     .rval{font-weight:900}
-    .btn{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:0;border-radius:20px;padding:8px 14px;font-weight:800;cursor:pointer}
+    .btn{background:linear-gradient(135deg,var(--bg1),var(--bg2));color:#fff;border:0;border-radius:20px;padding:8px 14px;font-weight:800;cursor:pointer}
     .salary{color:#48bb78;font-weight:900}
     @media(max-width:768px){.grid{grid-template-columns:1fr}.ratings{grid-template-columns:repeat(2,1fr)}}
   </style>
 </head>
 <body>
   <div class="header">
-    <div class="container">
+    <div class="wrap">
       <div class="logo">just🔗4u</div>
-      <div class="tag">Find and contact verified developers fast</div>
+      <div class="tag">Find your perfect developer fast</div>
     </div>
   </div>
 
-  <div class="container">
-    <div class="content">
-      <h2>Filters</h2>
+  <div class="wrap">
+    <div class="cta">
+      <div class="cta-item" onclick="show('search')">🔍 Find Developers</div>
+      <div class="cta-item" onclick="show('top3')">🏆 Top 3</div>
+      <div class="cta-item" onclick="show('constructor')">⚡ Ideal Developer</div>
+      <a class="cta-item" href="/admin.html" style="text-decoration:none">⚙️ Admin</a>
+    </div>
+
+    <div id="search" class="section">
+      <h2 class="title">🔍 Find Developers</h2>
+      <p class="subtitle">Use quick chips and ranges; results update instantly.</p>
       <div class="filters">
         <div>
-          <label>Budget min</label>
-          <input id="minSalary" type="number" value="1000" style="width:100%" />
+          <div class="subtitle">Budget</div>
+          <div>Min <input id="minSalary" type="number" value="1000" style="width:48%" /> Max <input id="maxSalary" type="number" value="8000" style="width:48%" /></div>
         </div>
         <div>
-          <label>Budget max</label>
-          <input id="maxSalary" type="number" value="8000" style="width:100%" />
+          <div class="subtitle">Experience (years)</div>
+          <div>Min <input id="minExp" type="number" value="0" style="width:48%" /> Max <input id="maxExp" type="number" value="15" style="width:48%" /></div>
         </div>
         <div>
-          <label>Min experience</label>
-          <input id="minExp" type="number" value="0" style="width:100%" />
-        </div>
-        <div>
-          <label>Max experience</label>
-          <input id="maxExp" type="number" value="15" style="width:100%" />
-        </div>
-        <div>
-          <label>Min Tech Score</label>
+          <div class="subtitle">Min Tech Score</div>
           <input id="minTechScore" type="number" value="0" style="width:100%" />
         </div>
         <div>
-          <label>Category</label>
-          <select id="category" multiple style="width:100%"></select>
+          <div class="subtitle">Categories</div>
+          <div id="catChips" class="chipset"></div>
         </div>
         <div>
-          <label>Technology</label>
-          <select id="tech" multiple style="width:100%"></select>
+          <div class="subtitle">Technologies</div>
+          <div id="techChips" class="chipset"></div>
         </div>
       </div>
-      <div style="margin-top:12px;display:flex;gap:8px;align-items:center;">
-        <button class="btn" onclick="applyFilters()">Apply</button>
-        <span id="count"></span>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
+        <div id="count" class="subtitle"></div>
+        <select id="sort" onchange="sortRender()">
+          <option value="match">Sort by Match</option>
+          <option value="rating">Rating</option>
+          <option value="tech">Tech Score</option>
+          <option value="salary">Salary (low→high)</option>
+          <option value="exp">Experience</option>
+        </select>
       </div>
+      <div id="grid" class="grid" style="margin-top:12px;"></div>
     </div>
 
-    <div class="content">
-      <h2>Developers</h2>
-      <div id="grid" class="grid"></div>
+    <div id="top3" class="section" style="display:none;">
+      <h2 class="title">🏆 Top 3 Developers</h2>
+      <p class="subtitle">Best by Rating, then Tech Score.</p>
+      <div id="top3grid" class="grid"></div>
+    </div>
+
+    <div id="constructor" class="section" style="display:none;">
+      <h2 class="title">⚡ Ideal Developer Constructor</h2>
+      <p class="subtitle">Tell us your needs — we’ll propose perfect matches.</p>
+      <div class="filters">
+        <div>
+          <div class="subtitle">Project Type</div>
+          <select id="c_projectType" style="width:100%">
+            <option value="">Select</option>
+            <option>Web App</option>
+            <option>Mobile App</option>
+            <option>API / Backend</option>
+            <option>AI/ML</option>
+            <option>Data/ETL</option>
+            <option>DevOps</option>
+          </select>
+        </div>
+        <div>
+          <div class="subtitle">Technologies</div>
+          <input id="c_technologies" placeholder="e.g. React, Node.js" style="width:100%" />
+        </div>
+        <div>
+          <div class="subtitle">Budget</div>
+          <select id="c_budget" style="width:100%">
+            <option value="">Select</option>
+            <option>$1,000 - $2,000</option>
+            <option>$2,000 - $4,000</option>
+            <option>$4,000 - $6,000</option>
+            <option>$6,000+</option>
+          </select>
+        </div>
+        <div>
+          <div class="subtitle">Your Email</div>
+          <input id="c_email" type="email" placeholder="your@company.com" style="width:100%" />
+        </div>
+      </div>
+      <div style="margin-top:12px;">
+        <textarea id="c_desc" placeholder="Describe your project (optional)" style="width:100%;min-height:100px"></textarea>
+      </div>
+      <div style="margin-top:12px;display:flex;justify-content:flex-end">
+        <button class="btn" onclick="submitConstructor()">🚀 Send</button>
+      </div>
     </div>
   </div>
 
   <script>
-    let allDevs = [];
-    let filtered = [];
+    let allDevs = []; let filtered = []; let selCats = new Set(); let selTechs = new Set();
 
-    function opt(v){ const o=document.createElement('option'); o.value=v; o.textContent=v; return o; }
+    function show(id){ ['search','top3','constructor'].forEach(s=>document.getElementById(s).style.display='none'); document.getElementById(id).style.display='block'; if(id==='top3') renderTop3(); }
 
-    async function loadDevs(){
-      const params = new URLSearchParams();
-      const res = await fetch('/api/developers?'+params.toString());
-      const data = await res.json();
-      allDevs = data.developers || [];
-      const cats = [...new Set(allDevs.map(d=>d.category))].sort();
-      const techs = [...new Set(allDevs.flatMap(d=>d.technologies))].sort();
-      const catSel = document.getElementById('category');
-      const techSel = document.getElementById('tech');
-      cats.forEach(c=>catSel.appendChild(opt(c)));
-      techs.forEach(t=>techSel.appendChild(opt(t)));
-      filtered = allDevs;
-      render();
+    function chip(text, set, onChange){ const s=set.has(text)?'sel':''; return `<span class="chip ${s}" onclick="toggleChip('${text}', '${onChange}')">${text}</span>`; }
+    function toggleChip(val, type){ const set = type==='cat'?selCats:selTechs; if(set.has(val)) set.delete(val); else set.add(val); renderFilters(); apply(); }
+
+    function computeMatch(d){ let s=0; if(selCats.size && selCats.has(d.category)) s+=20; const ts=d.technologies.map(x=>x.toLowerCase()); selTechs.forEach(t=>{ if(ts.includes(t.toLowerCase())) s+=10; }); return s; }
+
+    async function load(){ const r=await fetch('/api/developers'); const data=await r.json(); allDevs=data.developers||[]; filtered=allDevs; renderFilters(); apply(); }
+
+    function renderFilters(){
+      const cats=[...new Set(allDevs.map(d=>d.category))].sort();
+      const techs=[...new Set(allDevs.flatMap(d=>d.technologies))].sort();
+      document.getElementById('catChips').innerHTML=cats.map(c=>chip(c, selCats,'cat')).join('');
+      document.getElementById('techChips').innerHTML=techs.map(t=>chip(t, selTechs,'tech')).join('');
     }
 
-    function getSelected(sel){ return Array.from(sel.selectedOptions).map(o=>o.value); }
-
-    async function applyFilters(){
-      const minSalary = document.getElementById('minSalary').value || 0;
-      const maxSalary = document.getElementById('maxSalary').value || 999999;
-      const minExp = document.getElementById('minExp').value || 0;
-      const maxExp = document.getElementById('maxExp').value || 99;
-      const minTechScore = document.getElementById('minTechScore').value || 0;
-      const cats = getSelected(document.getElementById('category'));
-      const techs = getSelected(document.getElementById('tech'));
-      const q = new URLSearchParams();
-      if (cats.length) q.set('category', cats.join(','));
-      if (techs.length) q.set('tech', techs.join(','));
-      if (minSalary) q.set('minSalary', minSalary);
-      if (maxSalary) q.set('maxSalary', maxSalary);
-      if (minExp) q.set('minExp', minExp);
-      if (maxExp) q.set('maxExp', maxExp);
-      if (minTechScore) q.set('minTechScore', minTechScore);
-      const res = await fetch('/api/developers?'+q.toString());
-      const data = await res.json();
-      filtered = data.developers || [];
-      render();
+    function apply(){
+      const minSalary=Number(document.getElementById('minSalary').value||0);
+      const maxSalary=Number(document.getElementById('maxSalary').value||999999);
+      const minExp=Number(document.getElementById('minExp').value||0);
+      const maxExp=Number(document.getElementById('maxExp').value||99);
+      const minTechScore=Number(document.getElementById('minTechScore').value||0);
+      filtered=allDevs.filter(d=>d.salaryUSD>=minSalary && d.salaryUSD<=maxSalary && d.experienceYears>=minExp && d.experienceYears<=maxExp && d.techScore>=minTechScore)
+        .filter(d=> selCats.size===0 || selCats.has(d.category))
+        .filter(d=> selTechs.size===0 || [...selTechs].some(t=> d.technologies.map(x=>x.toLowerCase()).includes(t.toLowerCase())))
+        .map(d=>({...d, match:computeMatch(d)}));
+      sortRender();
     }
 
-    function badge(text, cls=''){ return `<span class="badge ${cls}">${text}</span>`; }
+    function sortRender(){ const v=document.getElementById('sort').value; if(v==='rating') filtered.sort((a,b)=>b.rating-a.rating||b.techScore-a.techScore); else if(v==='tech') filtered.sort((a,b)=>b.techScore-a.techScore); else if(v==='salary') filtered.sort((a,b)=>a.salaryUSD-b.salaryUSD); else if(v==='exp') filtered.sort((a,b)=>b.experienceYears-a.experienceYears); else filtered.sort((a,b)=>(b.match||0)-(a.match||0)); render(); }
 
-    function card(dev){
-      return `<div class="card">
-        <div class="top">
-          <div style="font-weight:800">${dev.position}</div>
-          <div class="id">#${dev.developerId}</div>
-        </div>
-        <div class="row" style="margin:8px 0">${badge('📅 '+dev.experienceYears+' yrs')}${badge('🌍 '+dev.englishLevel)}${badge('📊 '+dev.projectsCount+' projects')}${badge('🟢 '+dev.availability)}</div>
-        <div class="ratings">
-          <div><div class="rlabel">Tech Score</div><div class="rval" style="color:#667eea">${dev.techScore}</div></div>
-          <div><div class="rlabel">Rating</div><div class="rval" style="color:#48bb78">${dev.rating}★</div></div>
-          <div><div class="rlabel">Category</div><div class="rval" style="color:#ed8936">${dev.category}</div></div>
-          <div><div class="rlabel">Video</div><div class="rval">${dev.video || 'Soon'}</div></div>
-        </div>
-        <div class="row">${dev.technologies.slice(0,6).map((t,i)=>badge(t,i<2?'primary':'' )).join('')}</div>
-        ${dev.projectSectors?.length?`<div class="row" style="margin:6px 0">${dev.projectSectors.map(s=>badge(s)).join('')}</div>`:''}
-        ${dev.achievements?.length?`<div style="color:#4a5568;margin:6px 0">${dev.achievements.map(a=>'• '+a).join('<br/>')}</div>`:''}
-        <div class="row" style="justify-content:space-between;border-top:1px solid #e2e8f0;padding-top:8px;margin-top:8px">
-          <div class="salary">$${dev.salaryUSD.toLocaleString()} / mo</div>
-          <button class="btn" onclick="contact('${dev.developerId}')">💎 Contact</button>
-        </div>
-      </div>`
-    }
+    function card(d){ return `<div class="card">
+      <div class="top"><div style="font-weight:800">${d.position}</div><div class="id">#${d.developerId}</div></div>
+      <div class="row" style="margin:8px 0">${badge('📅 '+d.experienceYears+' yrs')}${badge('🌍 '+d.englishLevel)}${badge('📊 '+d.projectsCount+' projects')}${badge('🟢 '+d.availability)}</div>
+      <div class="ratings">
+        <div><div class="rlabel">Tech Score</div><div class="rval" style="color:#667eea">${d.techScore}</div></div>
+        <div><div class="rlabel">Rating</div><div class="rval" style="color:#48bb78">${d.rating}★</div></div>
+        <div><div class="rlabel">Category</div><div class="rval" style="color:#ed8936">${d.category}</div></div>
+        <div><div class="rlabel">Match</div><div class="rval" style="color:#805ad5">${d.match||'-'}</div></div>
+      </div>
+      <div class="row">${d.technologies.slice(0,6).map((t,i)=>badge(t,i<2?'primary':'' )).join('')}</div>
+      ${d.projectSectors?.length?`<div class="row" style="margin:6px 0">${d.projectSectors.map(s=>badge(s)).join('')}</div>`:''}
+      ${d.achievements?.length?`<div style="color:#4a5568;margin:6px 0">${d.achievements.map(a=>'• '+a).join('<br/>')}</div>`:''}
+      <div class="row" style="justify-content:space-between;border-top:1px solid #e2e8f0;padding-top:8px;margin-top:8px">
+        <div class="salary">$${d.salaryUSD.toLocaleString()} / mo</div>
+        <button class="btn" onclick="contact('${d.developerId}')">💎 Contact</button>
+      </div>
+    </div>` }
 
-    function render(){
-      document.getElementById('count').textContent = `Found ${filtered.length}`;
-      document.getElementById('grid').innerHTML = filtered.map(card).join('');
-    }
+    function badge(t,c=''){return `<span class="badge ${c}">${t}</span>`}
 
-    async function contact(developerId){
-      const name = prompt('Your Name:'); if(!name) return;
-      const email = prompt('Your Email:'); if(!email) return;
-      const projectDescription = prompt('Project Description (optional):') || '';
-      const res = await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,developerId,projectDescription})});
-      const data = await res.json();
-      if (data.ok) alert('Request sent!'); else alert('Error: '+(data.error||'unknown'));
-    }
+    function render(){ document.getElementById('count').textContent=`Found ${filtered.length}`; document.getElementById('grid').innerHTML=filtered.map(card).join(''); }
 
-    loadDevs();
+    function renderTop3(){ const top=[...allDevs].sort((a,b)=>b.rating-a.rating||b.techScore-a.techScore).slice(0,3); document.getElementById('top3grid').innerHTML=top.map(card).join(''); }
+
+    async function contact(developerId){ const name=prompt('Your Name:'); if(!name) return; const email=prompt('Your Email:'); if(!email) return; const projectDescription=prompt('Project Description (optional):')||''; const r=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,developerId,projectDescription})}); const data=await r.json(); alert(data.ok?'Request sent!':'Error'); }
+
+    async function submitConstructor(){ const projectType=document.getElementById('c_projectType').value; const technologies=document.getElementById('c_technologies').value; const budget=document.getElementById('c_budget').value; const email=document.getElementById('c_email').value; const description=document.getElementById('c_desc').value; const r=await fetch('/api/constructor',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({projectType,technologies,budget,email,description})}); const data=await r.json(); alert(data.ok?'✅ Sent! We will contact you soon.':'Error'); }
+
+    load();
   </script>
 </body>
 </html>

@@ -1,0 +1,3751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>just🔗4u - Complete Developer Platform</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header with Logo */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            color: #4a5568;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        /* CTA Navigation Bar */
+        .cta-bar {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 20px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .cta-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            color: white;
+        }
+
+        .cta-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .cta-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .cta-description {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .cta-stats {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 8px 16px;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: none;
+            padding: 40px 20px;
+        }
+
+        .main-content.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #1a202c;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        /* Filters */
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .filter-group {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .filter-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2d3748;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .range-container {
+            margin-bottom: 15px;
+        }
+
+        .range-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #4a5568;
+        }
+
+        .range-slider-container {
+            position: relative;
+            margin: 15px 0;
+        }
+
+        .range-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e0 100%);
+            outline: none;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .range-values {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .tech-tag:hover {
+            background: #e2e8f0;
+            transform: translateY(-1px);
+        }
+
+        .tech-tag.selected {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: white;
+        }
+
+        .category-filter {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .category-tag {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .category-tag:hover {
+            background: #e2e8f0;
+            transform: translateY(-1px);
+        }
+
+        .category-tag.selected {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            border-color: white;
+        }
+
+        /* Results */
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .results-count {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .sort-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .sort-select {
+            padding: 8px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+        }
+
+        /* Developer Cards */
+        .developers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .developer-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .developer-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .developer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .developer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .developer-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a202c;
+            line-height: 1.3;
+            flex: 1;
+        }
+
+        .developer-id {
+            background: #667eea;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-left: 15px;
+        }
+
+        .developer-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #4a5568;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .ratings-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 12px;
+        }
+
+        .rating-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .rating-label {
+            font-size: 11px;
+            color: #718096;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .rating-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .tech-level-value {
+            color: #667eea;
+        }
+
+        .performance-value {
+            color: #48bb78;
+        }
+
+        .category-value {
+            color: #ed8936;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .tech-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        .skill-tag {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .skill-tag.primary {
+            background: linear-gradient(135deg, #fed7d7, #feb2b2);
+            color: #742a2a;
+            font-weight: 600;
+        }
+
+        .experience-description {
+            font-size: 13px;
+            color: #718096;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .salary-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .salary-amount {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #48bb78;
+        }
+
+        .salary-period {
+            font-size: 12px;
+            color: #718096;
+        }
+
+        .hire-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .hire-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #718096;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #2d3748;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1a202c;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2d3748;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .developers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .developer-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .developer-id {
+                margin-left: 0;
+            }
+
+            .results-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #4a5568;
+        }
+
+        .spinner {
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div>
+                <div class="logo">just🔗4u</div>
+                <div class="tagline">179 Verified Developers • 15 Categories • Tech Level System</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CTA Navigation Bar -->
+    <section class="cta-bar">
+        <div class="cta-container">
+            <div class="cta-grid">
+                <div class="cta-card" onclick="showSection('search')">
+                    <span class="cta-icon">🔍</span>
+                    <div class="cta-title">Find Developers</div>
+                    <div class="cta-description">Search through 179 verified developers with advanced filters</div>
+                    <div class="cta-stats">15 Categories • Tech Level • Performance Rating</div>
+                </div>
+
+                <div class="cta-card" onclick="showSection('top3')">
+                    <span class="cta-icon">🏆</span>
+                    <div class="cta-title">Top 3 Developers</div>
+                    <div class="cta-description">Highest rated developers across all categories</div>
+                    <div class="cta-stats">5.0★ Tech Level • 5.0★ Performance</div>
+                </div>
+
+                <div class="cta-card" onclick="showSection('constructor')">
+                    <span class="cta-icon">⚡</span>
+                    <div class="cta-title">Ideal Developer Constructor</div>
+                    <div class="cta-description">Tell us your requirements and we'll find perfect matches</div>
+                    <div class="cta-stats">Custom Matching • 24h Response</div>
+                </div>
+
+                <div class="cta-card" onclick="showSection('admin')">
+                    <span class="cta-icon">⚙️</span>
+                    <div class="cta-title">Admin Panel</div>
+                    <div class="cta-description">Manage developers, categories, and platform settings</div>
+                    <div class="cta-stats">Password Protected • Full Control</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <main class="main-content active" id="searchSection">
+        <div class="container">
+            <div class="content-section">
+                <h1 class="section-title">🔍 Find Your Perfect Developer</h1>
+                <p class="section-subtitle">179 verified developers across 15 categories with Tech Level & Performance Rating</p>
+                
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <h3 class="filter-title">💰 Budget Range</h3>
+                        <div class="range-container">
+                            <label class="range-label">Monthly Budget: <span id="salaryDisplay">$2,000 - $6,000</span></label>
+                            <div class="range-slider-container">
+                                <input type="range" class="range-slider" id="salaryMin" min="1000" max="8000" value="2000" oninput="updateSalaryRange(); filterDevelopers()">
+                                <input type="range" class="range-slider" id="salaryMax" min="1000" max="8000" value="6000" oninput="updateSalaryRange(); filterDevelopers()">
+                            </div>
+                            <div class="range-values"><span>$1K</span><span>$8K</span></div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3 class="filter-title">🎓 Experience Range</h3>
+                        <div class="range-container">
+                            <label class="range-label">Years: <span id="experienceDisplay">2 - 10 years</span></label>
+                            <div class="range-slider-container">
+                                <input type="range" class="range-slider" id="experienceMin" min="1" max="15" value="2" oninput="updateExperienceRange(); filterDevelopers()">
+                                <input type="range" class="range-slider" id="experienceMax" min="1" max="15" value="10" oninput="updateExperienceRange(); filterDevelopers()">
+                            </div>
+                            <div class="range-values"><span>1yr</span><span>15yr</span></div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3 class="filter-title">⭐ Tech Level</h3>
+                        <div class="range-container">
+                            <label class="range-label">Level: <span id="techLevelDisplay">2.0 - 5.0★</span></label>
+                            <div class="range-slider-container">
+                                <input type="range" class="range-slider" id="techLevelMin" min="2.0" max="5.0" step="0.1" value="2.0" oninput="updateTechLevelRange(); filterDevelopers()">
+                                <input type="range" class="range-slider" id="techLevelMax" min="2.0" max="5.0" step="0.1" value="5.0" oninput="updateTechLevelRange(); filterDevelopers()">
+                            </div>
+                            <div class="range-values"><span>2.0★</span><span>5.0★</span></div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3 class="filter-title">📂 Categories</h3>
+                        <div class="category-filter" id="categoryFilter">
+                            <div class="category-tag" onclick="toggleCategoryFilter(this)">JavaScript/React</div>
+                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Python</div>
+                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Java</div>
+                            <div class="category-tag" onclick="toggleCategoryFilter(this)">AI/ML</div>
+                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Mobile</div>
+                            <div class="category-tag" onclick="toggleCategoryFilter(this)">PHP</div>
+                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Node.js</div>
+                            <div class="category-tag" onclick="toggleCategoryFilter(this)">DevOps</div>
+                            <div class="category-tag" onclick="toggleCategoryFilter(this)">.NET/C#</div>
+                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Golang</div>
+                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Ruby/Rails</div>
+                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Rust</div>
+                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Scala</div>
+                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Blockchain</div>
+                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Game Dev</div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3 class="filter-title">🚀 Technologies</h3>
+                        <div class="tech-tags" id="techFilter">
+                            <div class="tech-tag" onclick="toggleTechFilter(this)">React</div>
+                            <div class="tech-tag" onclick="toggleTechFilter(this)">Python</div>
+                            <div class="tech-tag" onclick="toggleTechFilter(this)">Java</div>
+                            <div class="tech-tag" onclick="toggleTechFilter(this)">Node.js</div>
+                            <div class="tech-tag" onclick="toggleTechFilter(this)">TypeScript</div>
+                            <div class="tech-tag" onclick="toggleTechFilter(this)">Flutter</div>
+                            <div class="tech-tag" onclick="toggleTechFilter(this)">Swift</div>
+                            <div class="tech-tag" onclick="toggleTechFilter(this)">Kotlin</div>
+                            <div class="tech-tag" onclick="toggleTechFilter(this)">PHP</div>
+                            <div class="tech-tag" onclick="toggleTechFilter(this)">Docker</div>
+                            <div class="tech-tag" onclick="toggleTechFilter(this)">AWS</div>
+                            <div class="tech-tag" onclick="toggleTechFilter(this)">C#</div>
+                            <div class="tech-tag" onclick="toggleTechFilter(this)">Go</div>
+                            <div class="tech-tag" onclick="toggleTechFilter(this)">Rust</div>
+                            <div class="tech-tag" onclick="toggleTechFilter(this)">Solidity</div>
+                            <div class="tech-tag" onclick="toggleTechFilter(this)">Unity</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-header">
+                    <div class="results-count" id="resultsCount">Found 179 developers</div>
+                    <div class="sort-controls">
+                        <select class="sort-select" id="sortSelect" onchange="sortDevelopers()">
+                            <option value="relevance">Sort by Relevance</option>
+                            <option value="techLevel">Tech Level (High to Low)</option>
+                            <option value="performance">Performance (High to Low)</option>
+                            <option value="salary">Salary (Low to High)</option>
+                            <option value="experience">Experience (High to Low)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="developers-grid" id="developersGrid">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Loading developers...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Top 3 Section -->
+    <main class="main-content" id="top3Section">
+        <div class="container">
+            <div class="content-section">
+                <h1 class="section-title">🏆 Top 3 Developers</h1>
+                <p class="section-subtitle">Highest Tech Level & Performance Rating across all categories</p>
+                
+                <div class="developers-grid" id="top3Grid">
+                    <!-- Top 3 developers will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Constructor Section -->
+    <main class="main-content" id="constructorSection">
+        <div class="container">
+            <div class="content-section">
+                <h1 class="section-title">⚡ Ideal Developer Constructor</h1>
+                <p class="section-subtitle">Tell us your requirements and we'll find the perfect match</p>
+                
+                <form id="constructorForm">
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <h3 class="filter-title">💼 Project Details</h3>
+                            <div class="form-group">
+                                <label class="form-label">Project Type</label>
+                                <select class="form-select" name="projectType" required>
+                                    <option value="">Select project type</option>
+                                    <option value="web">Web Application</option>
+                                    <option value="mobile">Mobile App</option>
+                                    <option value="api">API Development</option>
+                                    <option value="ai">AI/ML Solution</option>
+                                    <option value="ecommerce">E-commerce</option>
+                                    <option value="fintech">Fintech</option>
+                                    <option value="blockchain">Blockchain/Web3</option>
+                                    <option value="game">Game Development</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <h3 class="filter-title">🎯 Requirements</h3>
+                            <div class="form-group">
+                                <label class="form-label">Required Technologies</label>
+                                <input type="text" class="form-input" name="technologies" placeholder="e.g. React, Node.js, PostgreSQL" required>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <h3 class="filter-title">💰 Budget & Timeline</h3>
+                            <div class="form-group">
+                                <label class="form-label">Budget Range</label>
+                                <select class="form-select" name="budget" required>
+                                    <option value="">Select budget</option>
+                                    <option value="1000-2000">$1,000 - $2,000</option>
+                                    <option value="2000-4000">$2,000 - $4,000</option>
+                                    <option value="4000-6000">$4,000 - $6,000</option>
+                                    <option value="6000+">$6,000+</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <h3 class="filter-title">📧 Contact Info</h3>
+                            <div class="form-group">
+                                <label class="form-label">Your Email</label>
+                                <input type="email" class="form-input" name="email" placeholder="your@company.com" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">📝 Project Description</label>
+                        <textarea class="form-textarea" name="description" placeholder="Describe your project, timeline, and specific requirements..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn">
+                        🚀 Find My Ideal Developer
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Admin Section -->
+    <main class="main-content" id="adminSection">
+        <div class="container">
+            <div class="content-section">
+                <h1 class="section-title">⚙️ Admin Panel</h1>
+                <p class="section-subtitle">Manage developers, categories, and platform settings</p>
+                
+                <div style="text-align: center; padding: 60px 20px;">
+                    <button class="btn" onclick="checkAdminAccess()" style="max-width: 300px;">
+                        🔐 Access Admin Panel
+                    </button>
+                    <p style="margin-top: 20px; color: #718096; font-size: 14px;">
+                        Password required for access
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 class="modal-title">🚀 Contact Developer</h2>
+            <p style="margin-bottom: 25px; color: #4a5568;">We'll send you full details and arrange contact within 24 hours.</p>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label class="form-label">📧 Your Email</label>
+                    <input type="email" class="form-input" name="clientEmail" placeholder="your@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">💼 Company Name</label>
+                    <input type="text" class="form-input" name="company" placeholder="Your Company" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">📝 Project Description</label>
+                    <textarea class="form-textarea" name="projectDescription" placeholder="Brief project description..." required></textarea>
+                </div>
+                <button type="submit" class="btn">📩 Send Request</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Load from static JSON
+        let allDevelopers = [];
+        let filteredDevelopers = [];
+        let selectedTechnologies = [];
+        let selectedCategories = [];
+        let currentDeveloper = null;
+
+        async function loadDevelopers() {
+            try {
+                const devDataEl = document.getElementById('devData');
+                const raw = JSON.parse(devDataEl.textContent);
+                allDevelopers = raw.map((d, i) => ({
+                    id: i + 1,
+                    developerId: d.developerId,
+                    position: d.position,
+                    experience: d.experienceYears,
+                    salary: d.salaryUSD,
+                    technologies: d.technologies,
+                    englishLevel: d.englishLevel,
+                    techLevel: d.techScore,
+                    performanceRating: d.rating,
+                    projects: d.projectsCount,
+                    category: d.category,
+                    description: (d.achievements && d.achievements.length) ? d.achievements.join(' • ') : (d.projectSectors||[]).join(' • '),
+                    availability: d.availability,
+                    video: d.video
+                }));
+                filteredDevelopers = [...allDevelopers];
+                displayDevelopers();
+            } catch (e) { console.error('Failed to load static developers.json', e); }
+        }
+
+        function showSection(sectionName) {
+            document.querySelectorAll('.main-content').forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionName + 'Section').classList.add('active');
+            if (sectionName === 'search') displayDevelopers();
+            if (sectionName === 'top3') displayTop3();
+        }
+
+        function updateSalaryRange() {
+            const min = document.getElementById('salaryMin').value;
+            const max = document.getElementById('salaryMax').value;
+            document.getElementById('salaryDisplay').textContent = `$${parseInt(min).toLocaleString()} - $${parseInt(max).toLocaleString()}`;
+        }
+        function updateExperienceRange() {
+            const min = document.getElementById('experienceMin').value;
+            const max = document.getElementById('experienceMax').value;
+            document.getElementById('experienceDisplay').textContent = `${min} - ${max} years`;
+        }
+        function updateTechLevelRange() {
+            const min = document.getElementById('techLevelMin').value;
+            const max = document.getElementById('techLevelMax').value;
+            document.getElementById('techLevelDisplay').textContent = `${min} - ${max}★`;
+        }
+
+        function toggleTechFilter(element) {
+            element.classList.toggle('selected');
+            const tech = element.textContent;
+            if (selectedTechnologies.includes(tech)) {
+                selectedTechnologies = selectedTechnologies.filter(t => t !== tech);
+            } else {
+                selectedTechnologies.push(tech);
+            }
+            filterDevelopers();
+        }
+        function toggleCategoryFilter(element) {
+            element.classList.toggle('selected');
+            const category = element.textContent;
+            if (selectedCategories.includes(category)) {
+                selectedCategories = selectedCategories.filter(c => c !== category);
+            } else {
+                selectedCategories.push(category);
+            }
+            filterDevelopers();
+        }
+
+        function filterDevelopers() {
+            const salaryMin = parseInt(document.getElementById('salaryMin').value);
+            const salaryMax = parseInt(document.getElementById('salaryMax').value);
+            const expMin = parseInt(document.getElementById('experienceMin').value);
+            const expMax = parseInt(document.getElementById('experienceMax').value);
+            const techLevelMin = parseFloat(document.getElementById('techLevelMin').value);
+            const techLevelMax = parseFloat(document.getElementById('techLevelMax').value);
+
+            filteredDevelopers = allDevelopers.filter(dev => {
+                const salaryMatch = dev.salary >= salaryMin && dev.salary <= salaryMax;
+                const expMatch = dev.experience >= expMin && dev.experience <= expMax;
+                const techLevelMatch = dev.techLevel >= techLevelMin; // ignore max as techLevel is unbounded
+                const techMatch = selectedTechnologies.length === 0 ||
+                    selectedTechnologies.some(tech => dev.technologies.some(devTech => devTech.toLowerCase().includes(tech.toLowerCase())));
+                const categoryMatch = selectedCategories.length === 0 ||
+                    selectedCategories.some(cat => dev.category.includes(cat) || cat.includes(dev.category));
+                return salaryMatch && expMatch && techLevelMatch && techMatch && categoryMatch;
+            });
+            displayDevelopers();
+        }
+
+        function sortDevelopers() {
+            const sortBy = document.getElementById('sortSelect').value;
+            switch(sortBy) {
+                case 'techLevel':
+                    filteredDevelopers.sort((a, b) => b.techLevel - a.techLevel); break;
+                case 'performance':
+                    filteredDevelopers.sort((a, b) => b.performanceRating - a.performanceRating); break;
+                case 'salary':
+                    filteredDevelopers.sort((a, b) => a.salary - b.salary); break;
+                case 'experience':
+                    filteredDevelopers.sort((a, b) => b.experience - a.experience); break;
+                default:
+                    filteredDevelopers.sort((a, b) => (b.techLevel + b.performanceRating) - (a.techLevel + a.performanceRating));
+            }
+            displayDevelopers();
+        }
+
+        function displayDevelopers() {
+            const container = document.getElementById('developersGrid');
+            const resultsCount = document.getElementById('resultsCount');
+            resultsCount.textContent = `Found ${filteredDevelopers.length} developers`;
+            if (filteredDevelopers.length === 0) {
+                container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #718096;"><h3 style="margin-bottom: 10px;">No developers found</h3><p>Try adjusting your filters to see more results</p></div>`; return;
+            }
+            container.innerHTML = filteredDevelopers.map(dev => `
+                <div class="developer-card">
+                    <div class="developer-header">
+                        <h3 class="developer-title">${dev.position}</h3>
+                        <div class="developer-id">#${dev.developerId}</div>
+                    </div>
+                    <div class="developer-meta">
+                        <div class="meta-item">📅 ${dev.experience} years</div>
+                        <div class="meta-item">🌍 ${dev.englishLevel}</div>
+                        <div class="meta-item">📊 ${dev.projects} projects</div>
+                        <div class="meta-item">🟢 ${dev.availability}</div>
+                    </div>
+                    <div class="ratings-section">
+                        <div class="rating-item"><div class="rating-label">Tech Score</div><div class="rating-value tech-level-value">${dev.techLevel}</div></div>
+                        <div class="rating-item"><div class="rating-label">Rating</div><div class="rating-value performance-value">${dev.performanceRating}★</div></div>
+                        <div class="rating-item"><div class="rating-label">Category</div><div class="rating-value category-value">${dev.category}</div></div>
+                    </div>
+                    <div class="tech-skills">${dev.technologies.slice(0, 6).map((tech, i) => `<span class="skill-tag ${i < 2 ? 'primary' : ''}">${tech}</span>`).join('')}${dev.technologies.length > 6 ? `<span class="skill-tag">+${dev.technologies.length - 6}</span>` : ''}</div>
+                    <div class="experience-description">${dev.description}</div>
+                    <div class="card-footer">
+                        <div class="salary-info"><div class="salary-amount">$${dev.salary.toLocaleString()}</div><div class="salary-period">per month</div></div>
+                        <button class="hire-btn" onclick="openContactModal('${dev.developerId}', '${dev.position}')">💎 Contact</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function displayTop3() {
+            const top3Devs = [...allDevelopers].sort((a,b)=> b.performanceRating - a.performanceRating || b.techLevel - a.techLevel).slice(0,3);
+            const container = document.getElementById('top3Grid');
+            container.innerHTML = top3Devs.map((dev, index) => `
+                <div class="developer-card" style="border-color: ${index === 0 ? '#feca57' : index === 1 ? '#c0c0c0' : '#cd7f32'};">
+                    <div class="developer-header">
+                        <h3 class="developer-title">${index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'} ${dev.position}</h3>
+                        <div class="developer-id">#${dev.developerId}</div>
+                    </div>
+                    <div class="developer-meta">
+                        <div class="meta-item">📅 ${dev.experience} years</div>
+                        <div class="meta-item">🌍 ${dev.englishLevel}</div>
+                        <div class="meta-item">📊 ${dev.projects} projects</div>
+                    </div>
+                    <div class="ratings-section">
+                        <div class="rating-item"><div class="rating-label">Tech Score</div><div class="rating-value tech-level-value">${dev.techLevel}</div></div>
+                        <div class="rating-item"><div class="rating-label">Rating</div><div class="rating-value performance-value">${dev.performanceRating}★</div></div>
+                        <div class="rating-item"><div class="rating-label">Category</div><div class="rating-value category-value">${dev.category}</div></div>
+                    </div>
+                    <div class="tech-skills">${dev.technologies.slice(0, 6).map((tech, i) => `<span class="skill-tag ${i < 2 ? 'primary' : ''}">${tech}</span>`).join('')}</div>
+                    <div class="experience-description">${dev.description}</div>
+                    <div class="card-footer"><div class="salary-info"><div class="salary-amount">$${dev.salary.toLocaleString()}</div><div class="salary-period">per month</div></div><button class="hire-btn" onclick="openContactModal('${dev.developerId}', '${dev.position}')">💎 Hire Top Developer</button></div>
+                </div>
+            `).join('');
+        }
+
+        function openContactModal(developerId, position) {
+            currentDeveloper = allDevelopers.find(dev => dev.developerId === developerId);
+            document.getElementById('contactModal').style.display = 'block';
+        }
+        function closeModal() { document.getElementById('contactModal').style.display = 'none'; }
+
+        async function submitContactForm(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const name = formData.get('name') || formData.get('company') || 'Client';
+            const email = formData.get('clientEmail') || formData.get('email');
+            const desc = formData.get('projectDescription') || formData.get('description') || '';
+            const subject = encodeURIComponent(`just4u: ${currentDeveloper?.developerId} ${currentDeveloper?.position}`);
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nDeveloper: ${currentDeveloper?.developerId} ${currentDeveloper?.position}\nCategory: ${currentDeveloper?.category}\nEnglish: ${currentDeveloper?.englishLevel}\nTech Score: ${currentDeveloper?.techLevel}\nRating: ${currentDeveloper?.performanceRating}\nSalary: $${currentDeveloper?.salary}/mo\nAvailability: ${currentDeveloper?.availability}\n\nProject: ${desc}`);
+            window.location.href = `mailto:stant1605@gmail.com?subject=${subject}&body=${body}`;
+            alert('✅ Request prepared in your mail app.');
+            closeModal();
+            e.target.reset();
+        }
+        async function submitConstructorForm(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const subject = encodeURIComponent('just4u: Constructor Request');
+            const body = encodeURIComponent(`Project Type: ${formData.get('projectType')}\nTechnologies: ${formData.get('technologies')}\nBudget: ${formData.get('budget')}\nEmail: ${formData.get('email')}\nDescription: ${formData.get('description')||''}`);
+            window.location.href = `mailto:stant1605@gmail.com?subject=${subject}&body=${body}`;
+            alert('✅ Request prepared in your mail app.');
+            e.target.reset();
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSalaryRange(); updateExperienceRange(); updateTechLevelRange();
+            setTimeout(() => { loadDevelopers(); }, 200);
+            const contact = document.getElementById('contactForm'); if (contact) contact.addEventListener('submit', submitContactForm);
+            const constructor = document.getElementById('constructorForm'); if (constructor) constructor.addEventListener('submit', submitConstructorForm);
+        });
+        window.onclick = function(event) { const modal = document.getElementById('contactModal'); if (event.target == modal) { closeModal(); } }
+    </script>
+    <script id="devData" type="application/json">[
+  {
+    "id": 1,
+    "developerId": "0003",
+    "position": "Senior React Developer",
+    "category": "JavaScript/React",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Redux",
+      "Next.js",
+      "Node.js",
+      "GraphQL",
+      "Tailwind"
+    ],
+    "experienceYears": 7,
+    "projectsCount": 18,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 5000,
+    "projectSectors": [
+      "E-commerce",
+      "SaaS",
+      "Fintech"
+    ],
+    "techScore": 127,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": [
+      "Led FE for fintech app 100k+ MAU",
+      "Cut TTI by 30%"
+    ]
+  },
+  {
+    "id": 2,
+    "developerId": "0005",
+    "position": "Mid React Developer",
+    "category": "JavaScript/React",
+    "technologies": [
+      "React",
+      "JavaScript",
+      "Redux Toolkit",
+      "REST",
+      "Cypress",
+      "Figma"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 2800,
+    "projectSectors": [
+      "Corporate",
+      "EduTech",
+      "Dashboards"
+    ],
+    "techScore": 76,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 3,
+    "developerId": "0010",
+    "position": "Junior React Developer",
+    "category": "JavaScript/React",
+    "technologies": [
+      "React",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Git"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 1400,
+    "projectSectors": [
+      "Landing",
+      "Small Biz"
+    ],
+    "techScore": 21,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 4,
+    "developerId": "0013",
+    "position": "Frontend Tech Lead",
+    "category": "JavaScript/React",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Storybook",
+      "Jest",
+      "Microfrontends",
+      "Webpack"
+    ],
+    "experienceYears": 9,
+    "projectsCount": 22,
+    "englishLevel": "Advanced",
+    "salaryUSD": 6200,
+    "projectSectors": [
+      "Enterprise",
+      "Analytics",
+      "B2B"
+    ],
+    "techScore": 132,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": [
+      "Led microfrontends migration",
+      "-40% build time"
+    ]
+  },
+  {
+    "id": 5,
+    "developerId": "0019",
+    "position": "React/Next.js Engineer",
+    "category": "JavaScript/React",
+    "technologies": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "SWR",
+      "Vercel",
+      "Prisma"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 9,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3600,
+    "projectSectors": [
+      "SaaS",
+      "Content",
+      "Marketplace"
+    ],
+    "techScore": 77,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 6,
+    "developerId": "0025",
+    "position": "Senior Angular Developer",
+    "category": "Angular",
+    "technologies": [
+      "Angular",
+      "RxJS",
+      "NgRx",
+      "TypeScript",
+      "REST",
+      "Jest"
+    ],
+    "experienceYears": 7,
+    "projectsCount": 16,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4800,
+    "projectSectors": [
+      "Healthcare",
+      "CRM",
+      "SaaS"
+    ],
+    "techScore": 124,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 7,
+    "developerId": "0029",
+    "position": "Mid Angular Developer",
+    "category": "Angular",
+    "technologies": [
+      "Angular",
+      "TypeScript",
+      "RxJS",
+      "SCSS",
+      "REST"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 5,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 2600,
+    "projectSectors": [
+      "Dashboards",
+      "Corporate"
+    ],
+    "techScore": 70,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 8,
+    "developerId": "0031",
+    "position": "Junior Angular Developer",
+    "category": "Angular",
+    "technologies": [
+      "Angular",
+      "TypeScript",
+      "HTML",
+      "CSS",
+      "Git"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 1300,
+    "projectSectors": [
+      "Landing",
+      "Internal"
+    ],
+    "techScore": 21,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 9,
+    "developerId": "0035",
+    "position": "Angular Frontend Engineer",
+    "category": "Angular",
+    "technologies": [
+      "Angular",
+      "Nx",
+      "Material",
+      "Webpack",
+      "Cypress"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 8,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3400,
+    "projectSectors": [
+      "Admin",
+      "BI"
+    ],
+    "techScore": 69,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 10,
+    "developerId": "0040",
+    "position": "Angular Tech Lead",
+    "category": "Angular",
+    "technologies": [
+      "Angular",
+      "Architecture",
+      "NgRx",
+      "Monorepo",
+      "SSR"
+    ],
+    "experienceYears": 10,
+    "projectsCount": 24,
+    "englishLevel": "Advanced",
+    "salaryUSD": 6500,
+    "projectSectors": [
+      "Enterprise",
+      "Analytics"
+    ],
+    "techScore": 157,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 11,
+    "developerId": "0042",
+    "position": "Senior Vue Developer",
+    "category": "Vue.js",
+    "technologies": [
+      "Vue 3",
+      "Pinia",
+      "TypeScript",
+      "Nuxt",
+      "Vite",
+      "Tailwind"
+    ],
+    "experienceYears": 6,
+    "projectsCount": 14,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4200,
+    "projectSectors": [
+      "SaaS",
+      "E-commerce"
+    ],
+    "techScore": 114,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 12,
+    "developerId": "0045",
+    "position": "Mid Vue Developer",
+    "category": "Vue.js",
+    "technologies": [
+      "Vue",
+      "Vuex",
+      "JavaScript",
+      "REST",
+      "SCSS"
+    ],
+    "experienceYears": 3,
+    "projectsCount": 5,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 2400,
+    "projectSectors": [
+      "Admin",
+      "Corporate"
+    ],
+    "techScore": 60,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 13,
+    "developerId": "0049",
+    "position": "Junior Vue Developer",
+    "category": "Vue.js",
+    "technologies": [
+      "Vue",
+      "JavaScript",
+      "HTML",
+      "CSS"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 1,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 1200,
+    "projectSectors": [
+      "Landing",
+      "Small Biz"
+    ],
+    "techScore": 17,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 14,
+    "developerId": "0052",
+    "position": "Vue/Nuxt Engineer",
+    "category": "Vue.js",
+    "technologies": [
+      "Nuxt",
+      "Vue",
+      "TypeScript",
+      "Composition API"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 7,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3200,
+    "projectSectors": [
+      "Content",
+      "Media"
+    ],
+    "techScore": 63,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 15,
+    "developerId": "0057",
+    "position": "Senior Frontend (Vue)",
+    "category": "Vue.js",
+    "technologies": [
+      "Vue",
+      "TS",
+      "Vitest",
+      "Storybook",
+      "E2E"
+    ],
+    "experienceYears": 8,
+    "projectsCount": 19,
+    "englishLevel": "Advanced",
+    "salaryUSD": 5600,
+    "projectSectors": [
+      "Marketplace",
+      "SaaS"
+    ],
+    "techScore": 122,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 16,
+    "developerId": "0060",
+    "position": "Senior Node.js Developer",
+    "category": "Node.js",
+    "technologies": [
+      "Node.js",
+      "TypeScript",
+      "NestJS",
+      "PostgreSQL",
+      "Redis",
+      "Docker",
+      "AWS"
+    ],
+    "experienceYears": 6,
+    "projectsCount": 18,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4400,
+    "projectSectors": [
+      "Fintech",
+      "Real-time",
+      "IoT"
+    ],
+    "techScore": 121,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 17,
+    "developerId": "0063",
+    "position": "Mid Node.js Developer",
+    "category": "Node.js",
+    "technologies": [
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Socket.io",
+      "JWT"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 3000,
+    "projectSectors": [
+      "Chat",
+      "Collab"
+    ],
+    "techScore": 73,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 18,
+    "developerId": "0067",
+    "position": "Junior Node.js Developer",
+    "category": "Node.js",
+    "technologies": [
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "REST"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 1500,
+    "projectSectors": [
+      "Internal",
+      "Prototype"
+    ],
+    "techScore": 20,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 19,
+    "developerId": "0071",
+    "position": "NestJS Backend Engineer",
+    "category": "Node.js",
+    "technologies": [
+      "NestJS",
+      "TypeScript",
+      "TypeORM",
+      "Kafka",
+      "Redis"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 9,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3600,
+    "projectSectors": [
+      "Microservices",
+      "Analytics"
+    ],
+    "techScore": 72,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 20,
+    "developerId": "0076",
+    "position": "Node.js Team Lead",
+    "category": "Node.js",
+    "technologies": [
+      "Node.js",
+      "Microservices",
+      "K8s",
+      "Pub/Sub",
+      "CQRS"
+    ],
+    "experienceYears": 9,
+    "projectsCount": 21,
+    "englishLevel": "Advanced",
+    "salaryUSD": 6000,
+    "projectSectors": [
+      "Trading",
+      "High-load"
+    ],
+    "techScore": 122,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 21,
+    "developerId": "0080",
+    "position": "Senior Python Developer",
+    "category": "Python/Django",
+    "technologies": [
+      "Python",
+      "Django",
+      "DRF",
+      "Postgres",
+      "Redis",
+      "Celery",
+      "Docker",
+      "AWS"
+    ],
+    "experienceYears": 8,
+    "projectsCount": 20,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4600,
+    "projectSectors": [
+      "Fintech",
+      "E-commerce",
+      "CRM"
+    ],
+    "techScore": 148,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 22,
+    "developerId": "0083",
+    "position": "Mid Django Developer",
+    "category": "Python/Django",
+    "technologies": [
+      "Python",
+      "Django",
+      "DRF",
+      "Celery",
+      "Redis"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 3000,
+    "projectSectors": [
+      "SaaS",
+      "EduTech"
+    ],
+    "techScore": 73,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 23,
+    "developerId": "0088",
+    "position": "Junior Django Developer",
+    "category": "Python/Django",
+    "technologies": [
+      "Python",
+      "Django",
+      "SQLite",
+      "HTML",
+      "CSS"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 1500,
+    "projectSectors": [
+      "MVP",
+      "Internal"
+    ],
+    "techScore": 21,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 24,
+    "developerId": "0091",
+    "position": "Senior Django/FastAPI",
+    "category": "Python/Django",
+    "technologies": [
+      "Django",
+      "FastAPI",
+      "SQLAlchemy",
+      "Redis",
+      "RabbitMQ"
+    ],
+    "experienceYears": 6,
+    "projectsCount": 10,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3800,
+    "projectSectors": [
+      "APIs",
+      "Backoffice"
+    ],
+    "techScore": 95,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 25,
+    "developerId": "0095",
+    "position": "Python Tech Lead",
+    "category": "Python/Django",
+    "technologies": [
+      "Django",
+      "Architecture",
+      "Performance",
+      "Caching"
+    ],
+    "experienceYears": 10,
+    "projectsCount": 28,
+    "englishLevel": "Advanced",
+    "salaryUSD": 6200,
+    "projectSectors": [
+      "Enterprise",
+      "Analytics"
+    ],
+    "techScore": 154,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 26,
+    "developerId": "0100",
+    "position": "Senior FastAPI Engineer",
+    "category": "Python/FastAPI",
+    "technologies": [
+      "FastAPI",
+      "SQLAlchemy",
+      "PostgreSQL",
+      "Redis",
+      "Docker",
+      "AWS"
+    ],
+    "experienceYears": 6,
+    "projectsCount": 15,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4100,
+    "projectSectors": [
+      "Microservices",
+      "APIs"
+    ],
+    "techScore": 111,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 27,
+    "developerId": "0104",
+    "position": "Mid FastAPI Developer",
+    "category": "Python/FastAPI",
+    "technologies": [
+      "FastAPI",
+      "Pydantic",
+      "Postgres",
+      "Celery"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 2900,
+    "projectSectors": [
+      "Integrations",
+      "Platform"
+    ],
+    "techScore": 70,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 28,
+    "developerId": "0107",
+    "position": "Junior Python (API)",
+    "category": "Python/FastAPI",
+    "technologies": [
+      "Python",
+      "FastAPI",
+      "SQLite",
+      "REST"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 1400,
+    "projectSectors": [
+      "Prototype",
+      "Internal"
+    ],
+    "techScore": 20,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 29,
+    "developerId": "0112",
+    "position": "Python Backend Engineer",
+    "category": "Python/FastAPI",
+    "technologies": [
+      "Python",
+      "FastAPI",
+      "Kafka",
+      "Redis",
+      "ElastiCache"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 9,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3500,
+    "projectSectors": [
+      "Streaming",
+      "Analytics"
+    ],
+    "techScore": 72,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 30,
+    "developerId": "0118",
+    "position": "FastAPI Team Lead",
+    "category": "Python/FastAPI",
+    "technologies": [
+      "FastAPI",
+      "DDD",
+      "Event-Driven",
+      "K8s",
+      "AWS"
+    ],
+    "experienceYears": 9,
+    "projectsCount": 22,
+    "englishLevel": "Advanced",
+    "salaryUSD": 5800,
+    "projectSectors": [
+      "Payments",
+      "High-load"
+    ],
+    "techScore": 122,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 31,
+    "developerId": "0120",
+    "position": "Senior Java Developer",
+    "category": "Java/Spring",
+    "technologies": [
+      "Java",
+      "Spring Boot",
+      "Microservices",
+      "Kafka",
+      "Postgres",
+      "Docker"
+    ],
+    "experienceYears": 9,
+    "projectsCount": 24,
+    "englishLevel": "Advanced",
+    "salaryUSD": 5400,
+    "projectSectors": [
+      "Banking",
+      "Insurance"
+    ],
+    "techScore": 141,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 32,
+    "developerId": "0124",
+    "position": "Mid Java Developer",
+    "category": "Java/Spring",
+    "technologies": [
+      "Java",
+      "Spring",
+      "Hibernate",
+      "MySQL",
+      "Maven"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 5,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 2800,
+    "projectSectors": [
+      "E-commerce",
+      "Logistics"
+    ],
+    "techScore": 70,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 33,
+    "developerId": "0127",
+    "position": "Junior Java Developer",
+    "category": "Java/Spring",
+    "technologies": [
+      "Java",
+      "Spring",
+      "REST",
+      "JUnit"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 1600,
+    "projectSectors": [
+      "CRUD",
+      "Internal"
+    ],
+    "techScore": 20,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 34,
+    "developerId": "0131",
+    "position": "Java Microservices Engineer",
+    "category": "Java/Spring",
+    "technologies": [
+      "Spring Cloud",
+      "Kafka",
+      "Redis",
+      "OpenTelemetry"
+    ],
+    "experienceYears": 6,
+    "projectsCount": 12,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4000,
+    "projectSectors": [
+      "Trading",
+      "Analytics"
+    ],
+    "techScore": 82,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 35,
+    "developerId": "0136",
+    "position": "Java Architect",
+    "category": "Java/Spring",
+    "technologies": [
+      "Java",
+      "Architecture",
+      "CQRS",
+      "Event Sourcing",
+      "K8s"
+    ],
+    "experienceYears": 12,
+    "projectsCount": 32,
+    "englishLevel": "Advanced",
+    "salaryUSD": 7000,
+    "projectSectors": [
+      "Enterprise",
+      "High-load"
+    ],
+    "techScore": 191,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 36,
+    "developerId": "0140",
+    "position": "Senior .NET Developer",
+    "category": ".NET/C#",
+    "technologies": [
+      "C#",
+      ".NET 8",
+      "ASP.NET Core",
+      "EF Core",
+      "SQL Server",
+      "Azure"
+    ],
+    "experienceYears": 8,
+    "projectsCount": 18,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4500,
+    "projectSectors": [
+      "Banking",
+      "SaaS"
+    ],
+    "techScore": 120,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 37,
+    "developerId": "0144",
+    "position": "Mid .NET Developer",
+    "category": ".NET/C#",
+    "technologies": [
+      "C#",
+      "ASP.NET",
+      "EF",
+      "REST",
+      "Dapper"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 2800,
+    "projectSectors": [
+      "CRM",
+      "Corporate"
+    ],
+    "techScore": 73,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 38,
+    "developerId": "0148",
+    "position": "Junior .NET Developer",
+    "category": ".NET/C#",
+    "technologies": [
+      "C#",
+      ".NET",
+      "Web API",
+      "MSSQL"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 1500,
+    "projectSectors": [
+      "CRUD",
+      "Internal"
+    ],
+    "techScore": 20,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 39,
+    "developerId": "0151",
+    "position": ".NET Cloud Engineer",
+    "category": ".NET/C#",
+    "technologies": [
+      ".NET",
+      "Azure",
+      "Functions",
+      "Service Bus",
+      "Redis"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 9,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3500,
+    "projectSectors": [
+      "Integrations",
+      "Platform"
+    ],
+    "techScore": 72,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 40,
+    "developerId": "0156",
+    "position": ".NET Architect",
+    "category": ".NET/C#",
+    "technologies": [
+      ".NET",
+      "Microservices",
+      "Architecture",
+      "K8s"
+    ],
+    "experienceYears": 11,
+    "projectsCount": 26,
+    "englishLevel": "Advanced",
+    "salaryUSD": 6200,
+    "projectSectors": [
+      "Enterprise",
+      "High-load"
+    ],
+    "techScore": 149,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 41,
+    "developerId": "0160",
+    "position": "Senior Go Developer",
+    "category": "Golang",
+    "technologies": [
+      "Go",
+      "gRPC",
+      "PostgreSQL",
+      "Redis",
+      "Docker",
+      "Kubernetes"
+    ],
+    "experienceYears": 6,
+    "projectsCount": 14,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4600,
+    "projectSectors": [
+      "Payments",
+      "Platform"
+    ],
+    "techScore": 114,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 42,
+    "developerId": "0164",
+    "position": "Mid Go Developer",
+    "category": "Golang",
+    "technologies": [
+      "Go",
+      "REST",
+      "Gin",
+      "MySQL",
+      "Docker"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 3000,
+    "projectSectors": [
+      "Backoffice",
+      "APIs"
+    ],
+    "techScore": 73,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 43,
+    "developerId": "0169",
+    "position": "Junior Go Developer",
+    "category": "Golang",
+    "technologies": [
+      "Go",
+      "REST",
+      "SQLite",
+      "Docker"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 1600,
+    "projectSectors": [
+      "Internal",
+      "MVP"
+    ],
+    "techScore": 20,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 44,
+    "developerId": "0173",
+    "position": "Go Backend Engineer",
+    "category": "Golang",
+    "technologies": [
+      "Go",
+      "Microservices",
+      "NATS",
+      "Kafka",
+      "Redis"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 9,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3600,
+    "projectSectors": [
+      "Streaming",
+      "Analytics"
+    ],
+    "techScore": 72,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 45,
+    "developerId": "0179",
+    "position": "Go Systems Engineer",
+    "category": "Golang",
+    "technologies": [
+      "Go",
+      "Concurrency",
+      "Profiling",
+      "K8s"
+    ],
+    "experienceYears": 8,
+    "projectsCount": 20,
+    "englishLevel": "Advanced",
+    "salaryUSD": 5200,
+    "projectSectors": [
+      "High-load",
+      "Distributed"
+    ],
+    "techScore": 108,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 46,
+    "developerId": "0182",
+    "position": "Senior PHP Developer",
+    "category": "PHP/Laravel",
+    "technologies": [
+      "PHP",
+      "Laravel",
+      "MySQL",
+      "Redis",
+      "Horizon",
+      "Docker"
+    ],
+    "experienceYears": 7,
+    "projectsCount": 16,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3800,
+    "projectSectors": [
+      "E-commerce",
+      "CRM"
+    ],
+    "techScore": 118,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 47,
+    "developerId": "0186",
+    "position": "Mid Laravel Developer",
+    "category": "PHP/Laravel",
+    "technologies": [
+      "Laravel",
+      "Nova",
+      "Queues",
+      "REST"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 2600,
+    "projectSectors": [
+      "SaaS",
+      "Admin"
+    ],
+    "techScore": 70,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 48,
+    "developerId": "0191",
+    "position": "Junior PHP Developer",
+    "category": "PHP/Laravel",
+    "technologies": [
+      "PHP",
+      "Laravel",
+      "MySQL",
+      "Blade"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 1400,
+    "projectSectors": [
+      "Landing",
+      "MVP"
+    ],
+    "techScore": 20,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 49,
+    "developerId": "0194",
+    "position": "Laravel Full Stack",
+    "category": "PHP/Laravel",
+    "technologies": [
+      "Laravel",
+      "Vue",
+      "Inertia",
+      "Postgres"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 8,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3200,
+    "projectSectors": [
+      "Marketplaces",
+      "B2B"
+    ],
+    "techScore": 64,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 50,
+    "developerId": "0199",
+    "position": "Senior Laravel Architect",
+    "category": "PHP/Laravel",
+    "technologies": [
+      "Laravel",
+      "Microservices",
+      "Redis",
+      "Swoole"
+    ],
+    "experienceYears": 9,
+    "projectsCount": 22,
+    "englishLevel": "Advanced",
+    "salaryUSD": 5200,
+    "projectSectors": [
+      "High-load",
+      "E-commerce"
+    ],
+    "techScore": 121,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 51,
+    "developerId": "0203",
+    "position": "Senior Ruby Developer",
+    "category": "Ruby/Rails",
+    "technologies": [
+      "Ruby",
+      "Rails",
+      "PostgreSQL",
+      "Sidekiq",
+      "Redis",
+      "RSpec"
+    ],
+    "experienceYears": 7,
+    "projectsCount": 15,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4000,
+    "projectSectors": [
+      "Marketplaces",
+      "SaaS"
+    ],
+    "techScore": 117,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 52,
+    "developerId": "0207",
+    "position": "Mid Rails Developer",
+    "category": "Ruby/Rails",
+    "technologies": [
+      "Rails",
+      "Postgres",
+      "Elastic",
+      "Sidekiq"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 2800,
+    "projectSectors": [
+      "Content",
+      "CRM"
+    ],
+    "techScore": 70,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 53,
+    "developerId": "0212",
+    "position": "Junior Rails Developer",
+    "category": "Ruby/Rails",
+    "technologies": [
+      "Ruby",
+      "Rails",
+      "SQLite",
+      "HTML"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 1500,
+    "projectSectors": [
+      "Internal",
+      "MVP"
+    ],
+    "techScore": 20,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 54,
+    "developerId": "0216",
+    "position": "Rails Backend Engineer",
+    "category": "Ruby/Rails",
+    "technologies": [
+      "Rails",
+      "Redis",
+      "Search",
+      "API"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 9,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3400,
+    "projectSectors": [
+      "SaaS",
+      "Analytics"
+    ],
+    "techScore": 72,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 55,
+    "developerId": "0221",
+    "position": "Rails Architect",
+    "category": "Ruby/Rails",
+    "technologies": [
+      "Rails",
+      "Architecture",
+      "Caching",
+      "Sharding"
+    ],
+    "experienceYears": 10,
+    "projectsCount": 25,
+    "englishLevel": "Advanced",
+    "salaryUSD": 6000,
+    "projectSectors": [
+      "Enterprise",
+      "High-load"
+    ],
+    "techScore": 139,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 56,
+    "developerId": "0225",
+    "position": "Senior iOS Developer",
+    "category": "Mobile iOS",
+    "technologies": [
+      "Swift",
+      "SwiftUI",
+      "UIKit",
+      "Combine",
+      "Core Data",
+      "REST"
+    ],
+    "experienceYears": 8,
+    "projectsCount": 18,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 6000,
+    "projectSectors": [
+      "Banking",
+      "Social"
+    ],
+    "techScore": 120,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 57,
+    "developerId": "0229",
+    "position": "Mid iOS Developer",
+    "category": "Mobile iOS",
+    "technologies": [
+      "Swift",
+      "UIKit",
+      "MVVM",
+      "Alamofire"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 3600,
+    "projectSectors": [
+      "Fitness",
+      "Utilities"
+    ],
+    "techScore": 70,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 58,
+    "developerId": "0234",
+    "position": "Junior iOS Developer",
+    "category": "Mobile iOS",
+    "technologies": [
+      "Swift",
+      "UIKit",
+      "Xcode",
+      "Git"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 2200,
+    "projectSectors": [
+      "Prototype",
+      "Startup"
+    ],
+    "techScore": 20,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 59,
+    "developerId": "0238",
+    "position": "iOS Engineer (SwiftUI)",
+    "category": "Mobile iOS",
+    "technologies": [
+      "SwiftUI",
+      "Combine",
+      "CoreData",
+      "Push"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 8,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4200,
+    "projectSectors": [
+      "Health",
+      "EduTech"
+    ],
+    "techScore": 64,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 60,
+    "developerId": "0243",
+    "position": "iOS Team Lead",
+    "category": "Mobile iOS",
+    "technologies": [
+      "Swift",
+      "Architecture",
+      "CI/CD",
+      "Security"
+    ],
+    "experienceYears": 10,
+    "projectsCount": 26,
+    "englishLevel": "Advanced",
+    "salaryUSD": 7000,
+    "projectSectors": [
+      "Enterprise",
+      "Fintech"
+    ],
+    "techScore": 142,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 61,
+    "developerId": "0246",
+    "position": "Senior Android Dev",
+    "category": "Mobile Android",
+    "technologies": [
+      "Kotlin",
+      "Android SDK",
+      "Coroutines",
+      "Room",
+      "Retrofit",
+      "Compose"
+    ],
+    "experienceYears": 9,
+    "projectsCount": 20,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4800,
+    "projectSectors": [
+      "Banking",
+      "E-commerce"
+    ],
+    "techScore": 132,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 62,
+    "developerId": "0250",
+    "position": "Mid Android Dev",
+    "category": "Mobile Android",
+    "technologies": [
+      "Kotlin",
+      "MVVM",
+      "Retrofit",
+      "Jetpack"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 3200,
+    "projectSectors": [
+      "Ride-hailing",
+      "Utilities"
+    ],
+    "techScore": 70,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 63,
+    "developerId": "0254",
+    "position": "Junior Android Dev",
+    "category": "Mobile Android",
+    "technologies": [
+      "Kotlin",
+      "Android",
+      "SQLite",
+      "Git"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 2000,
+    "projectSectors": [
+      "Prototype",
+      "Internal"
+    ],
+    "techScore": 20,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 64,
+    "developerId": "0258",
+    "position": "Android Engineer",
+    "category": "Mobile Android",
+    "technologies": [
+      "Kotlin",
+      "Compose",
+      "Hilt",
+      "Paging"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 9,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3600,
+    "projectSectors": [
+      "Media",
+      "Social"
+    ],
+    "techScore": 72,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 65,
+    "developerId": "0263",
+    "position": "Android Team Lead",
+    "category": "Mobile Android",
+    "technologies": [
+      "Kotlin",
+      "Architecture",
+      "CI/CD",
+      "NDK"
+    ],
+    "experienceYears": 10,
+    "projectsCount": 24,
+    "englishLevel": "Advanced",
+    "salaryUSD": 5600,
+    "projectSectors": [
+      "Enterprise",
+      "Streaming"
+    ],
+    "techScore": 142,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 66,
+    "developerId": "0266",
+    "position": "Senior Flutter Dev",
+    "category": "Flutter",
+    "technologies": [
+      "Flutter",
+      "Dart",
+      "BLoC",
+      "Riverpod",
+      "Firebase",
+      "REST"
+    ],
+    "experienceYears": 7,
+    "projectsCount": 16,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4200,
+    "projectSectors": [
+      "E-commerce",
+      "Health"
+    ],
+    "techScore": 118,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 67,
+    "developerId": "0270",
+    "position": "Mid Flutter Dev",
+    "category": "Flutter",
+    "technologies": [
+      "Flutter",
+      "Provider",
+      "SQLite",
+      "HTTP"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 3000,
+    "projectSectors": [
+      "Delivery",
+      "Fitness"
+    ],
+    "techScore": 70,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 68,
+    "developerId": "0275",
+    "position": "Junior Flutter Dev",
+    "category": "Flutter",
+    "technologies": [
+      "Flutter",
+      "Dart",
+      "Firebase",
+      "Git"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 1800,
+    "projectSectors": [
+      "MVP",
+      "Startup"
+    ],
+    "techScore": 20,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 69,
+    "developerId": "0279",
+    "position": "Flutter Engineer",
+    "category": "Flutter",
+    "technologies": [
+      "Flutter",
+      "Clean Arch",
+      "Freezed",
+      "Dio"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 8,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3300,
+    "projectSectors": [
+      "Education",
+      "Social"
+    ],
+    "techScore": 64,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 70,
+    "developerId": "0284",
+    "position": "Senior Flutter Lead",
+    "category": "Flutter",
+    "technologies": [
+      "Flutter",
+      "Architecture",
+      "CI/CD",
+      "Native Modules"
+    ],
+    "experienceYears": 9,
+    "projectsCount": 22,
+    "englishLevel": "Advanced",
+    "salaryUSD": 5200,
+    "projectSectors": [
+      "Fintech",
+      "Enterprise"
+    ],
+    "techScore": 121,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 71,
+    "developerId": "0287",
+    "position": "Senior RN Developer",
+    "category": "React Native",
+    "technologies": [
+      "React Native",
+      "TypeScript",
+      "Redux",
+      "Native Modules",
+      "Firebase"
+    ],
+    "experienceYears": 6,
+    "projectsCount": 15,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4000,
+    "projectSectors": [
+      "E-commerce",
+      "Social"
+    ],
+    "techScore": 110,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 72,
+    "developerId": "0291",
+    "position": "Mid RN Developer",
+    "category": "React Native",
+    "technologies": [
+      "React Native",
+      "JS",
+      "REST",
+      "Push"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 3000,
+    "projectSectors": [
+      "Delivery",
+      "Utilities"
+    ],
+    "techScore": 70,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 73,
+    "developerId": "0296",
+    "position": "Junior RN Developer",
+    "category": "React Native",
+    "technologies": [
+      "React Native",
+      "JS",
+      "Git",
+      "CSS"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 1800,
+    "projectSectors": [
+      "Prototype",
+      "Startup"
+    ],
+    "techScore": 20,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 74,
+    "developerId": "0300",
+    "position": "RN Mobile Engineer",
+    "category": "React Native",
+    "technologies": [
+      "RN",
+      "Expo",
+      "EAS",
+      "SQLite"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 9,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3200,
+    "projectSectors": [
+      "Health",
+      "Social"
+    ],
+    "techScore": 72,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 75,
+    "developerId": "0305",
+    "position": "RN Team Lead",
+    "category": "React Native",
+    "technologies": [
+      "RN",
+      "Architecture",
+      "CI/CD",
+      "Native iOS/Android"
+    ],
+    "experienceYears": 9,
+    "projectsCount": 20,
+    "englishLevel": "Advanced",
+    "salaryUSD": 5000,
+    "projectSectors": [
+      "Enterprise",
+      "Fintech"
+    ],
+    "techScore": 114,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 76,
+    "developerId": "0309",
+    "position": "Senior ML Engineer",
+    "category": "AI/ML",
+    "technologies": [
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "MLflow",
+      "Docker",
+      "AWS"
+    ],
+    "experienceYears": 6,
+    "projectsCount": 14,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4500,
+    "projectSectors": [
+      "Recommenders",
+      "CV",
+      "NLP"
+    ],
+    "techScore": 114,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 77,
+    "developerId": "0313",
+    "position": "Mid ML Engineer",
+    "category": "AI/ML",
+    "technologies": [
+      "Python",
+      "scikit-learn",
+      "XGBoost",
+      "Pandas",
+      "Airflow"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 3600,
+    "projectSectors": [
+      "Analytics",
+      "Forecasting"
+    ],
+    "techScore": 73,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 78,
+    "developerId": "0318",
+    "position": "Junior ML Engineer",
+    "category": "AI/ML",
+    "technologies": [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Jupyter"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 2400,
+    "projectSectors": [
+      "PoC",
+      "Research"
+    ],
+    "techScore": 20,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 79,
+    "developerId": "0322",
+    "position": "ML Ops Engineer",
+    "category": "AI/ML",
+    "technologies": [
+      "MLflow",
+      "Kubeflow",
+      "K8s",
+      "CI/CD",
+      "S3"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 9,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4100,
+    "projectSectors": [
+      "Deployment",
+      "Pipelines"
+    ],
+    "techScore": 72,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 80,
+    "developerId": "0327",
+    "position": "AI Solutions Architect",
+    "category": "AI/ML",
+    "technologies": [
+      "System Design",
+      "TensorFlow",
+      "AWS",
+      "Data Lakes"
+    ],
+    "experienceYears": 9,
+    "projectsCount": 22,
+    "englishLevel": "Advanced",
+    "salaryUSD": 5600,
+    "projectSectors": [
+      "Enterprise",
+      "Consulting"
+    ],
+    "techScore": 121,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 81,
+    "developerId": "0330",
+    "position": "Senior NLP Engineer",
+    "category": "NLP",
+    "technologies": [
+      "Python",
+      "Transformers",
+      "HuggingFace",
+      "spaCy",
+      "FastAPI"
+    ],
+    "experienceYears": 6,
+    "projectsCount": 12,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4400,
+    "projectSectors": [
+      "Chatbots",
+      "NER",
+      "Classification"
+    ],
+    "techScore": 101,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 82,
+    "developerId": "0334",
+    "position": "Mid NLP Engineer",
+    "category": "NLP",
+    "technologies": [
+      "Python",
+      "BERT",
+      "spaCy",
+      "FastAPI"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 3600,
+    "projectSectors": [
+      "Summarization",
+      "QA"
+    ],
+    "techScore": 70,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 83,
+    "developerId": "0339",
+    "position": "Junior NLP Engineer",
+    "category": "NLP",
+    "technologies": [
+      "Python",
+      "NLTK",
+      "Regex",
+      "Pandas"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 2600,
+    "projectSectors": [
+      "PoC",
+      "ETL"
+    ],
+    "techScore": 20,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 84,
+    "developerId": "0343",
+    "position": "NLP Research Engineer",
+    "category": "NLP",
+    "technologies": [
+      "PyTorch",
+      "Seq2Seq",
+      "Attention",
+      "Datasets"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 9,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4200,
+    "projectSectors": [
+      "R&D",
+      "Generation"
+    ],
+    "techScore": 72,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 85,
+    "developerId": "0348",
+    "position": "NLP Lead",
+    "category": "NLP",
+    "technologies": [
+      "LLMs",
+      "Prompting",
+      "RAG",
+      "Vector DBs"
+    ],
+    "experienceYears": 8,
+    "projectsCount": 18,
+    "englishLevel": "Advanced",
+    "salaryUSD": 5200,
+    "projectSectors": [
+      "Search",
+      "Assistants"
+    ],
+    "techScore": 106,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 86,
+    "developerId": "0351",
+    "position": "Senior Data Engineer",
+    "category": "Data Engineering",
+    "technologies": [
+      "Python",
+      "Spark",
+      "Kafka",
+      "Airflow",
+      "DBT",
+      "AWS"
+    ],
+    "experienceYears": 7,
+    "projectsCount": 16,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4600,
+    "projectSectors": [
+      "ETL",
+      "DWH",
+      "Real-time"
+    ],
+    "techScore": 118,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 87,
+    "developerId": "0355",
+    "position": "Mid Data Engineer",
+    "category": "Data Engineering",
+    "technologies": [
+      "Python",
+      "Airflow",
+      "BigQuery",
+      "SQL"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 3400,
+    "projectSectors": [
+      "Pipelines",
+      "BI"
+    ],
+    "techScore": 70,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 88,
+    "developerId": "0360",
+    "position": "Junior Data Engineer",
+    "category": "Data Engineering",
+    "technologies": [
+      "Python",
+      "SQL",
+      "Pandas",
+      "S3"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 2400,
+    "projectSectors": [
+      "Data Prep",
+      "Ingest"
+    ],
+    "techScore": 20,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 89,
+    "developerId": "0364",
+    "position": "Streaming Data Eng",
+    "category": "Data Engineering",
+    "technologies": [
+      "Kafka",
+      "Flink",
+      "Kinesis",
+      "S3"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 9,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4000,
+    "projectSectors": [
+      "Streaming",
+      "Analytics"
+    ],
+    "techScore": 72,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 90,
+    "developerId": "0369",
+    "position": "Principal Data Eng",
+    "category": "Data Engineering",
+    "technologies": [
+      "Lakehouse",
+      "Delta",
+      "EMR",
+      "K8s"
+    ],
+    "experienceYears": 10,
+    "projectsCount": 24,
+    "englishLevel": "Advanced",
+    "salaryUSD": 6000,
+    "projectSectors": [
+      "Enterprise",
+      "Platform"
+    ],
+    "techScore": 142,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 91,
+    "developerId": "0372",
+    "position": "Senior DevOps Engineer",
+    "category": "DevOps",
+    "technologies": [
+      "Docker",
+      "Kubernetes",
+      "Terraform",
+      "Jenkins",
+      "AWS",
+      "Prometheus",
+      "Grafana"
+    ],
+    "experienceYears": 7,
+    "projectsCount": 18,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4500,
+    "projectSectors": [
+      "Cloud",
+      "CI/CD"
+    ],
+    "techScore": 127,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 92,
+    "developerId": "0376",
+    "position": "Mid DevOps Engineer",
+    "category": "DevOps",
+    "technologies": [
+      "Docker",
+      "K8s",
+      "GitLab CI",
+      "Helm"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 3400,
+    "projectSectors": [
+      "Automation",
+      "Monitoring"
+    ],
+    "techScore": 70,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 93,
+    "developerId": "0381",
+    "position": "Junior DevOps",
+    "category": "DevOps",
+    "technologies": [
+      "Docker",
+      "Linux",
+      "Bash",
+      "Ansible"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 2200,
+    "projectSectors": [
+      "Internal",
+      "Support"
+    ],
+    "techScore": 20,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 94,
+    "developerId": "0385",
+    "position": "SRE Engineer",
+    "category": "DevOps",
+    "technologies": [
+      "SRE",
+      "Prometheus",
+      "Grafana",
+      "On-call",
+      "SLOs"
+    ],
+    "experienceYears": 6,
+    "projectsCount": 12,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 4200,
+    "projectSectors": [
+      "Reliability",
+      "Performance"
+    ],
+    "techScore": 101,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 95,
+    "developerId": "0390",
+    "position": "DevOps Architect",
+    "category": "DevOps",
+    "technologies": [
+      "K8s",
+      "Istio",
+      "Service Mesh",
+      "ArgoCD",
+      "EKS"
+    ],
+    "experienceYears": 10,
+    "projectsCount": 26,
+    "englishLevel": "Advanced",
+    "salaryUSD": 6200,
+    "projectSectors": [
+      "Enterprise",
+      "Multi-cloud"
+    ],
+    "techScore": 143,
+    "rating": 5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 96,
+    "developerId": "0394",
+    "position": "QA Automation Lead",
+    "category": "QA Automation",
+    "technologies": [
+      "Selenium",
+      "Playwright",
+      "Cypress",
+      "JS",
+      "CI/CD",
+      "Docker"
+    ],
+    "experienceYears": 8,
+    "projectsCount": 18,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3800,
+    "projectSectors": [
+      "E-commerce",
+      "Banking"
+    ],
+    "techScore": 120,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 97,
+    "developerId": "0398",
+    "position": "Mid QA Automation",
+    "category": "QA Automation",
+    "technologies": [
+      "Python",
+      "pytest",
+      "API",
+      "Jenkins"
+    ],
+    "experienceYears": 4,
+    "projectsCount": 6,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 2800,
+    "projectSectors": [
+      "Web",
+      "Mobile"
+    ],
+    "techScore": 70,
+    "rating": 4.7,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 98,
+    "developerId": "0403",
+    "position": "Junior QA",
+    "category": "QA Automation",
+    "technologies": [
+      "Manual",
+      "Test Cases",
+      "Postman"
+    ],
+    "experienceYears": 1,
+    "projectsCount": 2,
+    "englishLevel": "Intermediate",
+    "salaryUSD": 1500,
+    "projectSectors": [
+      "Web",
+      "Mobile"
+    ],
+    "techScore": 19,
+    "rating": 4.5,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 99,
+    "developerId": "0407",
+    "position": "QA SDET",
+    "category": "QA Automation",
+    "technologies": [
+      "Java",
+      "TestNG",
+      "Selenium Grid",
+      "Docker"
+    ],
+    "experienceYears": 5,
+    "projectsCount": 9,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3200,
+    "projectSectors": [
+      "Platforms",
+      "CI/CD"
+    ],
+    "techScore": 72,
+    "rating": 4.8,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  },
+  {
+    "id": 100,
+    "developerId": "0412",
+    "position": "Performance QA",
+    "category": "QA Automation",
+    "technologies": [
+      "JMeter",
+      "k6",
+      "Monitoring",
+      "APM"
+    ],
+    "experienceYears": 7,
+    "projectsCount": 12,
+    "englishLevel": "Upper-Intermediate",
+    "salaryUSD": 3400,
+    "projectSectors": [
+      "Load",
+      "Stress"
+    ],
+    "techScore": 94,
+    "rating": 4.9,
+    "video": "Soon",
+    "availability": "As needed",
+    "achievements": []
+  }
+]</script>
+
+  </body>
+</html>

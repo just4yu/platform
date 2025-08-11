@@ -284,21 +284,71 @@
   <script>
     const CONTACT_EMAIL = 'stant1605@gmail.com';
 
-    // Sample dataset (12 developers across categories)
-    let allDevelopers = [
-      { id: 1, developerId: '0003', position: 'Senior React Developer', category: 'JavaScript/React', technologies: ['React','TypeScript','Redux','Next.js','Node.js','GraphQL','Tailwind'], experienceYears: 7, projectsCount: 18, englishLevel: 'Upper-Intermediate', salaryUSD: 5000, projectSectors: ['E-commerce','SaaS','Fintech'], techScore: 127, rating: 4.9, video: 'Soon', availability: 'As needed', achievements: ['Led FE for fintech app 100k+ MAU','Cut TTI by 30%'] },
-      { id: 2, developerId: '0060', position: 'Senior Node.js Developer', category: 'Node.js', technologies: ['Node.js','TypeScript','NestJS','PostgreSQL','Redis','Docker','AWS'], experienceYears: 6, projectsCount: 18, englishLevel: 'Upper-Intermediate', salaryUSD: 4400, projectSectors: ['Fintech','Real-time','IoT'], techScore: 121, rating: 4.9, video: 'Soon', availability: 'As needed', achievements: [] },
-      { id: 3, developerId: '0120', position: 'Senior Java Developer', category: 'Java/Spring', technologies: ['Java','Spring Boot','Microservices','Kafka','Postgres','Docker'], experienceYears: 9, projectsCount: 24, englishLevel: 'Advanced', salaryUSD: 5400, projectSectors: ['Banking','Insurance'], techScore: 141, rating: 5.0, video: 'Soon', availability: 'As needed', achievements: [] },
-      { id: 4, developerId: '0080', position: 'Senior Python Developer', category: 'Python/Django', technologies: ['Python','Django','DRF','Postgres','Redis','Celery','Docker','AWS'], experienceYears: 8, projectsCount: 20, englishLevel: 'Upper-Intermediate', salaryUSD: 4600, projectSectors: ['Fintech','E-commerce','CRM'], techScore: 148, rating: 5.0, video: 'Soon', availability: 'As needed', achievements: [] },
-      { id: 5, developerId: '0100', position: 'Senior FastAPI Engineer', category: 'Python/FastAPI', technologies: ['FastAPI','SQLAlchemy','PostgreSQL','Redis','Docker','AWS'], experienceYears: 6, projectsCount: 15, englishLevel: 'Upper-Intermediate', salaryUSD: 4100, projectSectors: ['Microservices','APIs'], techScore: 111, rating: 4.9, video: 'Soon', availability: 'As needed', achievements: [] },
-      { id: 6, developerId: '0140', position: 'Senior .NET Developer', category: '.NET/C#', technologies: ['C#','.NET 8','ASP.NET Core','EF Core','SQL Server','Azure'], experienceYears: 8, projectsCount: 18, englishLevel: 'Upper-Intermediate', salaryUSD: 4500, projectSectors: ['Banking','SaaS'], techScore: 120, rating: 4.9, video: 'Soon', availability: 'As needed', achievements: [] },
-      { id: 7, developerId: '0160', position: 'Senior Go Developer', category: 'Golang', technologies: ['Go','gRPC','PostgreSQL','Redis','Docker','Kubernetes'], experienceYears: 6, projectsCount: 14, englishLevel: 'Upper-Intermediate', salaryUSD: 4600, projectSectors: ['Payments','Platform'], techScore: 114, rating: 4.9, video: 'Soon', availability: 'As needed', achievements: [] },
-      { id: 8, developerId: '0182', position: 'Senior PHP Developer', category: 'PHP/Laravel', technologies: ['PHP','Laravel','MySQL','Redis','Horizon','Docker'], experienceYears: 7, projectsCount: 16, englishLevel: 'Upper-Intermediate', salaryUSD: 3800, projectSectors: ['E-commerce','CRM'], techScore: 118, rating: 4.9, video: 'Soon', availability: 'As needed', achievements: [] },
-      { id: 9, developerId: '0225', position: 'Senior iOS Developer', category: 'Mobile iOS', technologies: ['Swift','SwiftUI','UIKit','Combine','Core Data','REST'], experienceYears: 8, projectsCount: 18, englishLevel: 'Upper-Intermediate', salaryUSD: 6000, projectSectors: ['Banking','Social'], techScore: 120, rating: 4.9, video: 'Soon', availability: 'As needed', achievements: [] },
-      { id: 10, developerId: '0246', position: 'Senior Android Dev', category: 'Mobile Android', technologies: ['Kotlin','Android SDK','Coroutines','Room','Retrofit','Compose'], experienceYears: 9, projectsCount: 20, englishLevel: 'Upper-Intermediate', salaryUSD: 4800, projectSectors: ['Banking','E-commerce'], techScore: 132, rating: 5.0, video: 'Soon', availability: 'As needed', achievements: [] },
-      { id: 11, developerId: '0266', position: 'Senior Flutter Dev', category: 'Flutter', technologies: ['Flutter','Dart','BLoC','Riverpod','Firebase','REST'], experienceYears: 7, projectsCount: 16, englishLevel: 'Upper-Intermediate', salaryUSD: 4200, projectSectors: ['E-commerce','Health'], techScore: 118, rating: 4.9, video: 'Soon', availability: 'As needed', achievements: [] },
-      { id: 12, developerId: '0309', position: 'Senior ML Engineer', category: 'AI/ML', technologies: ['Python','TensorFlow','PyTorch','MLflow','Docker','AWS'], experienceYears: 6, projectsCount: 14, englishLevel: 'Upper-Intermediate', salaryUSD: 4500, projectSectors: ['Recommenders','CV','NLP'], techScore: 114, rating: 4.9, video: 'Soon', availability: 'As needed', achievements: [] }
-    ];
+    // Loaded dataset
+    let allDevelopers = [];
+
+    function parseCsvLine(line) {
+      const out = [];
+      let cur = '';
+      let inQuotes = false;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') { inQuotes = !inQuotes; continue; }
+        if (ch === ',' && !inQuotes) { out.push(cur.trim()); cur = ''; continue; }
+        cur += ch;
+      }
+      out.push(cur.trim());
+      return out;
+    }
+
+    async function loadDevelopersFromFile() {
+      try {
+        const res = await fetch('candidates_database_extended.txt');
+        const text = await res.text();
+        const lines = text.split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#'));
+        const devs = [];
+        lines.forEach((line, idx) => {
+          const fields = parseCsvLine(line);
+          if (fields.length < 12) return;
+          const [developerId, position, category, technologiesStr, experienceYearsStr, projectsCountStr, englishLevel, salaryUSDStr, projectSectorsStr, techScoreStr, ratingStr, video, availability = 'As needed', achievementsStr = ''] = fields;
+          const experienceYears = parseInt(experienceYearsStr, 10) || 0;
+          const projectsCount = parseInt(projectsCountStr, 10) || 0;
+          const salaryUSD = parseInt(salaryUSDStr, 10) || 0;
+          const technologies = (technologiesStr || '').split(';').map(s => s.trim()).filter(Boolean);
+          const projectSectors = (projectSectorsStr || '').split(';').map(s => s.trim()).filter(Boolean);
+          let techScore = 0;
+          if ((techScoreStr || '').includes('=')) {
+            const right = techScoreStr.split('=').pop();
+            techScore = parseInt(right.trim(), 10) || 0;
+          } else {
+            const maybe = parseInt(techScoreStr, 10);
+            techScore = isNaN(maybe) ? (experienceYears * 10 + projectsCount * 3 + technologies.length) : maybe;
+          }
+          const rating = parseFloat(ratingStr) || 4.5;
+          const achievements = (achievementsStr && achievementsStr !== '-') ? achievementsStr.split(';').map(s => s.trim()).filter(Boolean) : [];
+          devs.push({
+            id: idx + 1,
+            developerId: (developerId || '').trim(),
+            position: (position || '').trim(),
+            category: (category || '').trim(),
+            technologies,
+            experienceYears,
+            projectsCount,
+            englishLevel: (englishLevel || '').trim(),
+            salaryUSD,
+            projectSectors,
+            techScore,
+            rating,
+            video: (video || 'Soon').trim() || 'Soon',
+            availability: (availability || 'As needed').trim(),
+            achievements,
+          });
+        });
+        allDevelopers = devs;
+      } catch (e) {
+        console.error('Failed to load candidates_database_extended.txt', e);
+      }
+    }
 
     let filteredDevelopers = [...allDevelopers];
     let selectedCategories = [];
@@ -530,10 +580,15 @@ Description: ${form.get('description') || ''}`);
 
     window.onclick = function(ev){ const modal = document.getElementById('contactModal'); if (ev.target === modal) closeModal(); }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       updateSalaryRange();
       updateExperienceRange();
       updateTechScoreMin();
+      await loadDevelopersFromFile();
+      if (!allDevelopers.length) {
+        // Fallback to empty state if loading failed
+        console.warn('No developers loaded from file');
+      }
       initFilterOptions();
       filterDevelopers();
       displayTop3();

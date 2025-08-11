@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "NODE_ENV=development node server.js",
-    "build:static": "node scripts/generate-static-json.js"
+    "build:static": "node scripts/generate-static-json.js",
+    "build:standalone": "node scripts/build-standalone.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

@@ -391,33 +391,26 @@
             gap: 4px;
         }
 
-        .ratings-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding: 15px;
-            background: linear-gradient(135deg, #f7fafc, #edf2f7);
-            border-radius: 12px;
-        }
+        /* Enhance: multi-select dropdowns */
+        .ms-control { position: relative; }
+        .ms-button { width: 100%; text-align: left; background: #fff; border: 2px solid #e2e8f0; border-radius: 10px; padding: 10px 12px; font-weight: 700; cursor: pointer; }
+        .ms-badge { background: #edf2f7; color: #4a5568; border-radius: 999px; padding: 2px 8px; font-size: 12px; margin-left: 8px; }
+        .ms-panel { position: absolute; left: 0; right: 0; top: calc(100% + 6px); background: #fff; border: 2px solid #e2e8f0; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.08); z-index: 1001; display: none; }
+        .ms-panel.open { display: block; }
+        .ms-search { padding: 8px 10px; border-bottom: 1px solid #e2e8f0; }
+        .ms-search input { width: 100%; padding: 8px 10px; border: 2px solid #e2e8f0; border-radius: 8px; }
+        .ms-list { max-height: 240px; overflow: auto; }
+        .ms-item { display: flex; align-items: center; gap: 8px; padding: 8px 12px; cursor: pointer; }
+        .ms-item:hover { background: #f7fafc; }
+        .ms-actions { display: flex; justify-content: space-between; padding: 10px; border-top: 1px solid #e2e8f0; }
+        .ms-apply { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; border: 0; border-radius: 8px; padding: 8px 12px; font-weight: 800; cursor: pointer; }
+        .ms-clear { background: transparent; border: 0; color: #4a5568; font-weight: 700; cursor: pointer; }
 
-        .rating-item {
-            text-align: center;
-            flex: 1;
-        }
-
-        .rating-label {
-            font-size: 11px;
-            color: #718096;
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .rating-value {
-            font-size: 1.5rem;
-            font-weight: 800;
-        }
+        /* Align ratings grid */
+        .ratings-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 12px; background: linear-gradient(135deg, #f7fafc, #edf2f7); border-radius: 12px; }
+        .rating-item { text-align: center; display: grid; gap: 4px; align-content: center; }
+        .rating-label { font-size: 11px; color: #718096; text-transform: uppercase; font-weight: 800; }
+        .rating-value { font-size: 1.3rem; font-weight: 900; }
 
         .tech-level-value {
             color: #667eea;
@@ -671,21 +664,21 @@
     </header>
 
     <!-- CTA Navigation Bar -->
-    <section class="cta-bar">
+    <section class="cta-bar" style="position:sticky; top:64px; z-index:999;">
         <div class="cta-container">
             <div class="cta-grid">
                 <div class="cta-card" onclick="showSection('search')">
                     <span class="cta-icon">🔍</span>
                     <div class="cta-title">Find Developers</div>
-                    <div class="cta-description">Search through 179 verified developers with advanced filters</div>
-                    <div class="cta-stats">15 Categories • Tech Level • Performance Rating</div>
+                    <div class="cta-description">Search through verified developers with advanced filters</div>
+                    <div class="cta-stats">Categories • Tech Score • Rating</div>
                 </div>
 
                 <div class="cta-card" onclick="showSection('top3')">
                     <span class="cta-icon">🏆</span>
                     <div class="cta-title">Top 3 Developers</div>
                     <div class="cta-description">Highest rated developers across all categories</div>
-                    <div class="cta-stats">5.0★ Tech Level • 5.0★ Performance</div>
+                    <div class="cta-stats">5.0★ Rating • High Tech Score</div>
                 </div>
 
                 <div class="cta-card" onclick="showSection('constructor')">
@@ -695,12 +688,7 @@
                     <div class="cta-stats">Custom Matching • 24h Response</div>
                 </div>
 
-                <div class="cta-card" onclick="showSection('admin')">
-                    <span class="cta-icon">⚙️</span>
-                    <div class="cta-title">Admin Panel</div>
-                    <div class="cta-description">Manage developers, categories, and platform settings</div>
-                    <div class="cta-stats">Password Protected • Full Control</div>
-                </div>
+                <!-- Hide admin card visually -->
             </div>
         </div>
     </section>
@@ -751,44 +739,31 @@
 
                     <div class="filter-group">
                         <h3 class="filter-title">📂 Categories</h3>
-                        <div class="category-filter" id="categoryFilter">
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">JavaScript/React</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Python</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Java</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">AI/ML</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Mobile</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">PHP</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Node.js</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">DevOps</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">.NET/C#</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Golang</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Ruby/Rails</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Rust</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Scala</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Blockchain</div>
-                            <div class="category-tag" onclick="toggleCategoryFilter(this)">Game Dev</div>
+                        <div class="ms-control" id="catMs">
+                            <button class="ms-button" type="button" onclick="toggleMs('cat')">Select categories <span class="ms-badge" id="catCount">0</span></button>
+                            <div class="ms-panel" id="catPanel">
+                                <div class="ms-search"><input type="text" id="catSearch" placeholder="Search category" oninput="filterMs('cat')"></div>
+                                <div class="ms-list" id="catList"></div>
+                                <div class="ms-actions">
+                                    <button class="ms-clear" type="button" onclick="clearMs('cat')">Clear</button>
+                                    <button class="ms-apply" type="button" onclick="applyMs('cat')">Apply</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="filter-group">
                         <h3 class="filter-title">🚀 Technologies</h3>
-                        <div class="tech-tags" id="techFilter">
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">React</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Python</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Java</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Node.js</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">TypeScript</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Flutter</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Swift</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Kotlin</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">PHP</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Docker</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">AWS</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">C#</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Go</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Rust</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Solidity</div>
-                            <div class="tech-tag" onclick="toggleTechFilter(this)">Unity</div>
+                        <div class="ms-control" id="techMs">
+                            <button class="ms-button" type="button" onclick="toggleMs('tech')">Select technologies <span class="ms-badge" id="techCount">0</span></button>
+                            <div class="ms-panel" id="techPanel">
+                                <div class="ms-search"><input type="text" id="techSearch" placeholder="Search technology" oninput="filterMs('tech')"></div>
+                                <div class="ms-list" id="techList"></div>
+                                <div class="ms-actions">
+                                    <button class="ms-clear" type="button" onclick="clearMs('tech')">Clear</button>
+                                    <button class="ms-apply" type="button" onclick="applyMs('tech')">Apply</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1148,11 +1123,21 @@
             alert('✅ Request prepared in your mail app.');
             e.target.reset();
         }
+
+        // multi-select helpers
+        let pendingCat = new Set(); let pendingTech = new Set();
+        function toggleMs(type){ document.getElementById(type+'Panel').classList.toggle('open'); }
+        function clearMs(type){ if(type==='cat'){ pendingCat.clear(); document.querySelectorAll('#catList input').forEach(c=>c.checked=false);} else { pendingTech.clear(); document.querySelectorAll('#techList input').forEach(c=>c.checked=false);} }
+        function applyMs(type){ if(type==='cat'){ selectedCategories = Array.from(pendingCat); document.getElementById('catCount').textContent=selectedCategories.length; } else { selectedTechnologies = Array.from(pendingTech); document.getElementById('techCount').textContent=selectedTechnologies.length; } document.getElementById(type+'Panel').classList.remove('open'); filterDevelopers(); }
+        function filterMs(type){ const q=(document.getElementById(type+'Search').value||'').toLowerCase(); document.querySelectorAll('#'+type+'List .ms-item').forEach(i=>{ const t=i.getAttribute('data-text'); i.style.display = (!q || t.includes(q)) ? 'flex':'none'; }); }
+        function buildMs(){ const cats=[...new Set(allDevelopers.map(d=>d.category))].sort(); const techs=[...new Set(allDevelopers.flatMap(d=>d.technologies))].sort(); document.getElementById('catList').innerHTML=cats.map(c=>`<label class="ms-item" data-text="${c.toLowerCase()}"><input type="checkbox" onchange="this.checked?pendingCat.add('${c}'):pendingCat.delete('${c}')"> ${c}</label>`).join(''); document.getElementById('techList').innerHTML=techs.map(t=>`<label class="ms-item" data-text="${t.toLowerCase()}"><input type="checkbox" onchange="this.checked?pendingTech.add('${t}'):pendingTech.delete('${t}')"> ${t}</label>`).join(''); }
+
         document.addEventListener('DOMContentLoaded', function() {
             updateSalaryRange(); updateExperienceRange(); updateTechLevelRange();
             setTimeout(() => { loadDevelopers(); }, 200);
             const contact = document.getElementById('contactForm'); if (contact) contact.addEventListener('submit', submitContactForm);
             const constructor = document.getElementById('constructorForm'); if (constructor) constructor.addEventListener('submit', submitConstructorForm);
+            buildMs(); // Build multi-select lists on load
         });
         window.onclick = function(event) { const modal = document.getElementById('contactModal'); if (event.target == modal) { closeModal(); } }
     </script>

@@ -396,7 +396,8 @@
 
         function setActiveTab(name){
             document.querySelectorAll('.nav-btn').forEach(btn=>btn.classList.remove('active'));
-            document.getElementById('tab-'+name).classList.add('active');
+            const el = document.getElementById('tab-'+name);
+            if (el) el.classList.add('active');
         }
 
         function showSection(sectionName) {
@@ -424,17 +425,21 @@
         // Searchable Multi-select helpers
         let pendingCat = new Set();
         let pendingTech = new Set();
-        function toggleMs(type){
-            document.getElementById(type+'Panel').classList.toggle('open');
-        }
+        function toggleMs(type){ document.getElementById(type+'Panel').classList.toggle('open'); }
         function clearMs(type){
             if(type==='cat'){ pendingCat.clear(); document.querySelectorAll('#catList input[type=checkbox]').forEach(c=>c.checked=false); }
             else { pendingTech.clear(); document.querySelectorAll('#techList input[type=checkbox]').forEach(c=>c.checked=false); }
         }
         function applyMs(type){
-            if(type==='cat'){ selectedCategories = Array.from(pendingCat); document.getElementById('catCount').textContent = selectedCategories.length; }
-            else { selectedTechnologies = Array.from(pendingTech); document.getElementById('techCount').textContent = selectedTechnologies.length; }
-            document.getElementById(type+'Panel').classList.remove('open');
+            if(type==='cat'){
+                selectedCategories = Array.from(pendingCat);
+                document.getElementById('catCount').textContent = selectedCategories.length;
+                document.getElementById('catPanel').classList.remove('open');
+            } else {
+                selectedTechnologies = Array.from(pendingTech);
+                document.getElementById('techCount').textContent = selectedTechnologies.length;
+                document.getElementById('techPanel').classList.remove('open');
+            }
             filterDevelopers();
         }
         function filterMs(type){
@@ -454,8 +459,8 @@
         }
         document.addEventListener('click', (e)=>{
             if(!e.target.closest('.ms-control')){
-                document.getElementById('catPanel').classList.remove('open');
-                document.getElementById('techPanel').classList.remove('open');
+                const cp = document.getElementById('catPanel'); const tp = document.getElementById('techPanel');
+                if (cp) cp.classList.remove('open'); if (tp) tp.classList.remove('open');
             }
         });
 
@@ -474,7 +479,7 @@
                 const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(dev.category);
                 return salaryMatch && expMatch && techLevelMatch && techMatch && categoryMatch;
             });
-            displayDevelopers();
+            sortDevelopers();
         }
         function sortDevelopers() {
             const sortBy = document.getElementById('sortSelect').value;
@@ -551,10 +556,41 @@
         }
         function closeModal() { document.getElementById('contactModal').style.display = 'none'; }
 
-        // Forms use mailto in the static build; handlers attached elsewhere
+        // Mailto handlers (static)
+        function submitContactForm(e){
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const name = formData.get('name') || 'Client';
+            const email = formData.get('clientEmail');
+            const desc = formData.get('projectDescription') || '';
+            const subject = encodeURIComponent(`just4u: ${currentDeveloper?.developerId} ${currentDeveloper?.position}`);
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nDeveloper: ${currentDeveloper?.developerId} ${currentDeveloper?.position}\nCategory: ${currentDeveloper?.category}\nEnglish: ${currentDeveloper?.englishLevel}\nTech Score: ${currentDeveloper?.techLevel}\nRating: ${currentDeveloper?.performanceRating}\nSalary: $${currentDeveloper?.salary}/mo\nAvailability: ${currentDeveloper?.availability}\n\nProject: ${desc}`);
+            window.location.href = `mailto:stant1605@gmail.com?subject=${subject}&body=${body}`;
+            closeModal(); e.target.reset();
+        }
+        function submitConstructorForm(e){
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const subject = encodeURIComponent('just4u: Constructor Request');
+            const body = encodeURIComponent(`Project Type: ${formData.get('projectType')}\nTechnologies: ${formData.get('technologies')}\nBudget: ${formData.get('budget')}\nEmail: ${formData.get('email')}\nDescription: ${formData.get('description')||''}`);
+            window.location.href = `mailto:stant1605@gmail.com?subject=${subject}&body=${body}`;
+            e.target.reset();
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
-            // If dataset is present (static), build multi-select options
-            if (typeof allDevelopers !== 'undefined' && allDevelopers.length) { buildMs(); filterDevelopers(); }
+            // re-read injected dataset if present
+            if (window.allDevelopers && window.allDevelopers.length) {
+                allDevelopers = window.allDevelopers;
+            }
+            // build controls and initial views
+            buildMs();
+            updateSalaryRange(); updateExperienceRange(); updateTechLevelRange();
+            filterDevelopers();
+            displayTop3();
+            setActiveTab('search');
+            // wire forms
+            const contact = document.getElementById('contactForm'); if (contact) contact.addEventListener('submit', submitContactForm);
+            const constructor = document.getElementById('constructorForm'); if (constructor) constructor.addEventListener('submit', submitConstructorForm);
         });
     </script>
 </body>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>just🔗4u — 10 варіантів карток розробника</title>
+  <style>
+    :root {
+      --bg: #f3f4f8;
+      --ink: #1a202c;
+      --muted: #4a5568;
+      --brand1: #667eea;
+      --brand2: #764ba2;
+      --ok: #48bb78;
+      --warn: #ed8936;
+      --card: #ffffff;
+      --chip: #edf2f7;
+      --chip-ink: #4a5568;
+      --radius: 16px;
+      --shadow: 0 12px 28px rgba(0,0,0,.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+      background: linear-gradient(135deg, var(--brand1), var(--brand2)) fixed;
+      color: var(--ink);
+    }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .title { color: #fff; font-size: 1.8rem; font-weight: 900; text-align: center; }
+    .subtitle { color: #fff; opacity: .9; text-align: center; margin-top: 6px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 20px; }
+    .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .section-h { padding: 14px 18px; border-bottom: 1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:flex-start; gap:10px }
+    .position { font-weight: 800; font-size: 1.05rem; color: var(--ink); }
+    .dev-id { background: var(--brand1); color:#fff; border-radius: 10px; padding: 4px 10px; font-size: .75rem; font-weight: 800; white-space: nowrap; }
+    .badges { display:flex; flex-wrap:wrap; gap:8px; margin: 10px 0 0; }
+    .badge { background: var(--chip); color: var(--chip-ink); padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight:700 }
+    .chips { display:flex; flex-wrap:wrap; gap:6px; }
+    .chip { background: var(--chip); color: var(--chip-ink); border-radius: 8px; padding: 4px 8px; font-size: 12px; }
+    .cta { display:flex; justify-content: space-between; align-items:center; gap:10px; padding:12px 18px; border-top:1px solid #e2e8f0 }
+    .salary { color: var(--ok); font-weight: 900; }
+    .btn { background: linear-gradient(135deg, var(--brand1), var(--brand2)); color:#fff; border:0; border-radius: 999px; padding: 8px 14px; font-weight: 800; cursor: pointer; }
+
+    /* Variant-specific styles */
+    .v-head { padding: 16px 18px; background: linear-gradient(135deg, #f7fafc, #edf2f7); }
+    .v1 .ratings, .v3 .ratings, .v8 .ratings, .v10 .ratings { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:12px; background:linear-gradient(135deg,#f7fafc,#edf2f7); border-radius:12px; }
+    .r { text-align:center; }
+    .rl { font-size: 10px; color:#718096; text-transform:uppercase; font-weight:800 }
+    .rv { font-weight:900 }
+    .rv.score { color: var(--brand1); }
+    .rv.rate { color: var(--ok); }
+    .rv.cat { color: var(--warn); }
+
+    .v2 { display:grid; grid-template-columns: 220px 1fr; }
+    .v2 .side { background:linear-gradient(135deg,#f7fafc,#edf2f7); padding:14px; display:grid; gap:10px }
+    .kv { display:flex; justify-content:space-between; font-size: 13px; color: var(--muted); }
+
+    .v3 .section-h { border:0 }
+    .v3 .accent { height:4px; background:linear-gradient(135deg,var(--brand1),var(--brand2)); }
+
+    .v4 .stats-bar { display:flex; gap:8px; }
+    .pill { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:6px 10px; font-size: 12px; font-weight: 700; }
+
+    .v5 .hero { background: linear-gradient(135deg, rgba(255,255,255,.7), rgba(255,255,255,.9)); padding:14px 18px; display:flex; justify-content:space-between; align-items:center }
+    .score-circle { width:64px; height:64px; border-radius:50%; display:grid; place-items:center; font-weight:900; color:var(--brand1); border:4px solid var(--brand1); background:#fff }
+
+    .v6 .list { display:grid; gap:8px; font-size:14px; color:var(--muted); }
+
+    .v7 { display:grid; grid-template-columns: 90px 1fr; }
+    .v7 .left { display:grid; gap:10px; align-content:center; justify-items:center; padding:12px; border-right:1px solid #e2e8f0 }
+    .v7 .left .score-circle { width:72px; height:72px; }
+
+    .v8 .banner { background:linear-gradient(135deg,var(--brand1),var(--brand2)); color:#fff; padding:12px 18px; display:flex; justify-content:space-between; align-items:center }
+    .v8 .banner .position { color:#fff }
+
+    .v9 .info { background:#f7fafc; border:1px solid #e2e8f0; border-radius:12px; padding:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:13px; color:var(--muted) }
+
+    .v10 .step { padding:10px 18px; border-top:1px dashed #e2e8f0 }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="title">10 різних варіантів карток</div>
+    <div class="subtitle">Вся ключова інформація збережена у кожній картці</div>
+
+    <div id="cards" class="grid"></div>
+  </div>
+
+  <script>
+    // One example developer (matches structure of public/developers.json)
+    const dev = {
+      developerId: "0003",
+      position: "Senior React Developer",
+      category: "JavaScript/React",
+      technologies: ["React","TypeScript","Redux","Next.js","Node.js","GraphQL","Tailwind"],
+      experienceYears: 7,
+      projectsCount: 18,
+      englishLevel: "Upper-Intermediate",
+      salaryUSD: 5000,
+      projectSectors: ["E-commerce","SaaS","Fintech"],
+      techScore: 127,
+      rating: 4.9,
+      video: "Soon",
+      availability: "As needed",
+      achievements: ["Led FE for fintech app 100k+ MAU","Cut TTI by 30%"]
+    };
+    const desc = (dev.achievements?.length ? dev.achievements : dev.projectSectors || []).join(" • ");
+
+    function contactLink(d){
+      const subject = encodeURIComponent(`just4u: ${d.developerId} ${d.position}`);
+      const body = encodeURIComponent(`Category: ${d.category}\nEnglish: ${d.englishLevel}\nTech Score: ${d.techScore}\nRating: ${d.rating}\nExperience: ${d.experienceYears} years\nProjects: ${d.projectsCount}\nSalary: $${d.salaryUSD}/mo\nAvailability: ${d.availability}\n\nTech: ${d.technologies.join(', ')}`);
+      return `mailto:stant1605@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    const variants = [
+      // 1. Classic grid ratings
+      () => `
+        <div class="card v1">
+          <div class="section-h"><div><div class="position">${dev.position}</div><div class="badges"> <span class="badge">${dev.experienceYears} yrs</span> <span class="badge">${dev.englishLevel}</span> <span class="badge">${dev.projectsCount} projects</span> <span class="badge">${dev.availability}</span></div></div><div class="dev-id">#${dev.developerId}</div></div>
+          <div class="ratings">
+            <div class="r"><div class="rl">Tech Score</div><div class="rv score">${dev.techScore}</div></div>
+            <div class="r"><div class="rl">Rating</div><div class="rv rate">${dev.rating}★</div></div>
+            <div class="r"><div class="rl">Category</div><div class="rv cat">${dev.category}</div></div>
+          </div>
+          <div style="padding:12px 18px"><div class="chips">${dev.technologies.map(t=>`<span class='chip'>${t}</span>`).join('')}</div><div style="margin-top:10px; color:var(--muted); font-size:14px">${desc}</div></div>
+          <div class="cta"><div class="salary">$${dev.salaryUSD.toLocaleString()} / mo</div><a class="btn" href="${contactLink(dev)}">💎 Contact</a></div>
+        </div>
+      `,
+      // 2. Sidebar stats
+      () => `
+        <div class="card v2">
+          <div class="side">
+            <div class="kv"><span>Tech Score</span><b style="color:var(--brand1)">${dev.techScore}</b></div>
+            <div class="kv"><span>Rating</span><b style="color:var(--ok)">${dev.rating}★</b></div>
+            <div class="kv"><span>Category</span><b style="color:var(--warn)">${dev.category}</b></div>
+            <div class="kv"><span>Exp</span><b>${dev.experienceYears} yrs</b></div>
+            <div class="kv"><span>Projects</span><b>${dev.projectsCount}</b></div>
+            <div class="kv"><span>English</span><b>${dev.englishLevel}</b></div>
+          </div>
+          <div>
+            <div class="section-h"><div class="position">${dev.position}</div><div class="dev-id">#${dev.developerId}</div></div>
+            <div style="padding:12px 18px">
+              <div class="badges"><span class="badge">${dev.availability}</span><span class="badge">Video: ${dev.video}</span></div>
+              <div style="margin:12px 0" class="chips">${dev.technologies.map(t=>`<span class='chip'>${t}</span>`).join('')}</div>
+              <div style="color:var(--muted); font-size:14px">${desc}</div>
+            </div>
+            <div class="cta"><div class="salary">$${dev.salaryUSD.toLocaleString()} / mo</div><a class="btn" href="${contactLink(dev)}">Contact</a></div>
+          </div>
+        </div>
+      `,
+      // 3. Minimal with accent bar
+      () => `
+        <div class="card v3">
+          <div class="accent"></div>
+          <div class="section-h"><div><div class="position">${dev.position}</div><div class="badges"><span class="badge">${dev.category}</span><span class="badge">${dev.englishLevel}</span><span class="badge">${dev.availability}</span></div></div><div class="dev-id">#${dev.developerId}</div></div>
+          <div style="padding:12px 18px">
+            <div class="ratings">
+              <div class="r"><div class="rl">Score</div><div class="rv score">${dev.techScore}</div></div>
+              <div class="r"><div class="rl">Rating</div><div class="rv rate">${dev.rating}★</div></div>
+              <div class="r"><div class="rl">Projects</div><div class="rv">${dev.projectsCount}</div></div>
+            </div>
+            <div style="margin:12px 0" class="chips">${dev.technologies.map(t=>`<span class='chip'>${t}</span>`).join('')}</div>
+            <div style="color:var(--muted); font-size:14px">${desc}</div>
+          </div>
+          <div class="cta"><div class="salary">$${dev.salaryUSD.toLocaleString()} / mo</div><a class="btn" href="${contactLink(dev)}">Hire</a></div>
+        </div>
+      `,
+      // 4. Pills top stats
+      () => `
+        <div class="card v4">
+          <div class="v-head">
+            <div class="position">${dev.position}</div>
+            <div class="stats-bar" style="margin-top:8px">
+              <span class="pill">#${dev.developerId}</span>
+              <span class="pill" style="color:var(--brand1); border-color:var(--brand1)">Score ${dev.techScore}</span>
+              <span class="pill" style="color:var(--ok); border-color:var(--ok)">${dev.rating}★</span>
+              <span class="pill" style="color:var(--warn); border-color:var(--warn)">${dev.category}</span>
+            </div>
+          </div>
+          <div style="padding:12px 18px">
+            <div class="badges"><span class="badge">${dev.experienceYears} yrs</span><span class="badge">${dev.projectsCount} projects</span><span class="badge">${dev.englishLevel}</span><span class="badge">${dev.availability}</span></div>
+            <div style="margin:12px 0" class="chips">${dev.technologies.map(t=>`<span class='chip'>${t}</span>`).join('')}</div>
+            <div style="color:var(--muted); font-size:14px">${desc}</div>
+          </div>
+          <div class="cta"><div class="salary">$${dev.salaryUSD.toLocaleString()} / mo</div><a class="btn" href="${contactLink(dev)}">Contact</a></div>
+        </div>
+      `,
+      // 5. Big score circle header
+      () => `
+        <div class="card v5">
+          <div class="hero"><div><div class="position">${dev.position}</div><div style="color:#718096; font-weight:700">#${dev.developerId}</div></div><div class="score-circle">${dev.techScore}</div></div>
+          <div style="padding:12px 18px">
+            <div class="badges"><span class="badge">${dev.category}</span><span class="badge">${dev.rating}★</span><span class="badge">${dev.englishLevel}</span><span class="badge">${dev.experienceYears} yrs</span><span class="badge">${dev.projectsCount} proj</span></div>
+            <div style="margin:12px 0" class="chips">${dev.technologies.map(t=>`<span class='chip'>${t}</span>`).join('')}</div>
+            <div style="color:var(--muted); font-size:14px">${desc}</div>
+          </div>
+          <div class="cta"><div class="salary">$${dev.salaryUSD.toLocaleString()} / mo</div><a class="btn" href="${contactLink(dev)}">Invite</a></div>
+        </div>
+      `,
+      // 6. Compact list style
+      () => `
+        <div class="card v6">
+          <div class="section-h"><div class="position">${dev.position}</div><div class="dev-id">#${dev.developerId}</div></div>
+          <div style="padding:12px 18px">
+            <div class="list">
+              <div>Tech Score: <b style="color:var(--brand1)">${dev.techScore}</b></div>
+              <div>Rating: <b style="color:var(--ok)">${dev.rating}★</b></div>
+              <div>Category: <b style="color:var(--warn)">${dev.category}</b></div>
+              <div>Experience: <b>${dev.experienceYears} yrs</b></div>
+              <div>Projects: <b>${dev.projectsCount}</b></div>
+              <div>English: <b>${dev.englishLevel}</b></div>
+              <div>Availability: <b>${dev.availability}</b></div>
+              <div>Video: <b>${dev.video}</b></div>
+            </div>
+            <div style="margin:10px 0" class="chips">${dev.technologies.map(t=>`<span class='chip'>${t}</span>`).join('')}</div>
+            <div style="color:var(--muted); font-size:14px">${desc}</div>
+          </div>
+          <div class="cta"><div class="salary">$${dev.salaryUSD.toLocaleString()} / mo</div><a class="btn" href="${contactLink(dev)}">Contact</a></div>
+        </div>
+      `,
+      // 7. Left score rail
+      () => `
+        <div class="card v7">
+          <div class="left"><div class="score-circle">${dev.techScore}</div><div style="font-weight:900; color:var(--ok)">${dev.rating}★</div></div>
+          <div>
+            <div class="section-h"><div class="position">${dev.position}</div><div class="dev-id">#${dev.developerId}</div></div>
+            <div style="padding:12px 18px">
+              <div class="badges"><span class="badge">${dev.category}</span><span class="badge">${dev.experienceYears} yrs</span><span class="badge">${dev.projectsCount} projects</span><span class="badge">${dev.englishLevel}</span><span class="badge">${dev.availability}</span></div>
+              <div style="margin:10px 0" class="chips">${dev.technologies.map(t=>`<span class='chip'>${t}</span>`).join('')}</div>
+              <div style="color:var(--muted); font-size:14px">${desc}</div>
+            </div>
+            <div class="cta"><div class="salary">$${dev.salaryUSD.toLocaleString()} / mo</div><a class="btn" href="${contactLink(dev)}">Get in touch</a></div>
+          </div>
+        </div>
+      `,
+      // 8. Banner header
+      () => `
+        <div class="card v8">
+          <div class="banner"><div><div class="position">${dev.position}</div><div style="opacity:.9">#${dev.developerId}</div></div><div style="text-align:right"><div class="rv rate">${dev.rating}★</div><div class="rv score">${dev.techScore}</div></div></div>
+          <div style="padding:12px 18px">
+            <div class="ratings">
+              <div class="r"><div class="rl">Category</div><div class="rv cat">${dev.category}</div></div>
+              <div class="r"><div class="rl">English</div><div class="rv">${dev.englishLevel}</div></div>
+              <div class="r"><div class="rl">Projects</div><div class="rv">${dev.projectsCount}</div></div>
+            </div>
+            <div style="margin:12px 0" class="chips">${dev.technologies.map(t=>`<span class='chip'>${t}</span>`).join('')}</div>
+            <div style="color:var(--muted); font-size:14px">${desc}</div>
+          </div>
+          <div class="cta"><div class="salary">$${dev.salaryUSD.toLocaleString()} / mo</div><a class="btn" href="${contactLink(dev)}">Contact</a></div>
+        </div>
+      `,
+      // 9. Info box
+      () => `
+        <div class="card v9">
+          <div class="section-h"><div class="position">${dev.position}</div><div class="dev-id">#${dev.developerId}</div></div>
+          <div style="padding:12px 18px">
+            <div class="info">
+              <div>Tech Score: <b style="color:var(--brand1)">${dev.techScore}</b></div>
+              <div>Rating: <b style="color:var(--ok)">${dev.rating}★</b></div>
+              <div>Category: <b>${dev.category}</b></div>
+              <div>Experience: <b>${dev.experienceYears} yrs</b></div>
+              <div>English: <b>${dev.englishLevel}</b></div>
+              <div>Projects: <b>${dev.projectsCount}</b></div>
+              <div>Availability: <b>${dev.availability}</b></div>
+              <div>Video: <b>${dev.video}</b></div>
+            </div>
+            <div style="margin:12px 0" class="chips">${dev.technologies.map(t=>`<span class='chip'>${t}</span>`).join('')}</div>
+            <div style="color:var(--muted); font-size:14px">${desc}</div>
+          </div>
+          <div class="cta"><div class="salary">$${dev.salaryUSD.toLocaleString()} / mo</div><a class="btn" href="${contactLink(dev)}">Contact</a></div>
+        </div>
+      `,
+      // 10. Sectioned timeline
+      () => `
+        <div class="card v10">
+          <div class="section-h"><div class="position">${dev.position}</div><div class="dev-id">#${dev.developerId}</div></div>
+          <div class="step"><b>Summary</b><div class="badges" style="margin-top:8px"><span class="badge">${dev.category}</span><span class="badge">${dev.englishLevel}</span><span class="badge">${dev.availability}</span></div></div>
+          <div class="step"><b>Performance</b><div class="badges" style="margin-top:8px"><span class="badge" style="color:var(--brand1)">Score ${dev.techScore}</span><span class="badge" style="color:var(--ok)">${dev.rating}★</span><span class="badge">${dev.projectsCount} projects</span><span class="badge">${dev.experienceYears} yrs</span></div></div>
+          <div class="step"><b>Tech</b><div class="chips" style="margin-top:8px">${dev.technologies.map(t=>`<span class='chip'>${t}</span>`).join('')}</div></div>
+          <div class="step"><b>Description</b><div style="margin-top:6px; color:var(--muted); font-size:14px">${desc}</div></div>
+          <div class="cta"><div class="salary">$${dev.salaryUSD.toLocaleString()} / mo</div><a class="btn" href="${contactLink(dev)}">Contact</a></div>
+        </div>
+      `
+    ];
+
+    const root = document.getElementById('cards');
+    root.innerHTML = variants.map(fn => fn()).join('');
+  </script>
+</body>
+</html>

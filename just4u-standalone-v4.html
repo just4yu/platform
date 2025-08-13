@@ -314,12 +314,12 @@
         /* Developer Cards */
         .developers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
             margin-top: 30px;
         }
 
-        .developer-card { max-width: 720px; margin: 0 auto;
+        .developer-card { max-width: 680px; width: 100%; margin: 0 auto;
             background: white;
             border-radius: 16px;
             padding: 25px;
@@ -648,12 +648,12 @@
     /* Card V1 styles */
         .developer-card{background:#fff;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.08);border:2px solid transparent;overflow:hidden}
         .developer-card:hover{border-color:#667eea}
-        .developer-header{display:flex;justify-content:space-between;align-items:flex-start;padding:14px 18px;border-bottom:1px solid #e2e8f0}
+        .developer-header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:14px 18px;border-bottom:1px solid #e2e8f0}
         .developer-title{font-size:1.1rem;font-weight:800;color:#1a202c}
         .developer-id{background:#667eea;color:#fff;padding:4px 10px;border-radius:10px;font-size:.75rem;font-weight:800}
         .developer-meta{display:flex;gap:8px;flex-wrap:wrap;padding:0 18px 10px 18px}
         .developer-meta .meta-item{background:#edf2f7;color:#4a5568;padding:4px 8px;border-radius:999px;font-size:12px;font-weight:700}
-        .ratings-section{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:12px 18px;background:linear-gradient(135deg,#f7fafc,#edf2f7)}
+        .ratings-section{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;gap:8px;padding:10px 18px;background:linear-gradient(135deg,#f7fafc,#edf2f7)}
         .rating-item{text-align:center}
         .rating-label{font-size:10px;color:#718096;text-transform:uppercase;font-weight:800}
         .rating-value{font-weight:900}

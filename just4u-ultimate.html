@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>just🔗4u — Платформа пошуку розробників (Standalone)</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:linear-gradient(135deg,#667eea,#764ba2);color:#2d3748}
+    .header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.2)}
+    .wrap{max-width:1200px;margin:0 auto;padding:14px 20px;text-align:center}
+    .logo{font-size:2rem;font-weight:900;background:linear-gradient(135deg,#667eea,#764ba2);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .tag{color:#4a5568}
+    .topbar{position:sticky;top:64px;z-index:999;background:linear-gradient(135deg,#667eea,#764ba2)}
+    .topbar-inner{max-width:1200px;margin:0 auto;padding:10px 20px;display:flex;gap:10px;overflow-x:auto}
+    .tab{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:10px 16px;font-weight:800;white-space:nowrap;cursor:pointer}
+    .tab.active,.tab:hover{background:rgba(255,255,255,.3)}
+    .section{display:none;padding:24px 20px}
+    .section.active{display:block}
+    .card{background:#fff;border-radius:16px;box-shadow:0 14px 36px rgba(0,0,0,.12);padding:20px;margin:18px 0}
+    .title{font-weight:900;font-size:1.8rem;margin:0 0 6px}
+    .subtitle{color:#4a5568;margin:0 0 14px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:16px}
+    .dev{background:#fff;border-radius:16px;border:2px solid transparent;padding:18px;box-shadow:0 8px 26px rgba(0,0,0,.08)}
+    .dev:hover{border-color:#667eea}
+    .dev-top{display:flex;justify-content:space-between;gap:10px}
+    .id{background:#667eea;color:#fff;border-radius:10px;padding:4px 10px;font-size:.75rem;font-weight:800}
+    .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+    .badge{background:#edf2f7;color:#4a5568;padding:4px 8px;border-radius:999px;font-size:.8rem;font-weight:700}
+    .ratings{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:linear-gradient(135deg,#f7fafc,#edf2f7);border-radius:12px;padding:10px;margin:8px 0}
+    .rlabel{font-size:.7rem;color:#718096;text-transform:uppercase;font-weight:800}
+    .rval{font-weight:900}
+    .salary{color:#48bb78;font-weight:900}
+    .btn{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:0;border-radius:20px;padding:8px 14px;font-weight:800;cursor:pointer}
+    .filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+    .group{background:#f7fafc;border-radius:12px;padding:14px}
+    .label{font-weight:800;margin-bottom:8px;color:#2d3748}
+    .range{width:100%}
+    .ms{position:relative}
+    .ms-btn{width:100%;text-align:left;background:#fff;border:2px solid #e2e8f0;border-radius:10px;padding:10px 12px;font-weight:800}
+    .ms-badge{background:#edf2f7;color:#4a5568;border-radius:999px;padding:2px 8px;font-size:12px;margin-left:6px}
+    .ms-panel{position:absolute;left:0;right:0;top:calc(100% + 6px);background:#fff;border:2px solid #e2e8f0;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.08);z-index:1001;display:none}
+    .ms-panel.open{display:block}
+    .ms-search{padding:8px 10px;border-bottom:1px solid #e2e8f0}
+    .ms-search input{width:100%;padding:8px 10px;border:2px solid #e2e8f0;border-radius:8px}
+    .ms-list{max-height:240px;overflow:auto}
+    .ms-item{display:flex;gap:8px;align-items:center;padding:8px 12px;cursor:pointer}
+    .ms-item:hover{background:#f7fafc}
+    .ms-actions{display:flex;justify-content:space-between;padding:10px;border-top:1px solid #e2e8f0}
+    .ms-apply{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:0;border-radius:8px;padding:8px 12px;font-weight:800}
+    .ms-clear{background:transparent;border:0;color:#4a5568;font-weight:800}
+    @media(max-width:768px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="header"><div class="wrap"><div class="logo">just🔗4u</div><div class="tag">Verified Developers • Tech Score • Performance Rating</div></div></div>
+  <div class="topbar"><div class="topbar-inner"><button class="tab active" onclick="show('search',this)">🔍 Пошук</button><button class="tab" onclick="show('top3',this)">🏆 Топ‑3</button><button class="tab" onclick="show('constructor',this)">⚡ Конструктор</button></div></div>
+
+  <div id="search" class="section active">
+    <div class="wrap">
+      <div class="card">
+        <div class="title">🔍 Знайди свого розробника</div>
+        <div class="subtitle">Фільтри з пошуком, адаптовані під мобільний</div>
+        <div class="filters">
+          <div class="group"><div class="label">Бюджет</div>Min <input id="minSalary" class="range" type="number" value="1000" /> Max <input id="maxSalary" class="range" type="number" value="8000" /></div>
+          <div class="group"><div class="label">Досвід (роки)</div>Min <input id="minExp" class="range" type="number" value="0" /> Max <input id="maxExp" class="range" type="number" value="15" /></div>
+          <div class="group"><div class="label">Min Tech Score</div><input id="minTech" class="range" type="number" value="0" /></div>
+          <div class="group"><div class="label">Категорії</div>
+            <div class="ms" id="msCat"><button class="ms-btn" onclick="toggleMs('cat')">Обрати категорії <span class="ms-badge" id="catCount">0</span></button>
+              <div class="ms-panel" id="catPanel"><div class="ms-search"><input id="catSearch" placeholder="Пошук категорії" oninput="filterMs('cat')"/></div><div class="ms-list" id="catList"></div><div class="ms-actions"><button class="ms-clear" onclick="clearMs('cat')">Очистити</button><button class="ms-apply" onclick="applyMs('cat')">Застосувати</button></div></div>
+            </div>
+          </div>
+          <div class="group"><div class="label">Технології</div>
+            <div class="ms" id="msTech"><button class="ms-btn" onclick="toggleMs('tech')">Обрати технології <span class="ms-badge" id="techCount">0</span></button>
+              <div class="ms-panel" id="techPanel"><div class="ms-search"><input id="techSearch" placeholder="Пошук технології" oninput="filterMs('tech')"/></div><div class="ms-list" id="techList"></div><div class="ms-actions"><button class="ms-clear" onclick="clearMs('tech')">Очистити</button><button class="ms-apply" onclick="applyMs('tech')">Застосувати</button></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="justify-content:space-between;margin-top:10px"><div id="count" class="subtitle"></div>
+          <select id="sort" onchange="render()"><option value="match">Sort by Match</option><option value="rating">Rating</option><option value="tech">Tech Score</option><option value="salary">Salary (low→high)</option><option value="exp">Experience</option></select>
+        </div>
+        <div id="grid" class="grid" style="margin-top:10px"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="top3" class="section">
+    <div class="wrap">
+      <div class="card">
+        <div class="title">🏆 Топ‑3 розробники</div>
+        <div class="grid" id="top3grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="constructor" class="section">
+    <div class="wrap">
+      <div class="card">
+        <div class="title">⚡ Ідеальний кандидат</div>
+        <div class="subtitle">Заповни форму і ми підберемо найкращі збіги</div>
+        <div class="filters">
+          <div class="group"><div class="label">Тип проєкту</div><select id="c_type" class="range"><option>Web App</option><option>Mobile App</option><option>API/Backend</option><option>AI/ML</option><option>Data/ETL</option><option>DevOps</option></select></div>
+          <div class="group"><div class="label">Технології</div><input id="c_tech" class="range" placeholder="React, Node.js"/></div>
+          <div class="group"><div class="label">Бюджет</div><select id="c_budget" class="range"><option>$1,000 - $2,000</option><option>$2,000 - $4,000</option><option>$4,000 - $6,000</option><option>$6,000+</option></select></div>
+          <div class="group"><div class="label">Email</div><input id="c_email" class="range" type="email" placeholder="your@company.com"/></div>
+        </div>
+        <textarea id="c_desc" class="range" placeholder="Опис проєкту (опціонально)" style="width:100%;min-height:100px;margin-top:10px"></textarea>
+        <div style="text-align:right;margin-top:10px"><button class="btn" onclick="sendConstructor()">🚀 Надіслати</button></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Embed dataset inline (CSV from candidates_database_extended.txt)
+    const csv = `developerId,position,category,technologies,experienceYears,projectsCount,englishLevel,salaryUSD,projectSectors,techScore,rating,video,availability,achievements\n0003,Senior React Developer,JavaScript/React,"React; TypeScript; Redux; Next.js; Node.js; GraphQL; Tailwind",7,18,Upper-Intermediate,5000,"E-commerce; SaaS; Fintech",127,4.9,Soon,As needed,"Led FE for fintech app 100k+ MAU; Cut TTI by 30%"\n0005,Mid React Developer,JavaScript/React,"React; JavaScript; Redux Toolkit; REST; Cypress; Figma",4,6,Intermediate,2800,"Corporate; EduTech; Dashboards",76,4.7,Soon,As needed,-\n0010,Junior React Developer,JavaScript/React,"React; JavaScript; HTML; CSS; Git",1,2,Intermediate,1400,"Landing; Small Biz",21,4.5,Soon,As needed,-\n0013,Frontend Tech Lead,JavaScript/React,"React; TypeScript; Storybook; Jest; Microfrontends; Webpack",9,22,Advanced,6200,"Enterprise; Analytics; B2B",132,5.0,Soon,As needed,"Led microfrontends migration; -40% build time"\n0019,React/Next.js Engineer,JavaScript/React,"Next.js; React; TypeScript; SWR; Vercel; Prisma",5,9,Upper-Intermediate,3600,"SaaS; Content; Marketplace",77,4.8,Soon,As needed,-\n0060,Senior Node.js Developer,Node.js,"Node.js; TypeScript; NestJS; PostgreSQL; Redis; Docker; AWS",6,18,Upper-Intermediate,4400,"Fintech; Real-time; IoT",121,4.9,Soon,As needed,-\n0080,Senior Python Developer,Python/Django,"Python; Django; DRF; Postgres; Redis; Celery; Docker; AWS",8,20,Upper-Intermediate,4600,"Fintech; E-commerce; CRM",148,5.0,Soon,As needed,-\n0120,Senior Java Developer,Java/Spring,"Java; Spring Boot; Microservices; Kafka; Postgres; Docker",9,24,Advanced,5400,"Banking; Insurance",141,5.0,Soon,As needed,-\n0140,Senior .NET Developer,.NET/C#,"C#; .NET 8; ASP.NET Core; EF Core; SQL Server; Azure",8,18,Upper-Intermediate,4500,"Banking; SaaS",120,4.9,Soon,As needed,-\n0160,Senior Go Developer,Golang,"Go; gRPC; PostgreSQL; Redis; Docker; Kubernetes",6,14,Upper-Intermediate,4600,"Payments; Platform",114,4.9,Soon,As needed,-\n0182,Senior PHP Developer,PHP/Laravel,"PHP; Laravel; MySQL; Redis; Horizon; Docker",7,16,Upper-Intermediate,3800,"E-commerce; CRM",118,4.9,Soon,As needed,-\n0203,Senior Ruby Developer,Ruby/Rails,"Ruby; Rails; PostgreSQL; Sidekiq; Redis; RSpec",7,15,Upper-Intermediate,4000,"Marketplaces; SaaS",117,4.9,Soon,As needed,-\n0225,Senior iOS Developer,Mobile iOS,"Swift; SwiftUI; UIKit; Combine; Core Data; REST",8,18,Upper-Intermediate,6000,"Banking; Social",120,4.9,Soon,As needed,-\n0246,Senior Android Dev,Mobile Android,"Kotlin; Android SDK; Coroutines; Room; Retrofit; Compose",9,20,Upper-Intermediate,4800,"Banking; E-commerce",132,5.0,Soon,As needed,-\n0266,Senior Flutter Dev,Flutter,"Flutter; Dart; BLoC; Riverpod; Firebase; REST",7,16,Upper-Intermediate,4200,"E-commerce; Health",118,4.9,Soon,As needed,-\n0287,Senior RN Developer,React Native,"React Native; TypeScript; Redux; Native Modules; Firebase",6,15,Upper-Intermediate,4000,"E-commerce; Social",110,4.9,Soon,As needed,-\n0309,Senior ML Engineer,AI/ML,"Python; TensorFlow; PyTorch; MLflow; Docker; AWS",6,14,Upper-Intermediate,4500,"Recommenders; CV; NLP",114,4.9,Soon,As needed,-`;
+
+    function parseCSV(text){
+      const lines = text.split('\n').filter(l=>l && !l.startsWith('#'));
+      const [header, ...rows] = lines;
+      return rows.map((line, idx)=>{
+        const parts = [];
+        let cur=''; let inQ=false;
+        for (let i=0;i<line.length;i++){
+          const ch=line[i];
+          if (ch==='"'){ inQ=!inQ; continue; }
+          if (ch===',' && !inQ){ parts.push(cur.trim()); cur=''; continue; }
+          cur+=ch;
+        }
+        parts.push(cur.trim());
+        const [developerId, position, category, technologiesStr, expStr, projStr, englishLevel, salaryStr, sectorsStr, techScoreStr, ratingStr, video, availability, achievementsStr] = parts;
+        return {
+          id: idx+1,
+          developerId,
+          position,
+          category,
+          technologies: (technologiesStr||'').split(';').map(s=>s.trim()).filter(Boolean),
+          experienceYears: parseInt(expStr)||0,
+          projectsCount: parseInt(projStr)||0,
+          englishLevel,
+          salaryUSD: parseInt(salaryStr)||0,
+          projectSectors: (sectorsStr||'').split(';').map(s=>s.trim()).filter(Boolean),
+          techScore: parseInt(techScoreStr)||0,
+          rating: parseFloat(ratingStr)||4.5,
+          video: video||'Soon',
+          availability: availability||'As needed',
+          achievements: (achievementsStr&&achievementsStr!=='-')? achievementsStr.split(';').map(s=>s.trim()):[]
+        };
+      });
+    }
+
+    let all = parseCSV(csv);
+    let filtered = [...all];
+    let selCats = new Set();
+    let selTechs = new Set();
+
+    function show(id,btn){ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); if(btn) btn.classList.add('active'); if(id==='top3') renderTop3(); else render(); }
+
+    function toggleMs(type){ document.getElementById(type==='cat'?'catPanel':'techPanel').classList.toggle('open'); }
+    function clearMs(type){ if(type==='cat'){ selCats.clear(); document.getElementById('catCount').textContent='0'; document.querySelectorAll('#catList input').forEach(c=>c.checked=false);} else { selTechs.clear(); document.getElementById('techCount').textContent='0'; document.querySelectorAll('#techList input').forEach(c=>c.checked=false);} applyFilters(); }
+    function applyMs(type){ document.getElementById(type==='cat'?'catPanel':'techPanel').classList.remove('open'); applyFilters(); }
+    function filterMs(type){ const q=(document.getElementById(type==='cat'?'catSearch':'techSearch').value||'').toLowerCase(); document.querySelectorAll('#'+(type==='cat'?'catList':'techList')+' .ms-item').forEach(i=>{ const t=i.getAttribute('data-text'); i.style.display = (!q || t.includes(q))?'flex':'none'; }); }
+
+    function buildMs(){
+      const cats=[...new Set(all.map(d=>d.category))].sort();
+      const techs=[...new Set(all.flatMap(d=>d.technologies))].sort();
+      document.getElementById('catList').innerHTML = cats.map(c=>`<label class="ms-item" data-text="${c.toLowerCase()}"><input type="checkbox" onchange="this.checked?selCats.add('${c}'):selCats.delete('${c}'); document.getElementById('catCount').textContent=selCats.size;"> ${c}</label>`).join('');
+      document.getElementById('techList').innerHTML = techs.map(t=>`<label class="ms-item" data-text="${t.toLowerCase()}"><input type="checkbox" onchange="this.checked?selTechs.add('${t}'):selTechs.delete('${t}'); document.getElementById('techCount').textContent=selTechs.size;"> ${t}</label>`).join('');
+    }
+
+    function applyFilters(){
+      const minSalary=parseInt(document.getElementById('minSalary').value)||0;
+      const maxSalary=parseInt(document.getElementById('maxSalary').value)||999999;
+      const minExp=parseInt(document.getElementById('minExp').value)||0;
+      const maxExp=parseInt(document.getElementById('maxExp').value)||99;
+      const minTech=parseInt(document.getElementById('minTech').value)||0;
+      filtered = all.filter(d=> d.salaryUSD>=minSalary && d.salaryUSD<=maxSalary && d.experienceYears>=minExp && d.experienceYears<=maxExp && d.techScore>=minTech)
+        .filter(d=> selCats.size===0 || selCats.has(d.category))
+        .filter(d=> selTechs.size===0 || [...selTechs].some(t=> d.technologies.map(x=>x.toLowerCase()).includes(t.toLowerCase())));
+    }
+
+    function card(d){ return `<div class="dev"><div class="dev-top"><div style="font-weight:800">${d.position}</div><div class="id">#${d.developerId}</div></div><div class="row">${badge('📅 '+d.experienceYears+' yrs')}${badge('🌍 '+d.englishLevel)}${badge('📊 '+d.projectsCount+' projects')}${badge('🟢 '+d.availability)}</div><div class="ratings"><div><div class="rlabel">Tech Score</div><div class="rval" style="color:#667eea">${d.techScore}</div></div><div><div class="rlabel">Rating</div><div class="rval" style="color:#48bb78">${d.rating}★</div></div><div><div class="rlabel">Category</div><div class="rval" style="color:#ed8936">${d.category}</div></div></div><div class="row">${d.technologies.slice(0,6).map((t,i)=>badge(t,i<2?'':'')).join('')}</div><div class="row" style="justify-content:space-between;border-top:1px solid #e2e8f0;padding-top:8px"><div class="salary">$${d.salaryUSD.toLocaleString()} / mo</div><button class="btn" onclick="contact('${d.developerId}')">💎 Contact</button></div></div>` }
+    function badge(t,c=''){return `<span class="badge ${c}">${t}</span>`}
+
+    function render(){
+      applyFilters();
+      const sort=document.getElementById('sort').value;
+      if(sort==='rating') filtered.sort((a,b)=> b.rating-a.rating || b.techScore-a.techScore);
+      else if(sort==='tech') filtered.sort((a,b)=> b.techScore-a.techScore);
+      else if(sort==='salary') filtered.sort((a,b)=> a.salaryUSD-b.salaryUSD);
+      else if(sort==='exp') filtered.sort((a,b)=> b.experienceYears-a.experienceYears);
+      else filtered.sort((a,b)=> score(b)-score(a));
+      document.getElementById('count').textContent = `Знайдено ${filtered.length} розробників`;
+      document.getElementById('grid').innerHTML = filtered.map(card).join('');
+    }
+    function score(d){ let s=0; if(selCats.size && selCats.has(d.category)) s+=20; const ts=d.technologies.map(x=>x.toLowerCase()); selTechs.forEach(t=>{ if(ts.includes(t.toLowerCase())) s+=10; }); return s; }
+
+    function renderTop3(){ const top=[...all].sort((a,b)=> b.rating-a.rating || b.techScore-a.techScore).slice(0,3); document.getElementById('top3grid').innerHTML = top.map(card).join(''); }
+
+    function contact(developerId){ const d=all.find(x=>x.developerId===developerId); const subject=encodeURIComponent(`just4u: ${d.developerId} ${d.position}`); const body=encodeURIComponent(`Category: ${d.category}\nEnglish: ${d.englishLevel}\nTech Score: ${d.techScore}\nRating: ${d.rating}\nSalary: $${d.salaryUSD}/mo\nAvailability: ${d.availability}`); window.location.href=`mailto:stant1605@gmail.com?subject=${subject}&body=${body}`; }
+
+    document.addEventListener('DOMContentLoaded', ()=>{ buildMs(); render(); renderTop3(); document.addEventListener('click',(e)=>{ if(!e.target.closest('.ms')){ document.getElementById('catPanel').classList.remove('open'); document.getElementById('techPanel').classList.remove('open'); } }); });
+  </script>
+</body>
+</html>
